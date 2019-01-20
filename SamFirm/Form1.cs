@@ -820,14 +820,17 @@ namespace SamFirm
             if (string.IsNullOrEmpty(model_textbox.Text))
             {
                 Logger.WriteLog("Error: Please specify a model", false);
+                return;
             }
             else if (string.IsNullOrEmpty(region_textbox.Text))
             {
                 Logger.WriteLog("Error: Please specify a region", false);
+                return;
             }
             else if (checkbox_manual.Checked && (string.IsNullOrEmpty(pda_textbox.Text) || string.IsNullOrEmpty(csc_textbox.Text) || string.IsNullOrEmpty(phone_textbox.Text)))
             {
                 Logger.WriteLog("Error: Please specify PDA, CSC and Phone version or use Auto Method", false);
+                return;
             }
 
             BackgroundWorker worker = new BackgroundWorker();
