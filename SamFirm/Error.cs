@@ -1,7 +1,5 @@
 ﻿namespace SamFirm
 {
-    using System;
-
     public enum Error
     {
         AutoFetchError = 5,
@@ -15,4 +13,3 @@
         UpdateCheckError = 2
     }
 }
-

@@ -1,9 +1,7 @@
 ﻿namespace SamFirm
 {
-    using System;
     using System.Linq;
     using System.Net;
-    using System.Runtime.CompilerServices;
 
     public static class WebRequestExtension
     {
