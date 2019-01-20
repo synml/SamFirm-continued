@@ -5,7 +5,7 @@
 
     internal class KiesRequest : WebRequest
     {
-        public static HttpWebRequest Create(string requestUriString)
+        public new static HttpWebRequest Create(string requestUriString)
         {
             HttpWebRequest request = (HttpWebRequest) WebRequest.Create(requestUriString);
             request.Headers["Cache-Control"] = "no-cache";

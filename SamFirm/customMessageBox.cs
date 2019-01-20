@@ -101,7 +101,6 @@
             base.Controls.Add(this.button3);
             base.Controls.Add(this.button2);
             base.Controls.Add(this.button1);
-            //base.Icon = (Icon) manager.GetObject("$this.Icon");
             this.MaximumSize = new Size(0x183, 0x85);
             this.MinimumSize = new Size(0x183, 0x85);
             base.Name = "customMessageBox";

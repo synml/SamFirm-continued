@@ -665,7 +665,6 @@
             base.Controls.Add(this.groupBox2);
             base.Controls.Add(this.groupBox1);
             base.Controls.Add(this.log_textbox);
-            //base.Icon = (Icon) manager.GetObject("$this.Icon");
             base.Name = "Form1";
             this.Text = "SamFirm";
             base.FormClosing += new FormClosingEventHandler(this.Form1_Close);
