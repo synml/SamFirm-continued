@@ -16,11 +16,6 @@
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
             }
-            else
-            {
-                Utility.run_by_cmd = true;
-                Environment.Exit(CmdLine.Main(args));
-            }
             return 0;
         }
 

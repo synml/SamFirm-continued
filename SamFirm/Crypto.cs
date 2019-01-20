@@ -41,10 +41,6 @@
                                     {
                                         form.SetProgressBar(Utility.GetProgress(num, stream.Length));
                                     }
-                                    else
-                                    {
-                                        CmdLine.SetProgress(Utility.GetProgress(num, stream.Length));
-                                    }
                                 }
                                 while (count > 0);
                             }

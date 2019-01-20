@@ -85,10 +85,6 @@
                                     {
                                         form.SetProgressBar(Utility.GetProgress(num, total));
                                     }
-                                    else
-                                    {
-                                        CmdLine.SetProgress(Utility.GetProgress(num, total));
-                                    }
                                 }
                                 while (count > 0);
                             }
