@@ -7,8 +7,8 @@ namespace SamFirm
     internal class Settings
     {
         //설정파일의 이름을 가진 상수
-        private const string settingXml = "Settings.xml";
-        private const string settingXml_name = "Settings";
+        private const string settingsXml = "Settings.xml";
+        private const string elementName = "SamFirm";
 
         //설정파일을 만드는 메소드
         private static void GenerateSettings()
@@ -23,11 +23,11 @@ namespace SamFirm
                     "\t<PDAVer></PDAVer>\r\n" +
                     "\t<CSCVer></CSCVer>\r\n" +
                     "\t<PHONEVer></PHONEVer>\r\n" +
-                    "\t<BinaryNature></BinaryNature>\r\n" +
+                    "\t<BinaryNature>False</BinaryNature>\r\n" +
                     "\t<CheckCRC>True</CheckCRC>\r\n" +
                     "\t<AutoDecrypt>True</AutoDecrypt>\r\n" +
                 "</SamFirm>";
-            File.WriteAllText(settingXml, default_contents);
+            File.WriteAllText(settingsXml, default_contents);
         }
 
         //설정파일을 읽는 메소드
@@ -35,11 +35,11 @@ namespace SamFirm
         {
             try
             {
-                if (!File.Exists(settingXml))
+                if (!File.Exists(settingsXml))
                 {
                     GenerateSettings();
                 }
-                return XDocument.Load(settingXml).Element(settingXml_name).Element(element).Value;
+                return XDocument.Load(settingsXml).Element(elementName).Element(element).Value;
             }
             catch (Exception exception)
             {
@@ -51,21 +51,21 @@ namespace SamFirm
         //설정파일을 쓰는 메소드
         public static void SetSetting(string element, string value)
         {
-            if (!File.Exists(settingXml))
+            if (!File.Exists(settingsXml))
             {
                 GenerateSettings();
             }
-            XDocument document = XDocument.Load(settingXml);
-            XElement element2 = document.Element(settingXml_name).Element(element);
+            XDocument document = XDocument.Load(settingsXml);
+            XElement element2 = document.Element(elementName).Element(element);
             if (element2 == null)
             {
-                document.Element(settingXml_name).Add(new XElement(element, value));
+                document.Element(elementName).Add(new XElement(element, value));
             }
             else
             {
                 element2.Value = value;
             }
-            document.Save(settingXml);
+            document.Save(settingsXml);
         }
     }
 }
