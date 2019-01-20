@@ -1,28 +1,45 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.IO;
-    using System.Xml.Linq;
+﻿using System;
+using System.IO;
+using System.Xml.Linq;
 
+namespace SamFirm
+{
     internal class Settings
     {
-        private const string SettingFile = "SamFirm.xml";
+        //설정파일의 이름을 가진 상수
+        private const string settingXml = "Settings.xml";
+        private const string settingXml_name = "Settings";
 
+        //설정파일을 만드는 메소드
         private static void GenerateSettings()
         {
-            string contents = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<SamFirm>\r\n    <SaveFileDialog></SaveFileDialog>\r\n    <AutoInfo></AutoInfo>\r\n\t<Region></Region>\r\n\t<Model></Model>\r\n\t<PDAVer></PDAVer>\r\n\t<CSCVer></CSCVer>\r\n\t<PHONEVer></PHONEVer>\r\n    <BinaryNature></BinaryNature>\r\n    <CheckCRC></CheckCRC>\r\n    <AutoDecrypt></AutoDecrypt>\r\n</SamFirm>";
-            File.WriteAllText("SamFirm.xml", contents);
+            string default_contents =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
+                "<SamFirm>\r\n" +
+                    "\t<SaveFileDialog>True</SaveFileDialog>\r\n" +
+                    "\t<AutoInfo>True</AutoInfo>\r\n" +
+                    "\t<Region></Region>\r\n" +
+                    "\t<Model></Model>\r\n" +
+                    "\t<PDAVer></PDAVer>\r\n" +
+                    "\t<CSCVer></CSCVer>\r\n" +
+                    "\t<PHONEVer></PHONEVer>\r\n" +
+                    "\t<BinaryNature></BinaryNature>\r\n" +
+                    "\t<CheckCRC>True</CheckCRC>\r\n" +
+                    "\t<AutoDecrypt>True</AutoDecrypt>\r\n" +
+                "</SamFirm>";
+            File.WriteAllText(settingXml, default_contents);
         }
 
+        //설정파일을 읽는 메소드
         public static string ReadSetting(string element)
         {
             try
             {
-                if (!File.Exists("SamFirm.xml"))
+                if (!File.Exists(settingXml))
                 {
                     GenerateSettings();
                 }
-                return XDocument.Load("SamFirm.xml").Element("SamFirm").Element(element).Value;
+                return XDocument.Load(settingXml).Element(settingXml_name).Element(element).Value;
             }
             catch (Exception exception)
             {
@@ -31,24 +48,24 @@
             }
         }
 
+        //설정파일을 쓰는 메소드
         public static void SetSetting(string element, string value)
         {
-            if (!File.Exists("SamFirm.xml"))
+            if (!File.Exists(settingXml))
             {
                 GenerateSettings();
             }
-            XDocument document = XDocument.Load("SamFirm.xml");
-            XElement element2 = document.Element("SamFirm").Element(element);
+            XDocument document = XDocument.Load(settingXml);
+            XElement element2 = document.Element(settingXml_name).Element(element);
             if (element2 == null)
             {
-                document.Element("SamFirm").Add(new XElement(element, value));
+                document.Element(settingXml_name).Add(new XElement(element, value));
             }
             else
             {
                 element2.Value = value;
             }
-            document.Save("SamFirm.xml");
+            document.Save(settingXml);
         }
     }
 }
-
