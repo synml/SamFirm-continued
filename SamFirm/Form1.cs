@@ -387,148 +387,218 @@
 
         private void InitializeComponent()
         {
-            this.components = new Container();
-            ComponentResourceManager manager = new ComponentResourceManager(typeof(Form1));
-            this.model_textbox = new TextBox();
-            this.model_lbl = new Label();
-            this.download_button = new Button();
-            this.log_textbox = new RichTextBox();
-            this.region_lbl = new Label();
-            this.region_textbox = new TextBox();
-            this.pda_lbl = new Label();
-            this.pda_textbox = new TextBox();
-            this.csc_lbl = new Label();
-            this.csc_textbox = new TextBox();
-            this.update_button = new Button();
-            this.phone_lbl = new Label();
-            this.phone_textbox = new TextBox();
-            this.file_lbl = new Label();
-            this.file_textbox = new TextBox();
-            this.version_lbl = new Label();
-            this.version_textbox = new TextBox();
-            this.groupBox1 = new GroupBox();
-            this.groupBox3 = new GroupBox();
-            this.checkbox_manual = new CheckBox();
-            this.checkbox_auto = new CheckBox();
-            this.binary_checkbox = new CheckBox();
-            this.binary_lbl = new Label();
-            this.progressBar = new ProgressBar();
-            this.decrypt_button = new Button();
-            this.groupBox2 = new GroupBox();
-            this.label1 = new Label();
-            this.lbl_speed = new Label();
-            this.checkbox_autodecrypt = new CheckBox();
-            this.checkbox_crc = new CheckBox();
-            this.size_textbox = new TextBox();
-            this.size_lbl = new Label();
-            this.tooltip_binary = new ToolTip(this.components);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.model_textbox = new System.Windows.Forms.TextBox();
+            this.model_lbl = new System.Windows.Forms.Label();
+            this.download_button = new System.Windows.Forms.Button();
+            this.log_textbox = new System.Windows.Forms.RichTextBox();
+            this.region_lbl = new System.Windows.Forms.Label();
+            this.region_textbox = new System.Windows.Forms.TextBox();
+            this.pda_lbl = new System.Windows.Forms.Label();
+            this.pda_textbox = new System.Windows.Forms.TextBox();
+            this.csc_lbl = new System.Windows.Forms.Label();
+            this.csc_textbox = new System.Windows.Forms.TextBox();
+            this.update_button = new System.Windows.Forms.Button();
+            this.phone_lbl = new System.Windows.Forms.Label();
+            this.phone_textbox = new System.Windows.Forms.TextBox();
+            this.file_lbl = new System.Windows.Forms.Label();
+            this.file_textbox = new System.Windows.Forms.TextBox();
+            this.version_lbl = new System.Windows.Forms.Label();
+            this.version_textbox = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkbox_manual = new System.Windows.Forms.CheckBox();
+            this.checkbox_auto = new System.Windows.Forms.CheckBox();
+            this.binary_checkbox = new System.Windows.Forms.CheckBox();
+            this.binary_lbl = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.decrypt_button = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_speed = new System.Windows.Forms.Label();
+            this.checkbox_autodecrypt = new System.Windows.Forms.CheckBox();
+            this.checkbox_crc = new System.Windows.Forms.CheckBox();
+            this.size_textbox = new System.Windows.Forms.TextBox();
+            this.size_lbl = new System.Windows.Forms.Label();
+            this.tooltip_binary = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tooltip_binary_box = new ToolTip(this.components);
+            this.tooltip_binary_box = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            base.SuspendLayout();
-            this.model_textbox.CharacterCasing = CharacterCasing.Upper;
-            this.model_textbox.Location = new Point(0x55, 0x16);
+            this.SuspendLayout();
+            // 
+            // model_textbox
+            // 
+            this.model_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.model_textbox.Location = new System.Drawing.Point(113, 25);
+            this.model_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.model_textbox.Name = "model_textbox";
-            this.model_textbox.Size = new Size(0x95, 20);
+            this.model_textbox.Size = new System.Drawing.Size(197, 25);
             this.model_textbox.TabIndex = 0;
+            // 
+            // model_lbl
+            // 
             this.model_lbl.AutoSize = true;
-            this.model_lbl.Location = new Point(8, 0x19);
+            this.model_lbl.Location = new System.Drawing.Point(11, 29);
+            this.model_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.model_lbl.Name = "model_lbl";
-            this.model_lbl.Size = new Size(0x24, 13);
+            this.model_lbl.Size = new System.Drawing.Size(47, 15);
             this.model_lbl.TabIndex = 1;
             this.model_lbl.Text = "Model";
-            this.download_button.Location = new Point(0x4a, 0x75);
-            this.download_button.Margin = new Padding(0);
+            // 
+            // download_button
+            // 
+            this.download_button.Location = new System.Drawing.Point(99, 135);
+            this.download_button.Margin = new System.Windows.Forms.Padding(0);
             this.download_button.Name = "download_button";
-            this.download_button.Size = new Size(0x5e, 0x17);
+            this.download_button.Size = new System.Drawing.Size(125, 27);
             this.download_button.TabIndex = 13;
             this.download_button.Text = "Download";
             this.download_button.UseVisualStyleBackColor = true;
-            this.download_button.Click += new EventHandler(this.download_button_Click);
-            this.log_textbox.Location = new Point(12, 0xe9);
+            this.download_button.Click += new System.EventHandler(this.download_button_Click);
+            // 
+            // log_textbox
+            // 
+            this.log_textbox.Location = new System.Drawing.Point(16, 269);
+            this.log_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.log_textbox.Name = "log_textbox";
             this.log_textbox.ReadOnly = true;
-            this.log_textbox.Size = new Size(0x27f, 0x8a);
+            this.log_textbox.Size = new System.Drawing.Size(851, 159);
             this.log_textbox.TabIndex = 3;
             this.log_textbox.TabStop = false;
             this.log_textbox.Text = "";
+            // 
+            // region_lbl
+            // 
             this.region_lbl.AutoSize = true;
-            this.region_lbl.Location = new Point(8, 0x33);
+            this.region_lbl.Location = new System.Drawing.Point(11, 59);
+            this.region_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.region_lbl.Name = "region_lbl";
-            this.region_lbl.Size = new Size(0x29, 13);
+            this.region_lbl.Size = new System.Drawing.Size(53, 15);
             this.region_lbl.TabIndex = 5;
             this.region_lbl.Text = "Region";
-            this.region_textbox.CharacterCasing = CharacterCasing.Upper;
-            this.region_textbox.Location = new Point(0x55, 0x30);
+            // 
+            // region_textbox
+            // 
+            this.region_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.region_textbox.Location = new System.Drawing.Point(113, 55);
+            this.region_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.region_textbox.Name = "region_textbox";
-            this.region_textbox.Size = new Size(0x95, 20);
+            this.region_textbox.Size = new System.Drawing.Size(197, 25);
             this.region_textbox.TabIndex = 1;
+            // 
+            // pda_lbl
+            // 
             this.pda_lbl.AutoSize = true;
-            this.pda_lbl.Location = new Point(10, 15);
+            this.pda_lbl.Location = new System.Drawing.Point(13, 17);
+            this.pda_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pda_lbl.Name = "pda_lbl";
-            this.pda_lbl.Size = new Size(0x1d, 13);
+            this.pda_lbl.Size = new System.Drawing.Size(36, 15);
             this.pda_lbl.TabIndex = 7;
             this.pda_lbl.Text = "PDA";
-            this.pda_textbox.CharacterCasing = CharacterCasing.Upper;
-            this.pda_textbox.Location = new Point(0x4f, 12);
+            // 
+            // pda_textbox
+            // 
+            this.pda_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.pda_textbox.Location = new System.Drawing.Point(105, 14);
+            this.pda_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pda_textbox.Name = "pda_textbox";
-            this.pda_textbox.Size = new Size(0x95, 20);
+            this.pda_textbox.Size = new System.Drawing.Size(197, 25);
             this.pda_textbox.TabIndex = 4;
+            // 
+            // csc_lbl
+            // 
             this.csc_lbl.AutoSize = true;
-            this.csc_lbl.Location = new Point(10, 0x29);
+            this.csc_lbl.Location = new System.Drawing.Point(13, 47);
+            this.csc_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.csc_lbl.Name = "csc_lbl";
-            this.csc_lbl.Size = new Size(0x1c, 13);
+            this.csc_lbl.Size = new System.Drawing.Size(37, 15);
             this.csc_lbl.TabIndex = 9;
             this.csc_lbl.Text = "CSC";
-            this.csc_textbox.CharacterCasing = CharacterCasing.Upper;
-            this.csc_textbox.Location = new Point(0x4f, 0x26);
+            // 
+            // csc_textbox
+            // 
+            this.csc_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.csc_textbox.Location = new System.Drawing.Point(105, 44);
+            this.csc_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.csc_textbox.Name = "csc_textbox";
-            this.csc_textbox.Size = new Size(0x95, 20);
+            this.csc_textbox.Size = new System.Drawing.Size(197, 25);
             this.csc_textbox.TabIndex = 5;
-            this.update_button.Location = new Point(0x8d, 0xba);
+            // 
+            // update_button
+            // 
+            this.update_button.Location = new System.Drawing.Point(188, 215);
+            this.update_button.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.update_button.Name = "update_button";
-            this.update_button.Size = new Size(0x5d, 0x17);
+            this.update_button.Size = new System.Drawing.Size(124, 27);
             this.update_button.TabIndex = 10;
             this.update_button.Text = "Check Update";
             this.update_button.UseVisualStyleBackColor = true;
-            this.update_button.Click += new EventHandler(this.update_button_Click);
+            this.update_button.Click += new System.EventHandler(this.update_button_Click);
+            // 
+            // phone_lbl
+            // 
             this.phone_lbl.AutoSize = true;
-            this.phone_lbl.Location = new Point(10, 0x43);
+            this.phone_lbl.Location = new System.Drawing.Point(13, 77);
+            this.phone_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.phone_lbl.Name = "phone_lbl";
-            this.phone_lbl.Size = new Size(0x26, 13);
+            this.phone_lbl.Size = new System.Drawing.Size(50, 15);
             this.phone_lbl.TabIndex = 12;
             this.phone_lbl.Text = "Phone";
-            this.phone_textbox.CharacterCasing = CharacterCasing.Upper;
-            this.phone_textbox.Location = new Point(0x4f, 0x40);
+            // 
+            // phone_textbox
+            // 
+            this.phone_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.phone_textbox.Location = new System.Drawing.Point(105, 74);
+            this.phone_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.phone_textbox.Name = "phone_textbox";
-            this.phone_textbox.Size = new Size(0x95, 20);
+            this.phone_textbox.Size = new System.Drawing.Size(197, 25);
             this.phone_textbox.TabIndex = 6;
+            // 
+            // file_lbl
+            // 
             this.file_lbl.AutoSize = true;
-            this.file_lbl.Location = new Point(6, 0x19);
+            this.file_lbl.Location = new System.Drawing.Point(8, 29);
+            this.file_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.file_lbl.Name = "file_lbl";
-            this.file_lbl.Size = new Size(0x17, 13);
+            this.file_lbl.Size = new System.Drawing.Size(29, 15);
             this.file_lbl.TabIndex = 13;
             this.file_lbl.Text = "File";
-            this.file_textbox.Location = new Point(0x4b, 0x12);
+            // 
+            // file_textbox
+            // 
+            this.file_textbox.Location = new System.Drawing.Point(100, 21);
+            this.file_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.file_textbox.Name = "file_textbox";
             this.file_textbox.ReadOnly = true;
-            this.file_textbox.Size = new Size(290, 20);
+            this.file_textbox.Size = new System.Drawing.Size(385, 25);
             this.file_textbox.TabIndex = 20;
             this.file_textbox.TabStop = false;
+            // 
+            // version_lbl
+            // 
             this.version_lbl.AutoSize = true;
-            this.version_lbl.Location = new Point(6, 0x33);
+            this.version_lbl.Location = new System.Drawing.Point(8, 59);
+            this.version_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.version_lbl.Name = "version_lbl";
-            this.version_lbl.Size = new Size(0x2a, 13);
+            this.version_lbl.Size = new System.Drawing.Size(55, 15);
             this.version_lbl.TabIndex = 15;
             this.version_lbl.Text = "Version";
-            this.version_textbox.Location = new Point(0x4b, 0x2c);
+            // 
+            // version_textbox
+            // 
+            this.version_textbox.Location = new System.Drawing.Point(100, 51);
+            this.version_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.version_textbox.Name = "version_textbox";
             this.version_textbox.ReadOnly = true;
-            this.version_textbox.Size = new Size(290, 20);
+            this.version_textbox.Size = new System.Drawing.Size(385, 25);
             this.version_textbox.TabIndex = 30;
             this.version_textbox.TabStop = false;
+            // 
+            // groupBox1
+            // 
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.checkbox_manual);
             this.groupBox1.Controls.Add(this.checkbox_auto);
@@ -539,63 +609,97 @@
             this.groupBox1.Controls.Add(this.update_button);
             this.groupBox1.Controls.Add(this.region_textbox);
             this.groupBox1.Controls.Add(this.region_lbl);
-            this.groupBox1.Location = new Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(16, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new Size(0x106, 0xd7);
-            this.groupBox1.TabIndex = 0x11;
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox1.Size = new System.Drawing.Size(349, 248);
+            this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Firmware Info";
+            // 
+            // groupBox3
+            // 
             this.groupBox3.Controls.Add(this.phone_textbox);
             this.groupBox3.Controls.Add(this.csc_lbl);
             this.groupBox3.Controls.Add(this.csc_textbox);
             this.groupBox3.Controls.Add(this.pda_lbl);
             this.groupBox3.Controls.Add(this.pda_textbox);
             this.groupBox3.Controls.Add(this.phone_lbl);
-            this.groupBox3.Location = new Point(6, 0x5d);
+            this.groupBox3.Location = new System.Drawing.Point(8, 107);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new Size(250, 0x59);
-            this.groupBox3.TabIndex = 0x11;
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox3.Size = new System.Drawing.Size(333, 103);
+            this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
+            // 
+            // checkbox_manual
+            // 
             this.checkbox_manual.AutoSize = true;
-            this.checkbox_manual.Location = new Point(0x81, 0x4b);
+            this.checkbox_manual.Location = new System.Drawing.Point(172, 87);
+            this.checkbox_manual.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkbox_manual.Name = "checkbox_manual";
-            this.checkbox_manual.Size = new Size(0x3d, 0x11);
+            this.checkbox_manual.Size = new System.Drawing.Size(76, 19);
             this.checkbox_manual.TabIndex = 3;
             this.checkbox_manual.Text = "Manual";
             this.checkbox_manual.UseVisualStyleBackColor = true;
-            this.checkbox_manual.CheckedChanged += new EventHandler(this.checkbox_manual_CheckedChanged);
+            this.checkbox_manual.CheckedChanged += new System.EventHandler(this.checkbox_manual_CheckedChanged);
+            // 
+            // checkbox_auto
+            // 
             this.checkbox_auto.AutoSize = true;
-            this.checkbox_auto.Location = new Point(11, 0x4b);
+            this.checkbox_auto.Location = new System.Drawing.Point(15, 87);
+            this.checkbox_auto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkbox_auto.Name = "checkbox_auto";
-            this.checkbox_auto.Size = new Size(0x30, 0x11);
+            this.checkbox_auto.Size = new System.Drawing.Size(59, 19);
             this.checkbox_auto.TabIndex = 2;
             this.checkbox_auto.Text = "Auto";
             this.checkbox_auto.UseVisualStyleBackColor = true;
-            this.checkbox_auto.CheckedChanged += new EventHandler(this.checkbox_auto_CheckedChanged);
+            this.checkbox_auto.CheckedChanged += new System.EventHandler(this.checkbox_auto_CheckedChanged);
+            // 
+            // binary_checkbox
+            // 
             this.binary_checkbox.AutoSize = true;
-            this.binary_checkbox.Location = new Point(0x55, 0xbf);
+            this.binary_checkbox.Location = new System.Drawing.Point(113, 220);
+            this.binary_checkbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.binary_checkbox.Name = "binary_checkbox";
-            this.binary_checkbox.Size = new Size(15, 14);
+            this.binary_checkbox.Size = new System.Drawing.Size(18, 17);
             this.binary_checkbox.TabIndex = 7;
             this.binary_checkbox.UseVisualStyleBackColor = true;
+            // 
+            // binary_lbl
+            // 
             this.binary_lbl.AutoSize = true;
-            this.binary_lbl.Location = new Point(8, 190);
+            this.binary_lbl.Location = new System.Drawing.Point(11, 219);
+            this.binary_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.binary_lbl.Name = "binary_lbl";
-            this.binary_lbl.Size = new Size(0x47, 13);
+            this.binary_lbl.Size = new System.Drawing.Size(94, 15);
             this.binary_lbl.TabIndex = 13;
             this.binary_lbl.Text = "Binary Nature";
-            this.progressBar.Location = new Point(0x4b, 0x92);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(100, 168);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new Size(290, 0x17);
-            this.progressBar.TabIndex = 0x12;
+            this.progressBar.Size = new System.Drawing.Size(387, 27);
+            this.progressBar.TabIndex = 18;
+            // 
+            // decrypt_button
+            // 
             this.decrypt_button.Enabled = false;
-            this.decrypt_button.Location = new Point(0xbc, 0x75);
+            this.decrypt_button.Location = new System.Drawing.Point(251, 135);
+            this.decrypt_button.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.decrypt_button.Name = "decrypt_button";
-            this.decrypt_button.Size = new Size(0x7f, 0x17);
+            this.decrypt_button.Size = new System.Drawing.Size(169, 27);
             this.decrypt_button.TabIndex = 14;
             this.decrypt_button.Text = "Decrypt";
             this.decrypt_button.UseVisualStyleBackColor = true;
-            this.decrypt_button.Click += new EventHandler(this.decrypt_button_Click);
+            this.decrypt_button.Click += new System.EventHandler(this.decrypt_button_Click);
+            // 
+            // groupBox2
+            // 
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.lbl_speed);
             this.groupBox2.Controls.Add(this.checkbox_autodecrypt);
@@ -609,73 +713,108 @@
             this.groupBox2.Controls.Add(this.file_textbox);
             this.groupBox2.Controls.Add(this.version_textbox);
             this.groupBox2.Controls.Add(this.version_lbl);
-            this.groupBox2.Location = new Point(280, 12);
+            this.groupBox2.Location = new System.Drawing.Point(373, 14);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new Size(0x173, 0xd7);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox2.Size = new System.Drawing.Size(495, 248);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Download";
+            // 
+            // label1
+            // 
             this.label1.AutoSize = true;
-            this.label1.Location = new Point(6, 0xb0);
+            this.label1.Location = new System.Drawing.Point(8, 203);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new Size(0x26, 13);
-            this.label1.TabIndex = 0x19;
+            this.label1.Size = new System.Drawing.Size(49, 15);
+            this.label1.TabIndex = 25;
             this.label1.Text = "Speed";
+            // 
+            // lbl_speed
+            // 
             this.lbl_speed.AutoSize = true;
-            this.lbl_speed.Location = new Point(0x48, 0xb0);
+            this.lbl_speed.Location = new System.Drawing.Point(96, 203);
+            this.lbl_speed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_speed.Name = "lbl_speed";
-            this.lbl_speed.Size = new Size(0x24, 13);
-            this.lbl_speed.TabIndex = 0x18;
+            this.lbl_speed.Size = new System.Drawing.Size(46, 15);
+            this.lbl_speed.TabIndex = 24;
             this.lbl_speed.Text = "0kB/s";
+            // 
+            // checkbox_autodecrypt
+            // 
             this.checkbox_autodecrypt.AutoSize = true;
             this.checkbox_autodecrypt.Checked = true;
-            this.checkbox_autodecrypt.CheckState = CheckState.Checked;
-            this.checkbox_autodecrypt.Location = new Point(0xbd, 0x60);
+            this.checkbox_autodecrypt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkbox_autodecrypt.Location = new System.Drawing.Point(252, 111);
+            this.checkbox_autodecrypt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkbox_autodecrypt.Name = "checkbox_autodecrypt";
-            this.checkbox_autodecrypt.Size = new Size(0x7f, 0x11);
+            this.checkbox_autodecrypt.Size = new System.Drawing.Size(169, 19);
             this.checkbox_autodecrypt.TabIndex = 12;
             this.checkbox_autodecrypt.Text = "Decrypt automatically";
             this.checkbox_autodecrypt.UseVisualStyleBackColor = true;
+            // 
+            // checkbox_crc
+            // 
             this.checkbox_crc.AutoSize = true;
             this.checkbox_crc.Checked = true;
-            this.checkbox_crc.CheckState = CheckState.Checked;
-            this.checkbox_crc.Location = new Point(0x4b, 0x60);
+            this.checkbox_crc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkbox_crc.Location = new System.Drawing.Point(100, 111);
+            this.checkbox_crc.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkbox_crc.Name = "checkbox_crc";
-            this.checkbox_crc.Size = new Size(0x5e, 0x11);
+            this.checkbox_crc.Size = new System.Drawing.Size(121, 19);
             this.checkbox_crc.TabIndex = 11;
             this.checkbox_crc.Text = "Check CRC32";
             this.checkbox_crc.UseVisualStyleBackColor = true;
-            this.size_textbox.Location = new Point(0x4b, 70);
+            // 
+            // size_textbox
+            // 
+            this.size_textbox.Location = new System.Drawing.Point(100, 81);
+            this.size_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.size_textbox.Name = "size_textbox";
             this.size_textbox.ReadOnly = true;
-            this.size_textbox.Size = new Size(290, 20);
+            this.size_textbox.Size = new System.Drawing.Size(385, 25);
             this.size_textbox.TabIndex = 40;
             this.size_textbox.TabStop = false;
+            // 
+            // size_lbl
+            // 
             this.size_lbl.AutoSize = true;
-            this.size_lbl.Location = new Point(6, 0x4b);
+            this.size_lbl.Location = new System.Drawing.Point(8, 87);
+            this.size_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.size_lbl.Name = "size_lbl";
-            this.size_lbl.Size = new Size(0x1b, 13);
+            this.size_lbl.Size = new System.Drawing.Size(36, 15);
             this.size_lbl.TabIndex = 20;
             this.size_lbl.Text = "Size";
+            // 
+            // saveFileDialog1
+            // 
             this.saveFileDialog1.SupportMultiDottedExtensions = true;
-            base.AcceptButton = this.update_button;
-            base.AutoScaleDimensions = new SizeF(6f, 13f);
-            base.AutoScaleMode = AutoScaleMode.Font;
-            base.ClientSize = new Size(0x29c, 0x17f);
-            base.Controls.Add(this.groupBox2);
-            base.Controls.Add(this.groupBox1);
-            base.Controls.Add(this.log_textbox);
-            base.Name = "Form1";
+            // 
+            // Form1
+            // 
+            this.AcceptButton = this.update_button;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(891, 442);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.log_textbox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Name = "Form1";
             this.Text = "SamFirm";
-            base.FormClosing += new FormClosingEventHandler(this.Form1_Close);
-            base.Load += new EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Close);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            base.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         public void SetProgressBar(int Progress)
