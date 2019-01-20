@@ -9,7 +9,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
-        private IContainer components;
         private Label lbltext;
         private PictureBox pictureBox1;
 
@@ -41,15 +40,6 @@
             }
             this.pictureBox1.Image = img;
             this.Font = SystemFonts.DefaultFont;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (this.components != null))
-            {
-                this.components.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
         private void InitializeComponent()
