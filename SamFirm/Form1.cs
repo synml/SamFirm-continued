@@ -14,7 +14,6 @@
     public class Form1 : Form
     {
         private CheckBox binary_checkbox;
-        private Label binary_lbl;
         private CheckBox checkbox_auto;
         private CheckBox checkbox_autodecrypt;
         private CheckBox checkbox_crc;
@@ -48,7 +47,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private Label size_lbl;
         private TextBox size_textbox;
-        private ToolTip tooltip_binary;
         private ToolTip tooltip_binary_box;
         private Button update_button;
         private Label version_lbl;
@@ -378,7 +376,6 @@
             {
                 this.checkbox_autodecrypt.Checked = false;
             }
-            this.tooltip_binary.SetToolTip(this.binary_lbl, "Full firmware including PIT file");
             this.tooltip_binary_box.SetToolTip(this.binary_checkbox, "Full firmware including PIT file");
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             Logger.WriteLog("SamFirm v" + versionInfo.FileVersion, false);
@@ -411,7 +408,6 @@
             this.checkbox_manual = new System.Windows.Forms.CheckBox();
             this.checkbox_auto = new System.Windows.Forms.CheckBox();
             this.binary_checkbox = new System.Windows.Forms.CheckBox();
-            this.binary_lbl = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.decrypt_button = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -421,7 +417,6 @@
             this.checkbox_crc = new System.Windows.Forms.CheckBox();
             this.size_textbox = new System.Windows.Forms.TextBox();
             this.size_lbl = new System.Windows.Forms.Label();
-            this.tooltip_binary = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tooltip_binary_box = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
@@ -465,7 +460,7 @@
             this.log_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.log_textbox.Name = "log_textbox";
             this.log_textbox.ReadOnly = true;
-            this.log_textbox.Size = new System.Drawing.Size(851, 159);
+            this.log_textbox.Size = new System.Drawing.Size(851, 161);
             this.log_textbox.TabIndex = 3;
             this.log_textbox.TabStop = false;
             this.log_textbox.Text = "";
@@ -603,7 +598,6 @@
             this.groupBox1.Controls.Add(this.checkbox_manual);
             this.groupBox1.Controls.Add(this.checkbox_auto);
             this.groupBox1.Controls.Add(this.binary_checkbox);
-            this.groupBox1.Controls.Add(this.binary_lbl);
             this.groupBox1.Controls.Add(this.model_textbox);
             this.groupBox1.Controls.Add(this.model_lbl);
             this.groupBox1.Controls.Add(this.update_button);
@@ -661,22 +655,13 @@
             // binary_checkbox
             // 
             this.binary_checkbox.AutoSize = true;
-            this.binary_checkbox.Location = new System.Drawing.Point(113, 220);
+            this.binary_checkbox.Location = new System.Drawing.Point(15, 220);
             this.binary_checkbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.binary_checkbox.Name = "binary_checkbox";
-            this.binary_checkbox.Size = new System.Drawing.Size(18, 17);
+            this.binary_checkbox.Size = new System.Drawing.Size(116, 19);
             this.binary_checkbox.TabIndex = 7;
+            this.binary_checkbox.Text = "Binary Nature";
             this.binary_checkbox.UseVisualStyleBackColor = true;
-            // 
-            // binary_lbl
-            // 
-            this.binary_lbl.AutoSize = true;
-            this.binary_lbl.Location = new System.Drawing.Point(11, 219);
-            this.binary_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.binary_lbl.Name = "binary_lbl";
-            this.binary_lbl.Size = new System.Drawing.Size(94, 15);
-            this.binary_lbl.TabIndex = 13;
-            this.binary_lbl.Text = "Binary Nature";
             // 
             // progressBar
             // 
@@ -804,7 +789,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
-            this.Text = "SamFirm";
+            this.Text = "SamFirm Continued";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Close);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
