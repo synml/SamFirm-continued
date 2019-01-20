@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SamFirm-continued")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("MIT License © Lulin Pollux")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
