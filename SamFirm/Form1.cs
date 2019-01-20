@@ -816,87 +816,87 @@ namespace SamFirm
         //Update 버튼 클릭시 실행하는 메소드
         private void update_button_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.model_textbox.Text))
+            //예외 처리
+            if (string.IsNullOrEmpty(model_textbox.Text))
             {
                 Logger.WriteLog("Error: Please specify a model", false);
             }
-            else if (string.IsNullOrEmpty(this.region_textbox.Text))
+            else if (string.IsNullOrEmpty(region_textbox.Text))
             {
                 Logger.WriteLog("Error: Please specify a region", false);
             }
-            else if (this.checkbox_manual.Checked && ((string.IsNullOrEmpty(this.pda_textbox.Text) || string.IsNullOrEmpty(this.csc_textbox.Text)) || string.IsNullOrEmpty(this.phone_textbox.Text)))
+            else if (checkbox_manual.Checked && (string.IsNullOrEmpty(pda_textbox.Text) || string.IsNullOrEmpty(csc_textbox.Text) || string.IsNullOrEmpty(phone_textbox.Text)))
             {
                 Logger.WriteLog("Error: Please specify PDA, CSC and Phone version or use Auto Method", false);
             }
-            else
+
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += delegate (object o, DoWorkEventArgs _e)
             {
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
-                    MethodInvoker method = null;
-                    MethodInvoker invoker2 = null;
-                    MethodInvoker invoker3 = null;
-                    MethodInvoker invoker4 = null;
-                    MethodInvoker invoker5 = null;
-                    MethodInvoker invoker6 = null;
-                    try
+                MethodInvoker method = null;
+                MethodInvoker invoker2 = null;
+                MethodInvoker invoker3 = null;
+                MethodInvoker invoker4 = null;
+                MethodInvoker invoker5 = null;
+                MethodInvoker invoker6 = null;
+                try
+                {
+                    this.SetProgressBar(0);
+                    this.ControlsEnabled(false);
+                    Utility.ReconnectDownload = false;
+                    if (this.checkbox_auto.Checked)
                     {
-                        this.SetProgressBar(0);
-                        this.ControlsEnabled(false);
-                        Utility.ReconnectDownload = false;
-                        if (this.checkbox_auto.Checked)
-                        {
-                            this.FW = SamFirm.Command.UpdateCheckAuto(this.model_textbox.Text, this.region_textbox.Text, this.binary_checkbox.Checked);
-                        }
-                        else
-                        {
-                            this.FW = SamFirm.Command.UpdateCheck(this.model_textbox.Text, this.region_textbox.Text, this.pda_textbox.Text, this.csc_textbox.Text, this.phone_textbox.Text, this.pda_textbox.Text, this.binary_checkbox.Checked, false);
-                        }
-                        if (!string.IsNullOrEmpty(this.FW.Filename))
-                        {
-                            if (method == null)
-                            {
-                                method = () => this.file_textbox.Text = this.FW.Filename;
-                            }
-                            this.file_textbox.Invoke(method);
-                            if (invoker2 == null)
-                            {
-                                invoker2 = () => this.version_textbox.Text = this.FW.Version;
-                            }
-                            this.version_textbox.Invoke(invoker2);
-                            if (invoker3 == null)
-                            {
-                                invoker3 = () => this.size_textbox.Text = ((long.Parse(this.FW.Size) / 0x400L) / 0x400L) + " MB";
-                            }
-                            this.size_textbox.Invoke(invoker3);
-                        }
-                        else
-                        {
-                            if (invoker4 == null)
-                            {
-                                invoker4 = () => this.file_textbox.Text = string.Empty;
-                            }
-                            this.file_textbox.Invoke(invoker4);
-                            if (invoker5 == null)
-                            {
-                                invoker5 = () => this.version_textbox.Text = string.Empty;
-                            }
-                            this.version_textbox.Invoke(invoker5);
-                            if (invoker6 == null)
-                            {
-                                invoker6 = () => this.size_textbox.Text = string.Empty;
-                            }
-                            this.size_textbox.Invoke(invoker6);
-                        }
-                        this.ControlsEnabled(true);
+                        this.FW = SamFirm.Command.UpdateCheckAuto(this.model_textbox.Text, this.region_textbox.Text, this.binary_checkbox.Checked);
                     }
-                    catch (Exception exception)
+                    else
                     {
-                        Logger.WriteLog(exception.Message, false);
-                        Logger.WriteLog(exception.ToString(), false);
+                        this.FW = SamFirm.Command.UpdateCheck(this.model_textbox.Text, this.region_textbox.Text, this.pda_textbox.Text, this.csc_textbox.Text, this.phone_textbox.Text, this.pda_textbox.Text, this.binary_checkbox.Checked, false);
                     }
-                };
-                worker.RunWorkerAsync();
-            }
+                    if (!string.IsNullOrEmpty(this.FW.Filename))
+                    {
+                        if (method == null)
+                        {
+                            method = () => this.file_textbox.Text = this.FW.Filename;
+                        }
+                        this.file_textbox.Invoke(method);
+                        if (invoker2 == null)
+                        {
+                            invoker2 = () => this.version_textbox.Text = this.FW.Version;
+                        }
+                        this.version_textbox.Invoke(invoker2);
+                        if (invoker3 == null)
+                        {
+                            invoker3 = () => this.size_textbox.Text = ((long.Parse(this.FW.Size) / 0x400L) / 0x400L) + " MB";
+                        }
+                        this.size_textbox.Invoke(invoker3);
+                    }
+                    else
+                    {
+                        if (invoker4 == null)
+                        {
+                            invoker4 = () => this.file_textbox.Text = string.Empty;
+                        }
+                        this.file_textbox.Invoke(invoker4);
+                        if (invoker5 == null)
+                        {
+                            invoker5 = () => this.version_textbox.Text = string.Empty;
+                        }
+                        this.version_textbox.Invoke(invoker5);
+                        if (invoker6 == null)
+                        {
+                            invoker6 = () => this.size_textbox.Text = string.Empty;
+                        }
+                        this.size_textbox.Invoke(invoker6);
+                    }
+                    this.ControlsEnabled(true);
+                }
+                catch (Exception exception)
+                {
+                    Logger.WriteLog(exception.Message, false);
+                    Logger.WriteLog(exception.ToString(), false);
+                }
+            };
+            worker.RunWorkerAsync();
         }
 
         //작업 진행바를 설정하는 메소드
