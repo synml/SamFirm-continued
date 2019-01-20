@@ -1,9 +1,9 @@
-﻿namespace SamFirm
-{
-    using System.ComponentModel;
-    using System.Drawing;
-    using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
+namespace SamFirm
+{
     public class customMessageBox : Form
     {
         private Button button1;
@@ -13,8 +13,7 @@
         private PictureBox pictureBox1;
 
         public customMessageBox()
-        {
-        }
+        { }
 
         public customMessageBox(string message, string button1txt, DialogResult result1, string button2txt, DialogResult result2, string button3txt, DialogResult result3, Image img)
         {
@@ -44,7 +43,6 @@
 
         private void InitializeComponent()
         {
-            ComponentResourceManager manager = new ComponentResourceManager(typeof(customMessageBox));
             this.button1 = new Button();
             this.button2 = new Button();
             this.button3 = new Button();
@@ -101,4 +99,3 @@
         }
     }
 }
-

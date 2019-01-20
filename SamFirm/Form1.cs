@@ -1,18 +1,19 @@
-﻿namespace SamFirm
-{
-    using Microsoft.WindowsAPICodePack.Taskbar;
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.IO;
-    using System.Net;
-    using System.Reflection;
-    using System.Threading;
-    using System.Windows.Forms;
+﻿using Microsoft.WindowsAPICodePack.Taskbar;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Net;
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
 
+namespace SamFirm
+{
     public class Form1 : Form
     {
+        //컨트롤
         private CheckBox binary_checkbox;
         private CheckBox checkbox_auto;
         private CheckBox checkbox_autodecrypt;
@@ -44,7 +45,7 @@
         private Label region_lbl;
         private TextBox region_textbox;
         private bool SaveFileDialog = true;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private SaveFileDialog saveFileDialog1;
         private Label size_lbl;
         private TextBox size_textbox;
         private ToolTip tooltip_binary_box;
@@ -52,336 +53,13 @@
         private Label version_lbl;
         private TextBox version_textbox;
 
+        //기본 생성자
         public Form1()
         {
             this.InitializeComponent();
         }
 
-        private void checkbox_auto_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!this.checkbox_manual.Checked && !this.checkbox_auto.Checked)
-            {
-                this.checkbox_auto.Checked = true;
-            }
-            else
-            {
-                this.checkbox_manual.Checked = !this.checkbox_auto.Checked;
-                this.pda_textbox.Enabled = !this.checkbox_auto.Checked;
-                this.csc_textbox.Enabled = !this.checkbox_auto.Checked;
-                this.phone_textbox.Enabled = !this.checkbox_auto.Checked;
-            }
-        }
-
-        private void checkbox_manual_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!this.checkbox_auto.Checked && !this.checkbox_manual.Checked)
-            {
-                this.checkbox_manual.Checked = true;
-            }
-            else
-            {
-                this.checkbox_auto.Checked = !this.checkbox_manual.Checked;
-                this.pda_textbox.Enabled = this.checkbox_manual.Checked;
-                this.csc_textbox.Enabled = this.checkbox_manual.Checked;
-                this.phone_textbox.Enabled = this.checkbox_manual.Checked;
-            }
-        }
-
-        private void ControlsEnabled(bool Enabled)
-        {
-            this.update_button.Invoke(new Action(() => this.update_button.Enabled = Enabled));
-            this.download_button.Invoke(new Action(() => this.download_button.Enabled = Enabled));
-            this.binary_checkbox.Invoke(new Action(() => this.binary_checkbox.Enabled = Enabled));
-            this.model_textbox.Invoke(new Action(() => this.model_textbox.Enabled = Enabled));
-            this.region_textbox.Invoke(new Action(() => this.region_textbox.Enabled = Enabled));
-            this.checkbox_auto.Invoke(new Action(() => this.checkbox_auto.Enabled = Enabled));
-            this.checkbox_manual.Invoke(new Action(() => this.checkbox_manual.Enabled = Enabled));
-            this.checkbox_manual.Invoke(new Action(delegate {
-                if (this.checkbox_manual.Checked)
-                {
-                    this.pda_textbox.Enabled = Enabled;
-                    this.csc_textbox.Enabled = Enabled;
-                    this.phone_textbox.Enabled = Enabled;
-                }
-            }));
-            this.checkbox_autodecrypt.Invoke(new Action(() => this.checkbox_autodecrypt.Enabled = Enabled));
-            this.checkbox_crc.Invoke(new Action(() => this.checkbox_crc.Enabled = Enabled));
-        }
-
-        private void decrypt_button_Click(object sender, EventArgs e)
-        {
-            if (!System.IO.File.Exists(this.destinationfile))
-            {
-                Logger.WriteLog("Error: File " + this.destinationfile + " does not exist", false);
-            }
-            else
-            {
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
-                    Thread.Sleep(100);
-                    Logger.WriteLog("\nDecrypting firmware...", false);
-                    this.ControlsEnabled(false);
-                    this.decrypt_button.Invoke(new Action(() => this.decrypt_button.Enabled = false));
-                    if (this.destinationfile.EndsWith(".enc2"))
-                    {
-                        Crypto.SetDecryptKey(this.FW.Region, this.FW.Model, this.FW.Version);
-                    }
-                    else if (this.destinationfile.EndsWith(".enc4"))
-                    {
-                        if (this.FW.BinaryNature == 1)
-                        {
-                            Crypto.SetDecryptKey(this.FW.Version, this.FW.LogicValueFactory);
-                        }
-                        else
-                        {
-                            Crypto.SetDecryptKey(this.FW.Version, this.FW.LogicValueHome);
-                        }
-                    }
-                    if (Crypto.Decrypt(this.destinationfile, Path.Combine(Path.GetDirectoryName(this.destinationfile), Path.GetFileNameWithoutExtension(this.destinationfile)), true) == 0)
-                    {
-                        System.IO.File.Delete(this.destinationfile);
-                    }
-                    Logger.WriteLog("Decryption finished", false);
-                    this.ControlsEnabled(true);
-                };
-                worker.RunWorkerAsync();
-            }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (this.components != null))
-            {
-                this.components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private void download_button_Click(object sender, EventArgs e)
-        {
-            if (this.download_button.Text == "Pause")
-            {
-                Utility.TaskBarProgressState(true);
-                this.PauseDownload = true;
-                Utility.ReconnectDownload = false;
-                this.download_button.Text = "Download";
-            }
-            else
-            {
-                if (((e != null) && (e.GetType() == typeof(DownloadEventArgs))) && ((DownloadEventArgs) e).isReconnect)
-                {
-                    if (this.download_button.Text == "Pause")
-                    {
-                        return;
-                    }
-                    if (!Utility.ReconnectDownload)
-                    {
-                        return;
-                    }
-                }
-                if (this.PauseDownload)
-                {
-                    Logger.WriteLog("Download thread is still running. Please wait.", false);
-                }
-                else if (string.IsNullOrEmpty(this.file_textbox.Text))
-                {
-                    Logger.WriteLog("No file to download. Please check for update first.", false);
-                }
-                else
-                {
-                    if ((e.GetType() != typeof(DownloadEventArgs)) || !((DownloadEventArgs) e).isReconnect)
-                    {
-                        if (this.SaveFileDialog)
-                        {
-                            string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(this.FW.Filename));
-                            string oldValue = extension + Path.GetExtension(this.FW.Filename);
-                            this.saveFileDialog1.SupportMultiDottedExtensions = true;
-                            this.saveFileDialog1.OverwritePrompt = false;
-                            this.saveFileDialog1.FileName = this.FW.Filename.Replace(oldValue, "");
-                            this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
-                            if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
-                            {
-                                Logger.WriteLog("Aborted.", false);
-                                return;
-                            }
-                            if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
-                            {
-                                this.saveFileDialog1.FileName = this.saveFileDialog1.FileName + oldValue;
-                            }
-                            else
-                            {
-                                this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(oldValue + oldValue, oldValue);
-                            }
-                            Logger.WriteLog("Filename: " + this.saveFileDialog1.FileName, false);
-                            this.destinationfile = this.saveFileDialog1.FileName;
-                            if (System.IO.File.Exists(this.destinationfile))
-                            {
-                                customMessageBox box = new customMessageBox("The destination file already exists.\r\nWould you like to append it (resume download)?", "Append", DialogResult.Yes, "Overwrite", DialogResult.No, "Cancel", DialogResult.Cancel, SystemIcons.Warning.ToBitmap());
-                                switch (box.ShowDialog())
-                                {
-                                    case DialogResult.No:
-                                        System.IO.File.Delete(this.destinationfile);
-                                        break;
-
-                                    case DialogResult.Cancel:
-                                        Logger.WriteLog("Aborted.", false);
-                                        return;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            this.destinationfile = this.FW.Filename;
-                        }
-                    }
-                    Utility.TaskBarProgressState(false);
-                    BackgroundWorker worker = new BackgroundWorker();
-                    worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
-                        MethodInvoker method = null;
-                        MethodInvoker invoker2 = null;
-                        MethodInvoker invoker3 = null;
-                        try
-                        {
-                            this.ControlsEnabled(false);
-                            Utility.ReconnectDownload = false;
-                            if (method == null)
-                            {
-                                method = delegate {
-                                    this.download_button.Enabled = true;
-                                    this.download_button.Text = "Pause";
-                                };
-                            }
-                            this.download_button.Invoke(method);
-                            if (this.FW.Filename == this.destinationfile)
-                            {
-                                Logger.WriteLog("Trying to download " + this.FW.Filename, false);
-                            }
-                            else
-                            {
-                                Logger.WriteLog("Trying to download " + this.FW.Filename + " to " + this.destinationfile, false);
-                            }
-                            SamFirm.Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
-                            if (this.PauseDownload)
-                            {
-                                Logger.WriteLog("Download paused", false);
-                                this.PauseDownload = false;
-                                if (Utility.ReconnectDownload)
-                                {
-                                    Logger.WriteLog("Reconnecting...", false);
-                                    Utility.Reconnect(new Action<object, EventArgs>(this.download_button_Click));
-                                }
-                            }
-                            else
-                            {
-                                Logger.WriteLog("Download finished", false);
-                                if (this.checkbox_crc.Checked)
-                                {
-                                    if (this.FW.CRC == null)
-                                    {
-                                        Logger.WriteLog("Unable to check CRC. Value not set by Samsung", false);
-                                    }
-                                    else
-                                    {
-                                        Logger.WriteLog("\nChecking CRC32...", false);
-                                        if (!Utility.CRCCheck(this.destinationfile, this.FW.CRC))
-                                        {
-                                            Logger.WriteLog("Error: CRC does not match. Please redownload the file.", false);
-                                            System.IO.File.Delete(this.destinationfile);
-                                            goto Label_01C9;
-                                        }
-                                        Logger.WriteLog("Success: CRC match!", false);
-                                    }
-                                }
-                                if (invoker2 == null)
-                                {
-                                    invoker2 = () => this.decrypt_button.Enabled = true;
-                                }
-                                this.decrypt_button.Invoke(invoker2);
-                                if (this.checkbox_autodecrypt.Checked)
-                                {
-                                    this.decrypt_button_Click(o, null);
-                                }
-                            }
-                        Label_01C9:
-                            if (!Utility.ReconnectDownload)
-                            {
-                                this.ControlsEnabled(true);
-                            }
-                            if (invoker3 == null)
-                            {
-                                invoker3 = () => this.download_button.Text = "Download";
-                            }
-                            this.download_button.Invoke(invoker3);
-                        }
-                        catch (Exception exception)
-                        {
-                            Logger.WriteLog(exception.Message, false);
-                            Logger.WriteLog(exception.ToString(), false);
-                        }
-                    };
-                    worker.RunWorkerAsync();
-                }
-            }
-        }
-
-        private void Form1_Close(object sender, EventArgs e)
-        {
-            Settings.SetSetting("Model", this.model_textbox.Text.ToUpper());
-            Settings.SetSetting("Region", this.region_textbox.Text.ToUpper());
-            Settings.SetSetting("PDAVer", this.pda_textbox.Text);
-            Settings.SetSetting("CSCVer", this.csc_textbox.Text);
-            Settings.SetSetting("PHONEVer", this.phone_textbox.Text);
-            Settings.SetSetting("AutoInfo", this.checkbox_auto.Checked.ToString());
-            Settings.SetSetting("SaveFileDialog", this.SaveFileDialog.ToString());
-            Settings.SetSetting("BinaryNature", this.binary_checkbox.Checked.ToString());
-            Settings.SetSetting("CheckCRC", this.checkbox_crc.Checked.ToString());
-            Settings.SetSetting("AutoDecrypt", this.checkbox_autodecrypt.Checked.ToString());
-            this.PauseDownload = true;
-            Thread.Sleep(100);
-            Imports.FreeModule();
-            Logger.SaveLog();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Logger.form = this;
-            Web.form = this;
-            Crypto.form = this;
-            this.model_textbox.Text = Settings.ReadSetting("Model");
-            this.region_textbox.Text = Settings.ReadSetting("Region");
-            this.pda_textbox.Text = Settings.ReadSetting("PDAVer");
-            this.csc_textbox.Text = Settings.ReadSetting("CSCVer");
-            this.phone_textbox.Text = Settings.ReadSetting("PHONEVer");
-            if (Settings.ReadSetting("AutoInfo").ToLower() == "true")
-            {
-                this.checkbox_auto.Checked = true;
-            }
-            else
-            {
-                this.checkbox_manual.Checked = true;
-            }
-            if (Settings.ReadSetting("SaveFileDialog").ToLower() == "false")
-            {
-                this.SaveFileDialog = false;
-            }
-            if (Settings.ReadSetting("BinaryNature").ToLower() == "true")
-            {
-                this.binary_checkbox.Checked = true;
-            }
-            if (Settings.ReadSetting("CheckCRC").ToLower() == "false")
-            {
-                this.checkbox_crc.Checked = false;
-            }
-            if (Settings.ReadSetting("AutoDecrypt").ToLower() == "false")
-            {
-                this.checkbox_autodecrypt.Checked = false;
-            }
-            this.tooltip_binary_box.SetToolTip(this.binary_checkbox, "Full firmware including PIT file");
-            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-            Logger.WriteLog("SamFirm v" + versionInfo.FileVersion, false);
-            ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => true;
-        }
-
+        //컴포넌트 초기화 메소드
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -802,24 +480,340 @@
 
         }
 
-        public void SetProgressBar(int Progress)
+        //프로그램을 실행했을 때 사용하는 메소드
+        private void Form1_Load(object sender, EventArgs e)
         {
-            if (Progress > 100)
+            Logger.form = this;
+            Web.form = this;
+            Crypto.form = this;
+            this.model_textbox.Text = Settings.ReadSetting("Model");
+            this.region_textbox.Text = Settings.ReadSetting("Region");
+            this.pda_textbox.Text = Settings.ReadSetting("PDAVer");
+            this.csc_textbox.Text = Settings.ReadSetting("CSCVer");
+            this.phone_textbox.Text = Settings.ReadSetting("PHONEVer");
+            if (Settings.ReadSetting("AutoInfo").ToLower() == "true")
             {
-                Progress = 100;
+                this.checkbox_auto.Checked = true;
             }
-            this.progressBar.Invoke(new Action(delegate {
-                this.progressBar.Value = Progress;
-                try
-                {
-                    TaskbarManager.Instance.SetProgressValue(Progress, 100);
-                }
-                catch (Exception)
-                {
-                }
-            }));
+            else
+            {
+                this.checkbox_manual.Checked = true;
+            }
+            if (Settings.ReadSetting("SaveFileDialog").ToLower() == "false")
+            {
+                this.SaveFileDialog = false;
+            }
+            if (Settings.ReadSetting("BinaryNature").ToLower() == "true")
+            {
+                this.binary_checkbox.Checked = true;
+            }
+            if (Settings.ReadSetting("CheckCRC").ToLower() == "false")
+            {
+                this.checkbox_crc.Checked = false;
+            }
+            if (Settings.ReadSetting("AutoDecrypt").ToLower() == "false")
+            {
+                this.checkbox_autodecrypt.Checked = false;
+            }
+            this.tooltip_binary_box.SetToolTip(this.binary_checkbox, "Full firmware including PIT file");
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            Logger.WriteLog("SamFirm v" + versionInfo.FileVersion, false);
+            ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => true;
         }
 
+        //프로그램을 닫았을 때 사용하는 메소드
+        private void Form1_Close(object sender, EventArgs e)
+        {
+            Settings.SetSetting("Model", this.model_textbox.Text.ToUpper());
+            Settings.SetSetting("Region", this.region_textbox.Text.ToUpper());
+            Settings.SetSetting("PDAVer", this.pda_textbox.Text);
+            Settings.SetSetting("CSCVer", this.csc_textbox.Text);
+            Settings.SetSetting("PHONEVer", this.phone_textbox.Text);
+            Settings.SetSetting("AutoInfo", this.checkbox_auto.Checked.ToString());
+            Settings.SetSetting("SaveFileDialog", this.SaveFileDialog.ToString());
+            Settings.SetSetting("BinaryNature", this.binary_checkbox.Checked.ToString());
+            Settings.SetSetting("CheckCRC", this.checkbox_crc.Checked.ToString());
+            Settings.SetSetting("AutoDecrypt", this.checkbox_autodecrypt.Checked.ToString());
+            this.PauseDownload = true;
+            Thread.Sleep(100);
+            Imports.FreeModule();
+            Logger.SaveLog();
+        }
+
+        //컨트롤 배치 메소드
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (this.components != null))
+            {
+                this.components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        //컨트롤 활성화/비활성화 설정 메소드
+        private void ControlsEnabled(bool Enabled)
+        {
+            this.update_button.Invoke(new Action(() => this.update_button.Enabled = Enabled));
+            this.download_button.Invoke(new Action(() => this.download_button.Enabled = Enabled));
+            this.binary_checkbox.Invoke(new Action(() => this.binary_checkbox.Enabled = Enabled));
+            this.model_textbox.Invoke(new Action(() => this.model_textbox.Enabled = Enabled));
+            this.region_textbox.Invoke(new Action(() => this.region_textbox.Enabled = Enabled));
+            this.checkbox_auto.Invoke(new Action(() => this.checkbox_auto.Enabled = Enabled));
+            this.checkbox_manual.Invoke(new Action(() => this.checkbox_manual.Enabled = Enabled));
+            this.checkbox_manual.Invoke(new Action(delegate {
+                if (this.checkbox_manual.Checked)
+                {
+                    this.pda_textbox.Enabled = Enabled;
+                    this.csc_textbox.Enabled = Enabled;
+                    this.phone_textbox.Enabled = Enabled;
+                }
+            }));
+            this.checkbox_autodecrypt.Invoke(new Action(() => this.checkbox_autodecrypt.Enabled = Enabled));
+            this.checkbox_crc.Invoke(new Action(() => this.checkbox_crc.Enabled = Enabled));
+        }
+
+        //Auto 체크박스의 체크상태가 변경되면 실행하는 메소드
+        private void checkbox_auto_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!this.checkbox_manual.Checked && !this.checkbox_auto.Checked)
+            {
+                this.checkbox_auto.Checked = true;
+            }
+            else
+            {
+                this.checkbox_manual.Checked = !this.checkbox_auto.Checked;
+                this.pda_textbox.Enabled = !this.checkbox_auto.Checked;
+                this.csc_textbox.Enabled = !this.checkbox_auto.Checked;
+                this.phone_textbox.Enabled = !this.checkbox_auto.Checked;
+            }
+        }
+
+        //Manual 체크박스의 체크상태가 변경되면 실행하는 메소드
+        private void checkbox_manual_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!this.checkbox_auto.Checked && !this.checkbox_manual.Checked)
+            {
+                this.checkbox_manual.Checked = true;
+            }
+            else
+            {
+                this.checkbox_auto.Checked = !this.checkbox_manual.Checked;
+                this.pda_textbox.Enabled = this.checkbox_manual.Checked;
+                this.csc_textbox.Enabled = this.checkbox_manual.Checked;
+                this.phone_textbox.Enabled = this.checkbox_manual.Checked;
+            }
+        }
+
+        //Decrypt 버튼 클릭시 실행하는 메소드
+        private void decrypt_button_Click(object sender, EventArgs e)
+        {
+            if (!System.IO.File.Exists(this.destinationfile))
+            {
+                Logger.WriteLog("Error: File " + this.destinationfile + " does not exist", false);
+            }
+            else
+            {
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
+                    Thread.Sleep(100);
+                    Logger.WriteLog("\nDecrypting firmware...", false);
+                    this.ControlsEnabled(false);
+                    this.decrypt_button.Invoke(new Action(() => this.decrypt_button.Enabled = false));
+                    if (this.destinationfile.EndsWith(".enc2"))
+                    {
+                        Crypto.SetDecryptKey(this.FW.Region, this.FW.Model, this.FW.Version);
+                    }
+                    else if (this.destinationfile.EndsWith(".enc4"))
+                    {
+                        if (this.FW.BinaryNature == 1)
+                        {
+                            Crypto.SetDecryptKey(this.FW.Version, this.FW.LogicValueFactory);
+                        }
+                        else
+                        {
+                            Crypto.SetDecryptKey(this.FW.Version, this.FW.LogicValueHome);
+                        }
+                    }
+                    if (Crypto.Decrypt(this.destinationfile, Path.Combine(Path.GetDirectoryName(this.destinationfile), Path.GetFileNameWithoutExtension(this.destinationfile)), true) == 0)
+                    {
+                        System.IO.File.Delete(this.destinationfile);
+                    }
+                    Logger.WriteLog("Decryption finished", false);
+                    this.ControlsEnabled(true);
+                };
+                worker.RunWorkerAsync();
+            }
+        }
+
+        //Download 버튼 클릭시 실행하는 메소드
+        private void download_button_Click(object sender, EventArgs e)
+        {
+            if (this.download_button.Text == "Pause")
+            {
+                Utility.TaskBarProgressState(true);
+                this.PauseDownload = true;
+                Utility.ReconnectDownload = false;
+                this.download_button.Text = "Download";
+            }
+            else
+            {
+                if (((e != null) && (e.GetType() == typeof(DownloadEventArgs))) && ((DownloadEventArgs) e).isReconnect)
+                {
+                    if (this.download_button.Text == "Pause")
+                    {
+                        return;
+                    }
+                    if (!Utility.ReconnectDownload)
+                    {
+                        return;
+                    }
+                }
+                if (this.PauseDownload)
+                {
+                    Logger.WriteLog("Download thread is still running. Please wait.", false);
+                }
+                else if (string.IsNullOrEmpty(this.file_textbox.Text))
+                {
+                    Logger.WriteLog("No file to download. Please check for update first.", false);
+                }
+                else
+                {
+                    if ((e.GetType() != typeof(DownloadEventArgs)) || !((DownloadEventArgs) e).isReconnect)
+                    {
+                        if (this.SaveFileDialog)
+                        {
+                            string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(this.FW.Filename));
+                            string oldValue = extension + Path.GetExtension(this.FW.Filename);
+                            this.saveFileDialog1.SupportMultiDottedExtensions = true;
+                            this.saveFileDialog1.OverwritePrompt = false;
+                            this.saveFileDialog1.FileName = this.FW.Filename.Replace(oldValue, "");
+                            this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
+                            if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
+                            {
+                                Logger.WriteLog("Aborted.", false);
+                                return;
+                            }
+                            if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
+                            {
+                                this.saveFileDialog1.FileName = this.saveFileDialog1.FileName + oldValue;
+                            }
+                            else
+                            {
+                                this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(oldValue + oldValue, oldValue);
+                            }
+                            Logger.WriteLog("Filename: " + this.saveFileDialog1.FileName, false);
+                            this.destinationfile = this.saveFileDialog1.FileName;
+                            if (System.IO.File.Exists(this.destinationfile))
+                            {
+                                customMessageBox box = new customMessageBox("The destination file already exists.\r\nWould you like to append it (resume download)?", "Append", DialogResult.Yes, "Overwrite", DialogResult.No, "Cancel", DialogResult.Cancel, SystemIcons.Warning.ToBitmap());
+                                switch (box.ShowDialog())
+                                {
+                                    case DialogResult.No:
+                                        System.IO.File.Delete(this.destinationfile);
+                                        break;
+
+                                    case DialogResult.Cancel:
+                                        Logger.WriteLog("Aborted.", false);
+                                        return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.destinationfile = this.FW.Filename;
+                        }
+                    }
+                    Utility.TaskBarProgressState(false);
+                    BackgroundWorker worker = new BackgroundWorker();
+                    worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
+                        MethodInvoker method = null;
+                        MethodInvoker invoker2 = null;
+                        MethodInvoker invoker3 = null;
+                        try
+                        {
+                            this.ControlsEnabled(false);
+                            Utility.ReconnectDownload = false;
+                            if (method == null)
+                            {
+                                method = delegate {
+                                    this.download_button.Enabled = true;
+                                    this.download_button.Text = "Pause";
+                                };
+                            }
+                            this.download_button.Invoke(method);
+                            if (this.FW.Filename == this.destinationfile)
+                            {
+                                Logger.WriteLog("Trying to download " + this.FW.Filename, false);
+                            }
+                            else
+                            {
+                                Logger.WriteLog("Trying to download " + this.FW.Filename + " to " + this.destinationfile, false);
+                            }
+                            SamFirm.Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
+                            if (this.PauseDownload)
+                            {
+                                Logger.WriteLog("Download paused", false);
+                                this.PauseDownload = false;
+                                if (Utility.ReconnectDownload)
+                                {
+                                    Logger.WriteLog("Reconnecting...", false);
+                                    Utility.Reconnect(new Action<object, EventArgs>(this.download_button_Click));
+                                }
+                            }
+                            else
+                            {
+                                Logger.WriteLog("Download finished", false);
+                                if (this.checkbox_crc.Checked)
+                                {
+                                    if (this.FW.CRC == null)
+                                    {
+                                        Logger.WriteLog("Unable to check CRC. Value not set by Samsung", false);
+                                    }
+                                    else
+                                    {
+                                        Logger.WriteLog("\nChecking CRC32...", false);
+                                        if (!Utility.CRCCheck(this.destinationfile, this.FW.CRC))
+                                        {
+                                            Logger.WriteLog("Error: CRC does not match. Please redownload the file.", false);
+                                            System.IO.File.Delete(this.destinationfile);
+                                            goto Label_01C9;
+                                        }
+                                        Logger.WriteLog("Success: CRC match!", false);
+                                    }
+                                }
+                                if (invoker2 == null)
+                                {
+                                    invoker2 = () => this.decrypt_button.Enabled = true;
+                                }
+                                this.decrypt_button.Invoke(invoker2);
+                                if (this.checkbox_autodecrypt.Checked)
+                                {
+                                    this.decrypt_button_Click(o, null);
+                                }
+                            }
+                        Label_01C9:
+                            if (!Utility.ReconnectDownload)
+                            {
+                                this.ControlsEnabled(true);
+                            }
+                            if (invoker3 == null)
+                            {
+                                invoker3 = () => this.download_button.Text = "Download";
+                            }
+                            this.download_button.Invoke(invoker3);
+                        }
+                        catch (Exception exception)
+                        {
+                            Logger.WriteLog(exception.Message, false);
+                            Logger.WriteLog(exception.ToString(), false);
+                        }
+                    };
+                    worker.RunWorkerAsync();
+                }
+            }
+        }
+
+        //Update 버튼 클릭시 실행하는 메소드
         private void update_button_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(this.model_textbox.Text))
@@ -905,10 +899,27 @@
             }
         }
 
+        //작업 진행바를 설정하는 메소드
+        public void SetProgressBar(int Progress)
+        {
+            if (Progress > 100)
+            {
+                Progress = 100;
+            }
+            this.progressBar.Invoke(new Action(delegate {
+                this.progressBar.Value = Progress;
+                try
+                {
+                    TaskbarManager.Instance.SetProgressValue(Progress, 100);
+                }
+                catch (Exception)
+                { }
+            }));
+        }
+
         public class DownloadEventArgs : EventArgs
         {
             public bool isReconnect;
         }
     }
 }
-
