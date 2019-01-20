@@ -72,7 +72,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DamienG\Security\Cryptography\Crc32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SamFirm\CmdLine.cs" />
     <Compile Include="SamFirm\Command.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="SamFirm\Web.cs" />
     <Compile Include="SamFirm\WebRequestExtension.cs" />
     <Compile Include="SamFirm\Xml.cs" />
+    <Compile Include="Security\Cryptography\Crc32.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -1,4 +1,4 @@
-﻿namespace DamienG.Security.Cryptography
+﻿namespace Security.Cryptography
 {
     using System;
     using System.Collections.Generic;

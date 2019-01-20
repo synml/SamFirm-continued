@@ -1,6 +1,6 @@
 ﻿namespace SamFirm
 {
-    using DamienG.Security.Cryptography;
+    using Security.Cryptography;
     using Microsoft.WindowsAPICodePack.Taskbar;
     using System;
     using System.ComponentModel;
