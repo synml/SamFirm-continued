@@ -78,7 +78,7 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
 
 ## 기여 방법
 
-1. [이 프로젝트](https://github.com/Lulin-Pollux/TCP-communication)를 포크합니다.
+1. [이 프로젝트](https://github.com/Lulin-Pollux/SamFirm-continued)를 포크합니다.
 2. GitHub Desktop에서 새 브랜치를 만드세요.
 3. 수정사항을 커밋하세요.
 4. 새 브랜치에 푸시하세요.
