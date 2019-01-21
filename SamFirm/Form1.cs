@@ -480,7 +480,7 @@ namespace SamFirm
 
         }
 
-        //프로그램을 실행했을 때 사용하는 메소드
+        //폼을 로드했을 때 호출하는 메소드
         private void Form1_Load(object sender, EventArgs e)
         {
             Logger.form = this;
@@ -521,7 +521,7 @@ namespace SamFirm
             ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => true;
         }
 
-        //프로그램을 닫았을 때 사용하는 메소드
+        //폼을 닫았을 때 호출하는 메소드
         private void Form1_Close(object sender, EventArgs e)
         {
             Settings.SetSetting("Model", this.model_textbox.Text.ToUpper());
