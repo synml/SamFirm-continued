@@ -19,7 +19,7 @@ namespace SamFirm
         private CheckBox checkbox_autodecrypt;
         private CheckBox checkbox_crc;
         private CheckBox checkbox_manual;
-        private IContainer components;
+        private System.ComponentModel.IContainer components;
         private Label csc_lbl;
         private TextBox csc_textbox;
         private Button decrypt_button;
@@ -130,7 +130,7 @@ namespace SamFirm
             this.download_button.TabIndex = 13;
             this.download_button.Text = "Download";
             this.download_button.UseVisualStyleBackColor = true;
-            this.download_button.Click += new System.EventHandler(this.download_button_Click);
+            this.download_button.Click += new System.EventHandler(this.Download_button_Click);
             // 
             // log_textbox
             // 
@@ -209,7 +209,7 @@ namespace SamFirm
             this.update_button.TabIndex = 10;
             this.update_button.Text = "Check Update";
             this.update_button.UseVisualStyleBackColor = true;
-            this.update_button.Click += new System.EventHandler(this.update_button_Click);
+            this.update_button.Click += new System.EventHandler(this.Update_button_Click);
             // 
             // phone_lbl
             // 
@@ -316,7 +316,7 @@ namespace SamFirm
             this.checkbox_manual.TabIndex = 3;
             this.checkbox_manual.Text = "Manual";
             this.checkbox_manual.UseVisualStyleBackColor = true;
-            this.checkbox_manual.CheckedChanged += new System.EventHandler(this.checkbox_manual_CheckedChanged);
+            this.checkbox_manual.CheckedChanged += new System.EventHandler(this.Checkbox_manual_CheckedChanged);
             // 
             // checkbox_auto
             // 
@@ -328,7 +328,7 @@ namespace SamFirm
             this.checkbox_auto.TabIndex = 2;
             this.checkbox_auto.Text = "Auto";
             this.checkbox_auto.UseVisualStyleBackColor = true;
-            this.checkbox_auto.CheckedChanged += new System.EventHandler(this.checkbox_auto_CheckedChanged);
+            this.checkbox_auto.CheckedChanged += new System.EventHandler(this.Checkbox_auto_CheckedChanged);
             // 
             // binary_checkbox
             // 
@@ -359,7 +359,7 @@ namespace SamFirm
             this.decrypt_button.TabIndex = 14;
             this.decrypt_button.Text = "Decrypt";
             this.decrypt_button.UseVisualStyleBackColor = true;
-            this.decrypt_button.Click += new System.EventHandler(this.decrypt_button_Click);
+            this.decrypt_button.Click += new System.EventHandler(this.Decrypt_button_Click);
             // 
             // groupBox2
             // 
@@ -477,7 +477,7 @@ namespace SamFirm
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-
+            this.tooltip_binary_box.SetToolTip(this.binary_checkbox, "Full firmware including PIT file");
         }
 
         //폼을 로드했을 때 호출하는 메소드
@@ -486,6 +486,8 @@ namespace SamFirm
             Logger.form = this;
             Web.form = this;
             Crypto.form = this;
+
+            //각 컨트롤에 설정파일에서 불러온 값을 적용한다.
             this.model_textbox.Text = Settings.ReadSetting("Model");
             this.region_textbox.Text = Settings.ReadSetting("Region");
             this.pda_textbox.Text = Settings.ReadSetting("PDAVer");
@@ -515,7 +517,6 @@ namespace SamFirm
             {
                 this.checkbox_autodecrypt.Checked = false;
             }
-            this.tooltip_binary_box.SetToolTip(this.binary_checkbox, "Full firmware including PIT file");
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             Logger.WriteLog("SamFirm v" + versionInfo.FileVersion, false);
             ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => true;
@@ -573,7 +574,7 @@ namespace SamFirm
         }
 
         //Auto 체크박스의 체크상태가 변경되면 실행하는 메소드
-        private void checkbox_auto_CheckedChanged(object sender, EventArgs e)
+        private void Checkbox_auto_CheckedChanged(object sender, EventArgs e)
         {
             if (!this.checkbox_manual.Checked && !this.checkbox_auto.Checked)
             {
@@ -589,7 +590,7 @@ namespace SamFirm
         }
 
         //Manual 체크박스의 체크상태가 변경되면 실행하는 메소드
-        private void checkbox_manual_CheckedChanged(object sender, EventArgs e)
+        private void Checkbox_manual_CheckedChanged(object sender, EventArgs e)
         {
             if (!this.checkbox_auto.Checked && !this.checkbox_manual.Checked)
             {
@@ -605,7 +606,7 @@ namespace SamFirm
         }
 
         //Decrypt 버튼 클릭시 실행하는 메소드
-        private void decrypt_button_Click(object sender, EventArgs e)
+        private void Decrypt_button_Click(object sender, EventArgs e)
         {
             if (!System.IO.File.Exists(this.destinationfile))
             {
@@ -646,7 +647,7 @@ namespace SamFirm
         }
 
         //Download 버튼 클릭시 실행하는 메소드
-        private void download_button_Click(object sender, EventArgs e)
+        private void Download_button_Click(object sender, EventArgs e)
         {
             if (this.download_button.Text == "Pause")
             {
@@ -757,7 +758,7 @@ namespace SamFirm
                                 if (Utility.ReconnectDownload)
                                 {
                                     Logger.WriteLog("Reconnecting...", false);
-                                    Utility.Reconnect(new Action<object, EventArgs>(this.download_button_Click));
+                                    Utility.Reconnect(new Action<object, EventArgs>(this.Download_button_Click));
                                 }
                             }
                             else
@@ -788,7 +789,7 @@ namespace SamFirm
                                 this.decrypt_button.Invoke(invoker2);
                                 if (this.checkbox_autodecrypt.Checked)
                                 {
-                                    this.decrypt_button_Click(o, null);
+                                    this.Decrypt_button_Click(o, null);
                                 }
                             }
                         Label_01C9:
@@ -814,7 +815,7 @@ namespace SamFirm
         }
 
         //Update 버튼 클릭시 실행하는 메소드
-        private void update_button_Click(object sender, EventArgs e)
+        private void Update_button_Click(object sender, EventArgs e)
         {
             //예외 처리
             if (string.IsNullOrEmpty(model_textbox.Text))
