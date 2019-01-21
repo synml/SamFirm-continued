@@ -477,6 +477,9 @@ namespace SamFirm
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            // 
+            // tooltip_binary_box
+            // 
             this.tooltip_binary_box.SetToolTip(this.binary_checkbox, "Full firmware including PIT file");
         }
 
