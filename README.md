@@ -21,7 +21,7 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
 
 ## Build Status
 
-
+[![release](https://img.shields.io/github/release/Lulin-Pollux/SamFirm-continued.svg?style=popout-square)](https://github.com/Lulin-Pollux/SamFirm-continued/releases/latest) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/47cf571666ef46a09a8087f18daed6d4)](https://www.codacy.com/app/Lulin-Pollux/SamFirm-continued?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Lulin-Pollux/SamFirm-continued&amp;utm_campaign=Badge_Grade) ![last commit](https://img.shields.io/github/last-commit/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) ![](https://img.shields.io/github/downloads/Lulin-Pollux/SamFirm-continued/total.svg?style=popout-square) ![License](https://img.shields.io/github/license/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) 
 
 ## 설치 방법
 
