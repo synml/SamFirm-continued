@@ -8,7 +8,6 @@ namespace SamFirm
     {
         //설정파일의 이름을 가진 상수
         private const string settingsXml = "Settings.xml";
-        private const string elementName = "SamFirm";
 
         //설정파일을 만드는 메소드
         private static void GenerateSettings()
@@ -39,7 +38,7 @@ namespace SamFirm
                 {
                     GenerateSettings();
                 }
-                return XDocument.Load(settingsXml).Element(elementName).Element(element).Value;
+                return XDocument.Load(settingsXml).Element("SamFirm").Element(element).Value;
             }
             catch (Exception exception)
             {
@@ -56,10 +55,10 @@ namespace SamFirm
                 GenerateSettings();
             }
             XDocument document = XDocument.Load(settingsXml);
-            XElement element2 = document.Element(elementName).Element(element);
+            XElement element2 = document.Element("SamFirm").Element(element);
             if (element2 == null)
             {
-                document.Element(elementName).Add(new XElement(element, value));
+                document.Element("SamFirm").Add(new XElement(element, value));
             }
             else
             {
