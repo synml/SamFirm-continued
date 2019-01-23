@@ -112,16 +112,6 @@ namespace SamFirm
             return Round(num3, 2);
         }
 
-        public static char[] GetCharArray(int size, char init)
-        {
-            char[] chArray = new char[size];
-            for (int i = 0; i < size; i++)
-            {
-                chArray[i] = init;
-            }
-            return chArray;
-        }
-
         public static string GetHtml(string url)
         {
             int num = 0;
@@ -170,12 +160,9 @@ namespace SamFirm
 
         public static int GetProgress(long value, long total)
         {
-            float num = (((float) value) / ((float) total)) * 100f;
+            float num = ((float) value) / total * 100f;
             return (int) num;
         }
-
-        public static char[] GetSpaceArray(int size) => 
-            GetCharArray(size, ' ');
 
         public static int GetXMLStatusCode(string xml)
         {
@@ -221,9 +208,6 @@ namespace SamFirm
             }
             return string.Empty;
         }
-
-        public static bool IsRunningOnMono() => 
-            (Type.GetType("Mono.Runtime") != null);
 
         public static void PreventDeepSleep(PDSMode mode)
         {
@@ -277,19 +261,14 @@ namespace SamFirm
 
         public static void TaskBarProgressState(bool paused)
         {
-            try
+            if (paused)
             {
-                if (paused)
-                {
-                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Paused);
-                }
-                else
-                {
-                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
-                }
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Paused);
             }
-            catch (Exception)
-            { }
+            else
+            {
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
+            }
         }
 
         public enum PDSMode

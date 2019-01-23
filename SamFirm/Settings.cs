@@ -15,13 +15,13 @@ namespace SamFirm
             string default_contents =
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
                 "<SamFirm>\r\n" +
-                    "\t<SaveFileDialog>True</SaveFileDialog>\r\n" +
-                    "\t<AutoInfo>True</AutoInfo>\r\n" +
-                    "\t<Region></Region>\r\n" +
                     "\t<Model></Model>\r\n" +
+                    "\t<Region></Region>\r\n" +
                     "\t<PDAVer></PDAVer>\r\n" +
                     "\t<CSCVer></CSCVer>\r\n" +
                     "\t<PHONEVer></PHONEVer>\r\n" +
+                    "\t<AutoInfo>True</AutoInfo>\r\n" +
+                    "\t<SaveFileDialog>True</SaveFileDialog>\r\n" +
                     "\t<BinaryNature>False</BinaryNature>\r\n" +
                     "\t<CheckCRC>True</CheckCRC>\r\n" +
                     "\t<AutoDecrypt>True</AutoDecrypt>\r\n" +
