@@ -1,9 +1,9 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.IO;
-    using System.Windows.Forms;
+﻿using System;
+using System.IO;
+using System.Windows.Forms;
 
+namespace SamFirm
+{
     internal class Logger
     {
         public static Form1 form;
@@ -30,7 +30,7 @@
         }
 
         private static string GetTimeDate() => 
-            (DateTime.Now.ToString("dd/MM/yyyy") + " " + DateTime.Now.ToString("HH:mm:ss"));
+            (DateTime.Now.ToString("yyyy/MM/dd") + " " + DateTime.Now.ToString("HH:mm:ss"));
 
         public static void SaveLog()
         {

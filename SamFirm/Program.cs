@@ -1,9 +1,8 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.Diagnostics;
-    using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
+namespace SamFirm
+{
     internal static class Program
     {
         [STAThread]
@@ -17,21 +16,6 @@
                 Application.Run(new Form1());
             }
             return 0;
-        }
-
-        private static void SendEnterToParent()
-        {
-            Imports.EnumWindows(delegate (IntPtr wnd, IntPtr param) {
-                uint lpdwProcessId = 0;
-                Imports.GetWindowThreadProcessId(wnd, out lpdwProcessId);
-                Process parentProcess = Imports.ParentProcessUtilities.GetParentProcess();
-                if (lpdwProcessId == parentProcess.Id)
-                {
-                    Imports.SendMessage(wnd, 0x102, (IntPtr) 13, IntPtr.Zero);
-                    return false;
-                }
-                return true;
-            }, IntPtr.Zero);
         }
     }
 }

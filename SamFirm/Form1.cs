@@ -851,6 +851,8 @@ namespace SamFirm
                     this.SetProgressBar(0);
                     this.ControlsEnabled(false);
                     Utility.ReconnectDownload = false;
+
+                    //Auto에 체크되어 있으면 UpdateCheckAuto() 메소드 실행
                     if (this.checkbox_auto.Checked)
                     {
                         this.FW = SamFirm.Command.UpdateCheckAuto(this.model_textbox.Text, this.region_textbox.Text, this.binary_checkbox.Checked);

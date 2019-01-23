@@ -1,11 +1,11 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Net;
-    using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text.RegularExpressions;
 
+namespace SamFirm
+{
     internal class FWFetch
     {
         public static List<Func<string, string, string>> FWFetchFuncs;

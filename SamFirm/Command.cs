@@ -1,9 +1,9 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.Linq;
-    using System.Runtime.InteropServices;
+﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
 
+namespace SamFirm
+{
     internal class Command
     {
         public static int Download(string path, string file, string version, string region, string model_type, string saveTo, string size, bool GUI = true)
