@@ -219,7 +219,7 @@ namespace SamFirm
             {
                 dswatch.Stop();
             }
-            if (dswatch.ElapsedMilliseconds > 0x7530L)
+            if (dswatch.ElapsedMilliseconds > 30000L)
             {
                 Imports.SetThreadExecutionState(Imports.EXECUTION_STATE.ES_SYSTEM_REQUIRED);
                 PreventDeepSleep(PDSMode.Start);

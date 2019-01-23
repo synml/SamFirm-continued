@@ -11,12 +11,11 @@ namespace SamFirm
     {
         private static IntPtr mod = IntPtr.Zero;
 
-        [DllImport("kernel32.dll")]
-        public static extern bool AttachConsole(int dwProcessId);
-        [DllImport("user32.dll")]
-        public static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
+        //콘솔을 메모리에서 반환하는 메소드
         [DllImport("kernel32.dll")]
         public static extern bool FreeConsole();
+
+        //모듈(라이브러리)을 메모리에서 반환하는 메소드 
         [DllImport("kernel32.dll")]
         private static extern bool FreeLibrary(IntPtr hModule);
         public static void FreeModule()
@@ -28,6 +27,7 @@ namespace SamFirm
             mod = IntPtr.Zero;
         }
 
+        //권한을 얻는 메소드
         public static string GetAuthorization(string Nonce)
         {
             if ((mod == IntPtr.Zero) && (LoadModule("AgentModule.dll") != 0))
@@ -43,11 +43,10 @@ namespace SamFirm
 
         [DllImport("kernel32.dll")]
         private static extern IntPtr GetProcAddress(IntPtr hModule, string procedureName);
-        [DllImport("user32.dll", SetLastError=true)]
-        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
         private static T load_function<T>(IntPtr module, string name) where T: class => 
             (Marshal.GetDelegateForFunctionPointer(GetProcAddress(module, name), typeof(T)) as T);
 
+        //모듈(라이브러리)을 로드하는 메소드
         [DllImport("kernel32.dll", SetLastError=true)]
         private static extern IntPtr LoadLibrary(string dllToLoad);
         private static int LoadModule(string module = "AgentModule.dll")
@@ -78,15 +77,12 @@ namespace SamFirm
             return 0;
         }
 
-        [DllImport("user32.dll", CharSet=CharSet.Auto)]
-        public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        //스레드 실행 상태를 설정하는 메소드
         [DllImport("kernel32.dll", CharSet=CharSet.Auto, SetLastError=true)]
         public static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
 
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
         private delegate IntPtr Auth_t(IntPtr nonce);
-
-        public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
 
         public enum EXECUTION_STATE : uint
         {
