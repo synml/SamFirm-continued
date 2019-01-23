@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace SamFirm
 {
-    internal class Logger
+    internal static class Logger
     {
         public static Form1 form;
 
@@ -76,4 +76,3 @@ namespace SamFirm
         }
     }
 }
-

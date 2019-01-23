@@ -106,15 +106,12 @@ namespace SamFirm
             while ((str4 = reader.ReadLine()) != null)
             {
                 string str5 = tdExtract(str4).Trim();
-                switch (str5)
+                if ((str5 == "PDA") || (str5 == "CSC"))
                 {
-                    case "PDA":
-                    case "CSC":
-                    {
-                        flag = true;
-                        continue;
-                    }
+                    flag = true;
+                    continue;
                 }
+
                 if (flag)
                 {
                     strbld.Append(str5 + "/");

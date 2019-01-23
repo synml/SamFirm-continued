@@ -35,7 +35,8 @@ namespace SamFirm
                                 do
                                 {
                                     Utility.PreventDeepSleep(Utility.PDSMode.Continue);
-                                    num += count = stream3.Read(buffer, 0, buffer.Length);
+                                    count = stream3.Read(buffer, 0, buffer.Length);
+                                    num += count;
                                     stream2.Write(buffer, 0, count);
                                     if (GUI)
                                     {
