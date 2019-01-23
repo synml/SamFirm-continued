@@ -1,12 +1,12 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Reflection;
-    using System.Runtime.InteropServices;
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
+namespace SamFirm
+{
     internal class Imports
     {
         private static IntPtr mod = IntPtr.Zero;

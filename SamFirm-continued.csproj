@@ -81,7 +81,6 @@
     <Compile Include="SamFirm\customMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SamFirm\Error.cs" />
     <Compile Include="SamFirm\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

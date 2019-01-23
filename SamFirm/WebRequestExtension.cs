@@ -1,8 +1,8 @@
-﻿namespace SamFirm
-{
-    using System.Linq;
-    using System.Net;
+﻿using System.Linq;
+using System.Net;
 
+namespace SamFirm
+{
     public static class WebRequestExtension
     {
         public static WebResponse GetResponseFUS(this WebRequest wr)
@@ -32,4 +32,3 @@
         }
     }
 }
-

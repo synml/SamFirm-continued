@@ -1,8 +1,8 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.Net;
+﻿using System;
+using System.Net;
 
+namespace SamFirm
+{
     internal class KiesRequest : WebRequest
     {
         public new static HttpWebRequest Create(string requestUriString)

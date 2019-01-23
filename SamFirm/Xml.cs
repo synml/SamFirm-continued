@@ -1,8 +1,8 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 
+namespace SamFirm
+{
     internal class Xml
     {
         private static string BinaryInit = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><FUSMsg>\r\n\t<FUSHdr>\r\n\t\t<ProtoVer>1</ProtoVer>\r\n\t\t<SessionID>0</SessionID>\r\n\t\t<MsgID>1</MsgID>\r\n\t</FUSHdr>\r\n\t<FUSBody>\r\n\t\t<Put>\r\n\t\t\t<CmdID>1</CmdID>\r\n\t\t\t<BINARY_FILE_NAME>\r\n\t\t\t\t<Data>SM-T805_AUT_1_20140929155250_b8l0mvlbba_fac.zip.enc2</Data>\r\n\t\t\t</BINARY_FILE_NAME>\r\n\t\t\t<BINARY_NATURE>\r\n\t\t\t\t<Data>0</Data>\r\n\t\t\t</BINARY_NATURE>\r\n\t\t\t<BINARY_VERSION>\r\n\t\t\t\t<Data>T805XXU1ANFB/T805AUT1ANF1/T805XXU1ANF6/T805XXU1ANFB</Data>\r\n\t\t\t</BINARY_VERSION>\r\n\t\t\t<DEVICE_LOCAL_CODE>\r\n\t\t\t\t<Data>AUT</Data>\r\n\t\t\t</DEVICE_LOCAL_CODE>\r\n\t\t\t<DEVICE_MODEL_TYPE>\r\n\t\t\t\t<Data>9</Data>\r\n\t\t\t</DEVICE_MODEL_TYPE>\r\n            <LOGIC_CHECK>\r\n                <Data>805XXU1ANFU1ANXX</Data>\r\n            </LOGIC_CHECK>\r\n\t\t</Put>\r\n\t\t<Get>\r\n\t\t\t<CmdID>2</CmdID>\r\n\t\t\t<LATEST_FW_VERSION/>\r\n\t\t</Get>\r\n\t</FUSBody>\r\n</FUSMsg>";
@@ -69,4 +69,3 @@
         }
     }
 }
-

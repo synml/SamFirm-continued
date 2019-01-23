@@ -1,12 +1,12 @@
-﻿namespace SamFirm
-{
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Net;
-    using System.Text;
-    using System.Text.RegularExpressions;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 
+namespace SamFirm
+{
     internal class Web
     {
         public static Form1 form;
@@ -186,4 +186,3 @@
         }
     }
 }
-
