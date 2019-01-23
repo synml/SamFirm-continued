@@ -19,7 +19,7 @@ namespace SamFirm
         private static int lastSpeed = 0;
         public static bool ReconnectDownload = false;
 
-        public static bool CheckConnection(string address, bool docheck)
+        public static bool CheckConnection(string address, ref bool docheck)
         {
             bool flag = false;
             Ping ping = new Ping();
@@ -248,7 +248,7 @@ namespace SamFirm
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
                 Thread.Sleep(1000);
-                if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ReconnectDownload))
+                if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ref ReconnectDownload))
                 {
                     Form1.DownloadEventArgs args = new Form1.DownloadEventArgs {
                         isReconnect = true
