@@ -27,10 +27,10 @@ namespace SamFirm
                 long length = new FileInfo(saveTo).Length;
                 if (long.Parse(size) == length)
                 {
-                    Logger.WriteLog("File already downloaded.", false);
+                    Logger.WriteLog("File already downloaded.");
                     return 200;
                 }
-                Logger.WriteLog("File exists. Resuming download...", false);
+                Logger.WriteLog("File exists. Resuming download...");
                 wr.AddRange((int) length);
                 num = length;
             }
@@ -38,12 +38,12 @@ namespace SamFirm
             {
                 if (response == null)
                 {
-                    Logger.WriteLog("Error downloading: response is null", false);
+                    Logger.WriteLog("Error downloading: response is null");
                     return 0x385;
                 }
                 if ((response.StatusCode != HttpStatusCode.OK) && (response.StatusCode != HttpStatusCode.PartialContent))
                 {
-                    Logger.WriteLog("Error downloading: " + ((int) response.StatusCode), false);
+                    Logger.WriteLog("Error downloading: " + ((int)response.StatusCode));
                 }
                 else
                 {
@@ -92,17 +92,17 @@ namespace SamFirm
                         }
                         catch (IOException exception)
                         {
-                            Logger.WriteLog("Error: Can't access output file " + saveTo, false);
+                            Logger.WriteLog("Error: Can't access output file " + saveTo);
                             if (GUI)
                             {
                                 form.PauseDownload = true;
                             }
-                            Logger.WriteLog(exception.ToString(), false);
+                            Logger.WriteLog(exception.ToString());
                             return -1;
                         }
                         catch (WebException)
                         {
-                            Logger.WriteLog("Error: Connection interrupted", false);
+                            Logger.WriteLog("Error: Connection interrupted");
                             SetReconnect();
                         }
                         finally

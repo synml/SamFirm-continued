@@ -22,7 +22,7 @@ namespace SamFirm
         {
             if (!FreeLibrary(mod))
             {
-                Logger.WriteLog("Error: Unable to free library", false);
+                Logger.WriteLog("Error: Unable to free library");
             }
             mod = IntPtr.Zero;
         }
@@ -57,21 +57,21 @@ namespace SamFirm
                 module = Path.Combine(directoryName, "DLL", module);
                 if (!File.Exists(module))
                 {
-                    Logger.WriteLog("Error: Library " + module + " does not exist", false);
+                    Logger.WriteLog("Error: Library " + module + " does not exist");
                     return 1;
                 }
 
                 mod = LoadLibrary(module);
                 if (mod == IntPtr.Zero)
                 {
-                    Logger.WriteLog("Error loading library: " + Marshal.GetLastWin32Error(), false);
-                    Logger.WriteLog("Please make sure \"Microsoft Visual C++ 2008 Redistributable Package (x86)\" and \"Microsoft Visual C++ 2010 Redistributable Package (x86)\" are installed", false);
+                    Logger.WriteLog("Error loading library: " + Marshal.GetLastWin32Error());
+                    Logger.WriteLog("Please make sure \"Microsoft Visual C++ 2008 Redistributable Package (x86)\" and \"Microsoft Visual C++ 2010 Redistributable Package (x86)\" are installed");
                     return 1;
                 }
             }
             catch (Exception exception)
             {
-                Logger.WriteLog("Error Loading Module: " + exception.Message, false);
+                Logger.WriteLog("Error Loading Module: " + exception.Message);
                 return 1;
             }
             return 0;

@@ -48,17 +48,17 @@ namespace SamFirm
                         }
                         catch (CryptographicException)
                         {
-                            Logger.WriteLog("Error decrypting file: Wrong key.", false);
+                            Logger.WriteLog("Error decrypting file: Wrong key.");
                             return 3;
                         }
                         catch (TargetInvocationException)
                         {
-                            Logger.WriteLog("Error decrypting file: Please turn off FIPS compliance checking.", false);
+                            Logger.WriteLog("Error decrypting file: Please turn off FIPS compliance checking.");
                             return 800;
                         }
                         catch (IOException exception)
                         {
-                            Logger.WriteLog("Error decrypting file: IOException: " + exception.Message, false);
+                            Logger.WriteLog("Error decrypting file: IOException: " + exception.Message);
                             return 3;
                         }
                         finally

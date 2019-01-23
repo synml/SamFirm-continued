@@ -25,8 +25,10 @@ namespace SamFirm
             }
         }
 
-        private static string GetTimeDate() => 
-            (DateTime.Now.ToString("yyyy/MM/dd") + " " + DateTime.Now.ToString("HH:mm:ss"));
+        private static string GetTimeDate()
+        {
+            return DateTime.Now.ToString("yyyy/MM/dd") + " " + DateTime.Now.ToString("HH:mm:ss");
+        }
 
         public static void SaveLog()
         {
@@ -49,14 +51,13 @@ namespace SamFirm
             }
         }
 
-        public static void WriteLog(string str, bool raw = false)
+        public static void WriteLog(string str)
         {
             MethodInvoker method = null;
+
             CleanLog();
-            if (!raw)
-            {
-                str = str + "\n";
-            }
+            str = str + "\n";
+
             if (form.log_textbox.InvokeRequired)
             {
                 if (method == null)

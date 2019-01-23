@@ -22,7 +22,7 @@ namespace SamFirm
             }
             catch (WebException exception)
             {
-                Logger.WriteLog("Error getting response: " + exception.Message, false);
+                Logger.WriteLog("Error getting response: " + exception.Message);
                 if (exception.Status == WebExceptionStatus.NameResolutionFailure)
                 {
                     Web.SetReconnect();
