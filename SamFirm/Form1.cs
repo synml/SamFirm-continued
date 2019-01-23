@@ -137,7 +137,8 @@ namespace SamFirm
             this.log_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.log_textbox.Name = "log_textbox";
             this.log_textbox.ReadOnly = true;
-            this.log_textbox.Size = new System.Drawing.Size(851, 245);
+            this.log_textbox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.log_textbox.Size = new System.Drawing.Size(851, 257);
             this.log_textbox.TabIndex = 3;
             this.log_textbox.TabStop = false;
             this.log_textbox.Text = "";
@@ -460,7 +461,7 @@ namespace SamFirm
             // 
             this.AcceptButton = this.update_button;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(880, 526);
+            this.ClientSize = new System.Drawing.Size(878, 538);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.log_textbox);
