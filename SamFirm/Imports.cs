@@ -21,14 +21,11 @@ namespace SamFirm
         private static extern bool FreeLibrary(IntPtr hModule);
         public static void FreeModule()
         {
-            if (mod != IntPtr.Zero)
+            if (!FreeLibrary(mod))
             {
-                if (!FreeLibrary(mod))
-                {
-                    Logger.WriteLog("Error: Unable to free library", false);
-                }
-                mod = IntPtr.Zero;
+                Logger.WriteLog("Error: Unable to free library", false);
             }
+            mod = IntPtr.Zero;
         }
 
         public static string GetAuthorization(string Nonce)
@@ -57,16 +54,14 @@ namespace SamFirm
         {
             try
             {
+                string directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                module = Path.Combine(directoryName, "DLL", module);
                 if (!File.Exists(module))
                 {
-                    string directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    if (!File.Exists(Path.Combine(directoryName, module)))
-                    {
-                        Logger.WriteLog("Error: Library " + module + " does not exist", false);
-                        return 1;
-                    }
-                    module = Path.Combine(directoryName, module);
+                    Logger.WriteLog("Error: Library " + module + " does not exist", false);
+                    return 1;
                 }
+
                 mod = LoadLibrary(module);
                 if (mod == IntPtr.Zero)
                 {
@@ -77,7 +72,7 @@ namespace SamFirm
             }
             catch (Exception exception)
             {
-                Logger.WriteLog("Error LoadModule: " + exception.Message, false);
+                Logger.WriteLog("Error Loading Module: " + exception.Message, false);
                 return 1;
             }
             return 0;
