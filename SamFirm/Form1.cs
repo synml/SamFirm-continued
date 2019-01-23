@@ -19,7 +19,6 @@ namespace SamFirm
         private CheckBox checkbox_autodecrypt;
         private CheckBox checkbox_crc;
         private CheckBox checkbox_manual;
-        private System.ComponentModel.IContainer components;
         private Label csc_lbl;
         private TextBox csc_textbox;
         private Button decrypt_button;
@@ -48,7 +47,6 @@ namespace SamFirm
         private SaveFileDialog saveFileDialog1;
         private Label size_lbl;
         private TextBox size_textbox;
-        private ToolTip tooltip_binary_box;
         private Button update_button;
         private Label version_lbl;
         private TextBox version_textbox;
@@ -62,7 +60,6 @@ namespace SamFirm
         //컴포넌트 초기화 메소드
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.model_textbox = new System.Windows.Forms.TextBox();
             this.model_lbl = new System.Windows.Forms.Label();
@@ -96,7 +93,6 @@ namespace SamFirm
             this.size_textbox = new System.Windows.Forms.TextBox();
             this.size_lbl = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tooltip_binary_box = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -134,11 +130,13 @@ namespace SamFirm
             // 
             // log_textbox
             // 
-            this.log_textbox.Location = new System.Drawing.Point(16, 269);
+            this.log_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.log_textbox.Location = new System.Drawing.Point(13, 269);
             this.log_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.log_textbox.Name = "log_textbox";
             this.log_textbox.ReadOnly = true;
-            this.log_textbox.Size = new System.Drawing.Size(851, 161);
+            this.log_textbox.Size = new System.Drawing.Size(851, 245);
             this.log_textbox.TabIndex = 3;
             this.log_textbox.TabStop = false;
             this.log_textbox.Text = "";
@@ -281,7 +279,7 @@ namespace SamFirm
             this.groupBox1.Controls.Add(this.update_button);
             this.groupBox1.Controls.Add(this.region_textbox);
             this.groupBox1.Controls.Add(this.region_lbl);
-            this.groupBox1.Location = new System.Drawing.Point(16, 14);
+            this.groupBox1.Location = new System.Drawing.Point(13, 14);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -376,7 +374,7 @@ namespace SamFirm
             this.groupBox2.Controls.Add(this.file_textbox);
             this.groupBox2.Controls.Add(this.version_textbox);
             this.groupBox2.Controls.Add(this.version_lbl);
-            this.groupBox2.Location = new System.Drawing.Point(373, 14);
+            this.groupBox2.Location = new System.Drawing.Point(370, 14);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -460,7 +458,7 @@ namespace SamFirm
             this.AcceptButton = this.update_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 442);
+            this.ClientSize = new System.Drawing.Size(880, 526);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.log_textbox);
@@ -477,10 +475,6 @@ namespace SamFirm
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            // 
-            // tooltip_binary_box
-            // 
-            this.tooltip_binary_box.SetToolTip(this.binary_checkbox, "Full firmware including PIT file");
         }
 
         //폼을 로드했을 때 호출하는 메소드
@@ -542,16 +536,6 @@ namespace SamFirm
             Thread.Sleep(100);
             Imports.FreeModule();
             Logger.SaveLog();
-        }
-
-        //컨트롤 배치 메소드
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (this.components != null))
-            {
-                this.components.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
         //컨트롤 활성화/비활성화 설정 메소드
