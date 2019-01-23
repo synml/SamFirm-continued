@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace SamFirm
 {
-    internal class Settings
+    internal static class Settings
     {
         //설정파일의 이름을 가진 상수
         private const string settingsXml = "Settings.xml";

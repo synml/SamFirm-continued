@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace SamFirm
 {
-    internal class FWFetch
+    internal static class FWFetch
     {
         public static List<Func<string, string, string>> FWFetchFuncs;
         private static string SamMobileHtml;

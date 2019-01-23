@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SamFirm
 {
-    internal class Crypto
+    internal static class Crypto
     {
         public static Form1 form;
         private static readonly byte[] IV = new byte[1];

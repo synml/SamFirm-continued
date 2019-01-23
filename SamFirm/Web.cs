@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace SamFirm
 {
-    internal class Web
+    internal static class Web
     {
         public static Form1 form;
         public static string JSessionID = string.Empty;
@@ -66,7 +66,8 @@ namespace SamFirm
                                     {
                                         goto Label_02BB;
                                     }
-                                    num += count = response.GetResponseStream().Read(buffer, 0, buffer.Length);
+                                    count = response.GetResponseStream().Read(buffer, 0, buffer.Length);
+                                    num += count;
                                     if (count > 0)
                                     {
                                         writer.Write(buffer, 0, count);
