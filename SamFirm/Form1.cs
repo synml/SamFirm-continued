@@ -104,7 +104,7 @@ namespace SamFirm
             this.model_textbox.Location = new System.Drawing.Point(113, 25);
             this.model_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.model_textbox.Name = "model_textbox";
-            this.model_textbox.Size = new System.Drawing.Size(197, 25);
+            this.model_textbox.Size = new System.Drawing.Size(197, 27);
             this.model_textbox.TabIndex = 0;
             // 
             // model_lbl
@@ -113,7 +113,7 @@ namespace SamFirm
             this.model_lbl.Location = new System.Drawing.Point(11, 29);
             this.model_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.model_lbl.Name = "model_lbl";
-            this.model_lbl.Size = new System.Drawing.Size(47, 15);
+            this.model_lbl.Size = new System.Drawing.Size(53, 20);
             this.model_lbl.TabIndex = 1;
             this.model_lbl.Text = "Model";
             // 
@@ -132,6 +132,7 @@ namespace SamFirm
             // 
             this.log_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.log_textbox.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.log_textbox.Location = new System.Drawing.Point(13, 269);
             this.log_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.log_textbox.Name = "log_textbox";
@@ -147,7 +148,7 @@ namespace SamFirm
             this.region_lbl.Location = new System.Drawing.Point(11, 59);
             this.region_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.region_lbl.Name = "region_lbl";
-            this.region_lbl.Size = new System.Drawing.Size(53, 15);
+            this.region_lbl.Size = new System.Drawing.Size(57, 20);
             this.region_lbl.TabIndex = 5;
             this.region_lbl.Text = "Region";
             // 
@@ -157,7 +158,7 @@ namespace SamFirm
             this.region_textbox.Location = new System.Drawing.Point(113, 55);
             this.region_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.region_textbox.Name = "region_textbox";
-            this.region_textbox.Size = new System.Drawing.Size(197, 25);
+            this.region_textbox.Size = new System.Drawing.Size(197, 27);
             this.region_textbox.TabIndex = 1;
             // 
             // pda_lbl
@@ -166,7 +167,7 @@ namespace SamFirm
             this.pda_lbl.Location = new System.Drawing.Point(13, 17);
             this.pda_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pda_lbl.Name = "pda_lbl";
-            this.pda_lbl.Size = new System.Drawing.Size(36, 15);
+            this.pda_lbl.Size = new System.Drawing.Size(39, 20);
             this.pda_lbl.TabIndex = 7;
             this.pda_lbl.Text = "PDA";
             // 
@@ -176,7 +177,7 @@ namespace SamFirm
             this.pda_textbox.Location = new System.Drawing.Point(105, 14);
             this.pda_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pda_textbox.Name = "pda_textbox";
-            this.pda_textbox.Size = new System.Drawing.Size(197, 25);
+            this.pda_textbox.Size = new System.Drawing.Size(197, 27);
             this.pda_textbox.TabIndex = 4;
             // 
             // csc_lbl
@@ -185,7 +186,7 @@ namespace SamFirm
             this.csc_lbl.Location = new System.Drawing.Point(13, 47);
             this.csc_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.csc_lbl.Name = "csc_lbl";
-            this.csc_lbl.Size = new System.Drawing.Size(37, 15);
+            this.csc_lbl.Size = new System.Drawing.Size(37, 20);
             this.csc_lbl.TabIndex = 9;
             this.csc_lbl.Text = "CSC";
             // 
@@ -195,7 +196,7 @@ namespace SamFirm
             this.csc_textbox.Location = new System.Drawing.Point(105, 44);
             this.csc_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.csc_textbox.Name = "csc_textbox";
-            this.csc_textbox.Size = new System.Drawing.Size(197, 25);
+            this.csc_textbox.Size = new System.Drawing.Size(197, 27);
             this.csc_textbox.TabIndex = 5;
             // 
             // update_button
@@ -215,7 +216,7 @@ namespace SamFirm
             this.phone_lbl.Location = new System.Drawing.Point(13, 77);
             this.phone_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.phone_lbl.Name = "phone_lbl";
-            this.phone_lbl.Size = new System.Drawing.Size(50, 15);
+            this.phone_lbl.Size = new System.Drawing.Size(53, 20);
             this.phone_lbl.TabIndex = 12;
             this.phone_lbl.Text = "Phone";
             // 
@@ -225,7 +226,7 @@ namespace SamFirm
             this.phone_textbox.Location = new System.Drawing.Point(105, 74);
             this.phone_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.phone_textbox.Name = "phone_textbox";
-            this.phone_textbox.Size = new System.Drawing.Size(197, 25);
+            this.phone_textbox.Size = new System.Drawing.Size(197, 27);
             this.phone_textbox.TabIndex = 6;
             // 
             // file_lbl
@@ -234,7 +235,7 @@ namespace SamFirm
             this.file_lbl.Location = new System.Drawing.Point(8, 29);
             this.file_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.file_lbl.Name = "file_lbl";
-            this.file_lbl.Size = new System.Drawing.Size(29, 15);
+            this.file_lbl.Size = new System.Drawing.Size(32, 20);
             this.file_lbl.TabIndex = 13;
             this.file_lbl.Text = "File";
             // 
@@ -244,7 +245,7 @@ namespace SamFirm
             this.file_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.file_textbox.Name = "file_textbox";
             this.file_textbox.ReadOnly = true;
-            this.file_textbox.Size = new System.Drawing.Size(385, 25);
+            this.file_textbox.Size = new System.Drawing.Size(385, 27);
             this.file_textbox.TabIndex = 20;
             this.file_textbox.TabStop = false;
             // 
@@ -254,7 +255,7 @@ namespace SamFirm
             this.version_lbl.Location = new System.Drawing.Point(8, 59);
             this.version_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.version_lbl.Name = "version_lbl";
-            this.version_lbl.Size = new System.Drawing.Size(55, 15);
+            this.version_lbl.Size = new System.Drawing.Size(60, 20);
             this.version_lbl.TabIndex = 15;
             this.version_lbl.Text = "Version";
             // 
@@ -264,7 +265,7 @@ namespace SamFirm
             this.version_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.version_textbox.Name = "version_textbox";
             this.version_textbox.ReadOnly = true;
-            this.version_textbox.Size = new System.Drawing.Size(385, 25);
+            this.version_textbox.Size = new System.Drawing.Size(385, 27);
             this.version_textbox.TabIndex = 30;
             this.version_textbox.TabStop = false;
             // 
@@ -279,6 +280,7 @@ namespace SamFirm
             this.groupBox1.Controls.Add(this.update_button);
             this.groupBox1.Controls.Add(this.region_textbox);
             this.groupBox1.Controls.Add(this.region_lbl);
+            this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(13, 14);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
@@ -310,7 +312,7 @@ namespace SamFirm
             this.checkbox_manual.Location = new System.Drawing.Point(172, 87);
             this.checkbox_manual.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkbox_manual.Name = "checkbox_manual";
-            this.checkbox_manual.Size = new System.Drawing.Size(76, 19);
+            this.checkbox_manual.Size = new System.Drawing.Size(83, 24);
             this.checkbox_manual.TabIndex = 3;
             this.checkbox_manual.Text = "Manual";
             this.checkbox_manual.UseVisualStyleBackColor = true;
@@ -322,7 +324,7 @@ namespace SamFirm
             this.checkbox_auto.Location = new System.Drawing.Point(15, 87);
             this.checkbox_auto.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkbox_auto.Name = "checkbox_auto";
-            this.checkbox_auto.Size = new System.Drawing.Size(59, 19);
+            this.checkbox_auto.Size = new System.Drawing.Size(64, 24);
             this.checkbox_auto.TabIndex = 2;
             this.checkbox_auto.Text = "Auto";
             this.checkbox_auto.UseVisualStyleBackColor = true;
@@ -334,7 +336,7 @@ namespace SamFirm
             this.binary_checkbox.Location = new System.Drawing.Point(15, 220);
             this.binary_checkbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.binary_checkbox.Name = "binary_checkbox";
-            this.binary_checkbox.Size = new System.Drawing.Size(116, 19);
+            this.binary_checkbox.Size = new System.Drawing.Size(124, 24);
             this.binary_checkbox.TabIndex = 7;
             this.binary_checkbox.Text = "Binary Nature";
             this.binary_checkbox.UseVisualStyleBackColor = true;
@@ -374,6 +376,7 @@ namespace SamFirm
             this.groupBox2.Controls.Add(this.file_textbox);
             this.groupBox2.Controls.Add(this.version_textbox);
             this.groupBox2.Controls.Add(this.version_lbl);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox2.Location = new System.Drawing.Point(370, 14);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
@@ -389,7 +392,7 @@ namespace SamFirm
             this.label1.Location = new System.Drawing.Point(8, 203);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 15);
+            this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 25;
             this.label1.Text = "Speed";
             // 
@@ -399,7 +402,7 @@ namespace SamFirm
             this.lbl_speed.Location = new System.Drawing.Point(96, 203);
             this.lbl_speed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_speed.Name = "lbl_speed";
-            this.lbl_speed.Size = new System.Drawing.Size(46, 15);
+            this.lbl_speed.Size = new System.Drawing.Size(46, 20);
             this.lbl_speed.TabIndex = 24;
             this.lbl_speed.Text = "0kB/s";
             // 
@@ -411,7 +414,7 @@ namespace SamFirm
             this.checkbox_autodecrypt.Location = new System.Drawing.Point(252, 111);
             this.checkbox_autodecrypt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkbox_autodecrypt.Name = "checkbox_autodecrypt";
-            this.checkbox_autodecrypt.Size = new System.Drawing.Size(169, 19);
+            this.checkbox_autodecrypt.Size = new System.Drawing.Size(179, 24);
             this.checkbox_autodecrypt.TabIndex = 12;
             this.checkbox_autodecrypt.Text = "Decrypt automatically";
             this.checkbox_autodecrypt.UseVisualStyleBackColor = true;
@@ -424,7 +427,7 @@ namespace SamFirm
             this.checkbox_crc.Location = new System.Drawing.Point(100, 111);
             this.checkbox_crc.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkbox_crc.Name = "checkbox_crc";
-            this.checkbox_crc.Size = new System.Drawing.Size(121, 19);
+            this.checkbox_crc.Size = new System.Drawing.Size(123, 24);
             this.checkbox_crc.TabIndex = 11;
             this.checkbox_crc.Text = "Check CRC32";
             this.checkbox_crc.UseVisualStyleBackColor = true;
@@ -435,7 +438,7 @@ namespace SamFirm
             this.size_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.size_textbox.Name = "size_textbox";
             this.size_textbox.ReadOnly = true;
-            this.size_textbox.Size = new System.Drawing.Size(385, 25);
+            this.size_textbox.Size = new System.Drawing.Size(385, 27);
             this.size_textbox.TabIndex = 40;
             this.size_textbox.TabStop = false;
             // 
@@ -445,7 +448,7 @@ namespace SamFirm
             this.size_lbl.Location = new System.Drawing.Point(8, 87);
             this.size_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.size_lbl.Name = "size_lbl";
-            this.size_lbl.Size = new System.Drawing.Size(36, 15);
+            this.size_lbl.Size = new System.Drawing.Size(36, 20);
             this.size_lbl.TabIndex = 20;
             this.size_lbl.Text = "Size";
             // 
@@ -456,14 +459,14 @@ namespace SamFirm
             // Form1
             // 
             this.AcceptButton = this.update_button;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(880, 526);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.log_textbox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "SamFirm Continued";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Close);
@@ -475,6 +478,7 @@ namespace SamFirm
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         //폼을 로드했을 때 호출하는 메소드
