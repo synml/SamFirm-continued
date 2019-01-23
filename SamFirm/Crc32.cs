@@ -1,9 +1,9 @@
-﻿namespace Security.Cryptography
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Security.Cryptography;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 
+namespace SamFirm
+{
     public sealed class Crc32 : HashAlgorithm
     {
         public const uint DefaultPolynomial = 0xedb88320;
@@ -103,4 +103,3 @@
             0x20;
     }
 }
-

@@ -94,7 +94,7 @@
     <Compile Include="SamFirm\Web.cs" />
     <Compile Include="SamFirm\WebRequestExtension.cs" />
     <Compile Include="SamFirm\Xml.cs" />
-    <Compile Include="Security\Cryptography\Crc32.cs" />
+    <Compile Include="SamFirm\Crc32.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -135,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\download.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Security\Cryptography\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

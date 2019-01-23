@@ -1,5 +1,4 @@
-﻿using Security.Cryptography;
-using Microsoft.WindowsAPICodePack.Taskbar;
+﻿using Microsoft.WindowsAPICodePack.Taskbar;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
