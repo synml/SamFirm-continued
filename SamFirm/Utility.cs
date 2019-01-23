@@ -18,7 +18,6 @@
         private static long lastBread = 0L;
         private static int lastSpeed = 0;
         public static bool ReconnectDownload = false;
-        public static bool run_by_cmd = false;
 
         public static bool CheckConnection(string address, ref bool docheck)
         {
@@ -295,8 +294,7 @@
                 }
             }
             catch (Exception)
-            {
-            }
+            { }
         }
 
         public enum PDSMode

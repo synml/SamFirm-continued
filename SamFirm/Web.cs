@@ -146,18 +146,11 @@
 
         public static void SetReconnect()
         {
-            if (!Utility.run_by_cmd)
-            {
-                if (!form.PauseDownload)
-                {
-                    Utility.ReconnectDownload = true;
-                }
-                form.PauseDownload = true;
-            }
-            else
+            if (!form.PauseDownload)
             {
                 Utility.ReconnectDownload = true;
             }
+            form.PauseDownload = true;
         }
 
         private static int XMLFUSRequest(string URL, string xml, out string xmlresponse)
