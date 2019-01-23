@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace SamFirm
@@ -97,30 +98,30 @@ namespace SamFirm
             }
             string str2 = samMobileHtml.Substring(num + 0x24);
             samMobileHtml = Utility.GetHtml(str2.Substring(0, str2.IndexOf('"')));
-            string input = string.Empty;
-            using (StringReader reader = new StringReader(samMobileHtml))
+
+            StringReader reader = new StringReader(samMobileHtml);
+            StringBuilder strbld = new StringBuilder();
+            string str4;
+            bool flag = false;
+            while ((str4 = reader.ReadLine()) != null)
             {
-                string str4;
-                bool flag = false;
-                while ((str4 = reader.ReadLine()) != null)
+                string str5 = tdExtract(str4).Trim();
+                switch (str5)
                 {
-                    string str5 = tdExtract(str4).Trim();
-                    switch (str5)
+                    case "PDA":
+                    case "CSC":
                     {
-                        case "PDA":
-                        case "CSC":
-                        {
-                            flag = true;
-                            continue;
-                        }
-                    }
-                    if (flag)
-                    {
-                        input = input + str5 + "/";
-                        flag = false;
+                        flag = true;
+                        continue;
                     }
                 }
+                if (flag)
+                {
+                    strbld.Append(str5 + "/");
+                    flag = false;
+                }
             }
+            string input = strbld.ToString();
             return Regex.Replace(input, "^(.*)/(.*)/$", "$1/$2/$1");
         }
 
