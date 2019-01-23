@@ -139,7 +139,6 @@
                 {
                     return 0x385;
                 }
-                HttpStatusCode statusCode = response.StatusCode;
                 return (int) response.StatusCode;
             }
         }

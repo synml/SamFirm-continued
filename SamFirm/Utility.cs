@@ -99,9 +99,9 @@
                 return -1;
             }
             interval = 0;
-            double num = ((double) sw.ElapsedMilliseconds) / 1000.0;
+            double num = sw.ElapsedMilliseconds / 1000.0;
             long num2 = bread - lastBread;
-            int num3 = (int) Math.Floor((double) ((((double) num2) / num) / 1024.0));
+            int num3 = (int) Math.Floor(num2 / num / 1024.0);
             if (lastSpeed != 0)
             {
                 num3 = (lastSpeed + num3) / 2;

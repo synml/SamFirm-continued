@@ -89,7 +89,7 @@ namespace SamFirm
             int num = 0;
             while ((index-- >= 0) && (num >= 0))
             {
-                num = samMobileHtml.IndexOf("<a class=\"firmware-table-row\" href=\"", (int) (num + 1));
+                num = samMobileHtml.IndexOf("<a class=\"firmware-table-row\" href=\"", num + 1);
             }
             if (num < 0)
             {
