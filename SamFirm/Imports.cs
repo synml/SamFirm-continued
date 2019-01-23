@@ -20,11 +20,14 @@ namespace SamFirm
         private static extern bool FreeLibrary(IntPtr hModule);
         public static void FreeModule()
         {
-            if (!FreeLibrary(mod))
+            if (mod != IntPtr.Zero)
             {
-                Logger.WriteLog("Error: Unable to free library");
+                if (!FreeLibrary(mod))
+                {
+                    Logger.WriteLog("Error: Unable to free library");
+                }
+                mod = IntPtr.Zero;
             }
-            mod = IntPtr.Zero;
         }
 
         //권한을 얻는 메소드

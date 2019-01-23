@@ -109,7 +109,7 @@ namespace SamFirm
             {
                 Logger.WriteLog("LogicValue: " + firmware.LogicValueHome);
             }
-            Logger.WriteLog("\n");
+            Logger.WriteLog("");
             return firmware;
         }
 

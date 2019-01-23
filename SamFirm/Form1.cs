@@ -303,7 +303,7 @@ namespace SamFirm
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox3.Size = new System.Drawing.Size(333, 103);
+            this.groupBox3.Size = new System.Drawing.Size(333, 107);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             // 
@@ -826,6 +826,7 @@ namespace SamFirm
                 return;
             }
 
+            //백그라운드 작업 등록
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate (object o, DoWorkEventArgs _e)
             {
@@ -864,7 +865,7 @@ namespace SamFirm
                         this.version_textbox.Invoke(invoker2);
                         if (invoker3 == null)
                         {
-                            invoker3 = () => this.size_textbox.Text = ((long.Parse(this.FW.Size) / 0x400L) / 0x400L) + " MB";
+                            invoker3 = () => this.size_textbox.Text = (long.Parse(this.FW.Size) / 0x400L / 0x400L) + " MB";
                         }
                         this.size_textbox.Invoke(invoker3);
                     }
@@ -894,6 +895,8 @@ namespace SamFirm
                     Logger.WriteLog(exception.ToString());
                 }
             };
+
+            //백그라운드 작업 실행
             worker.RunWorkerAsync();
         }
 
