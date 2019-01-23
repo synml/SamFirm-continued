@@ -1,16 +1,16 @@
-﻿namespace SamFirm
-{
-    using Security.Cryptography;
-    using Microsoft.WindowsAPICodePack.Taskbar;
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Net;
-    using System.Net.NetworkInformation;
-    using System.Text;
-    using System.Threading;
+﻿using Security.Cryptography;
+using Microsoft.WindowsAPICodePack.Taskbar;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading;
 
+namespace SamFirm
+{
     public static class Utility
     {
         private static Stopwatch dswatch = new Stopwatch();
@@ -19,7 +19,7 @@
         private static int lastSpeed = 0;
         public static bool ReconnectDownload = false;
 
-        public static bool CheckConnection(string address, ref bool docheck)
+        public static bool CheckConnection(string address, bool docheck)
         {
             bool flag = false;
             Ping ping = new Ping();
@@ -247,8 +247,8 @@
         {
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
-                Thread.Sleep(0x3e8);
-                if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ref ReconnectDownload))
+                Thread.Sleep(1000);
+                if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ReconnectDownload))
                 {
                     Form1.DownloadEventArgs args = new Form1.DownloadEventArgs {
                         isReconnect = true
@@ -257,11 +257,6 @@
                 }
             };
             worker.RunWorkerAsync();
-        }
-
-        public static void ReconnectCmdLine()
-        {
-            CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ref ReconnectDownload);
         }
 
         public static void ResetSpeed(long _lastBread)

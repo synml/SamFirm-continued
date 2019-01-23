@@ -1,10 +1,10 @@
-﻿namespace SamFirm
-{
-    using System.IO;
-    using System.Reflection;
-    using System.Security.Cryptography;
-    using System.Text;
+﻿using System.IO;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 
+namespace SamFirm
+{
     internal class Crypto
     {
         public static Form1 form;
