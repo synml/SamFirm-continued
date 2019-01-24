@@ -703,15 +703,17 @@ namespace SamFirm
                             this.destinationfile = this.saveFileDialog1.FileName;
                             if (System.IO.File.Exists(this.destinationfile))
                             {
-                                customMessageBox box = new customMessageBox("The destination file already exists.\r\nWould you like to append it (resume download)?", "Append", DialogResult.Yes, "Overwrite", DialogResult.No, "Cancel", DialogResult.Cancel, SystemIcons.Warning.ToBitmap());
-                                switch (box.ShowDialog())
+                                switch (new AppendDialogBox().ShowDialog())
                                 {
+                                    case DialogResult.Yes:
+                                        break;
+
                                     case DialogResult.No:
                                         System.IO.File.Delete(this.destinationfile);
                                         break;
 
                                     case DialogResult.Cancel:
-                                        Logger.WriteLine("Aborted.");
+                                        Logger.WriteLine("Download aborted.");
                                         return;
                                 }
                             }
