@@ -17,7 +17,6 @@ namespace SamFirm
         private string destinationfile;
         private Command.Firmware FW;
         public bool PauseDownload;
-        private bool SaveFileDialog = true;
 
         //컨트롤
         #region 컨트롤
@@ -508,10 +507,6 @@ namespace SamFirm
             {
                 this.checkbox_manual.Checked = true;
             }
-            if (Settings.ReadSetting("SaveFileDialog").ToLower() == "false")
-            {
-                this.SaveFileDialog = false;
-            }
             if (Settings.ReadSetting("BinaryNature").ToLower() == "true")
             {
                 this.binary_checkbox.Checked = true;
@@ -538,7 +533,6 @@ namespace SamFirm
             Settings.SetSetting("CSCVer", this.csc_textbox.Text);
             Settings.SetSetting("PHONEVer", this.phone_textbox.Text);
             Settings.SetSetting("AutoInfo", this.checkbox_auto.Checked.ToString());
-            Settings.SetSetting("SaveFileDialog", this.SaveFileDialog.ToString());
             Settings.SetSetting("BinaryNature", this.binary_checkbox.Checked.ToString());
             Settings.SetSetting("CheckCRC", this.checkbox_crc.Checked.ToString());
             Settings.SetSetting("AutoDecrypt", this.checkbox_autodecrypt.Checked.ToString());
@@ -678,49 +672,46 @@ namespace SamFirm
                 {
                     if ((e.GetType() != typeof(DownloadEventArgs)) || !((DownloadEventArgs) e).isReconnect)
                     {
-                        if (this.SaveFileDialog)
+                        string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(this.FW.Filename));
+                        string oldValue = extension + Path.GetExtension(this.FW.Filename);
+                        this.saveFileDialog1.SupportMultiDottedExtensions = true;
+                        this.saveFileDialog1.OverwritePrompt = false;
+                        this.saveFileDialog1.FileName = this.FW.Filename.Replace(oldValue, "");
+                        this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
+                        if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
                         {
-                            string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(this.FW.Filename));
-                            string oldValue = extension + Path.GetExtension(this.FW.Filename);
-                            this.saveFileDialog1.SupportMultiDottedExtensions = true;
-                            this.saveFileDialog1.OverwritePrompt = false;
-                            this.saveFileDialog1.FileName = this.FW.Filename.Replace(oldValue, "");
-                            this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
-                            if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
-                            {
-                                Logger.WriteLine("Aborted.");
-                                return;
-                            }
-                            if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
-                            {
-                                this.saveFileDialog1.FileName = this.saveFileDialog1.FileName + oldValue;
-                            }
-                            else
-                            {
-                                this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(oldValue + oldValue, oldValue);
-                            }
-                            Logger.WriteLine("Filename: " + this.saveFileDialog1.FileName);
-                            this.destinationfile = this.saveFileDialog1.FileName;
-                            if (System.IO.File.Exists(this.destinationfile))
-                            {
-                                switch (new AppendDialogBox().ShowDialog())
-                                {
-                                    case DialogResult.Yes:
-                                        break;
-
-                                    case DialogResult.No:
-                                        System.IO.File.Delete(this.destinationfile);
-                                        break;
-
-                                    case DialogResult.Cancel:
-                                        Logger.WriteLine("Download aborted.");
-                                        return;
-                                }
-                            }
+                            Logger.WriteLine("Aborted.");
+                            return;
+                        }
+                        if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
+                        {
+                            this.saveFileDialog1.FileName = this.saveFileDialog1.FileName + oldValue;
                         }
                         else
                         {
-                            this.destinationfile = this.FW.Filename;
+                            this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(oldValue + oldValue, oldValue);
+                        }
+                        Logger.WriteLine("Filename: " + this.saveFileDialog1.FileName);
+                        this.destinationfile = this.saveFileDialog1.FileName;
+                        if (System.IO.File.Exists(this.destinationfile))
+                        {
+                            switch (new AppendDialogBox().ShowDialog())
+                            {
+                                case DialogResult.Yes:
+                                    break;
+
+                                case DialogResult.No:
+                                    System.IO.File.Delete(this.destinationfile);
+                                    break;
+
+                                case DialogResult.Cancel:
+                                    Logger.WriteLine("Download aborted.");
+                                    return;
+
+                                default:
+                                    Logger.WriteLine("error: Wrong DialogResult");
+                                    return;
+                            }
                         }
                     }
                     Utility.TaskBarProgressState(false);
@@ -752,7 +743,7 @@ namespace SamFirm
                             SamFirm.Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
                             if (this.PauseDownload)
                             {
-                                Logger.WriteLine("Download paused");
+                                Logger.WriteLine("Download paused.");
                                 this.PauseDownload = false;
                                 if (Utility.ReconnectDownload)
                                 {

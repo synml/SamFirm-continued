@@ -21,7 +21,6 @@ namespace SamFirm
                     "\t<CSCVer></CSCVer>\r\n" +
                     "\t<PHONEVer></PHONEVer>\r\n" +
                     "\t<AutoInfo>True</AutoInfo>\r\n" +
-                    "\t<SaveFileDialog>True</SaveFileDialog>\r\n" +
                     "\t<BinaryNature>False</BinaryNature>\r\n" +
                     "\t<CheckCRC>True</CheckCRC>\r\n" +
                     "\t<AutoDecrypt>True</AutoDecrypt>\r\n" +
