@@ -723,7 +723,7 @@ namespace SamFirm
                     }
                     Utility.TaskBarProgressState(false);
                     BackgroundWorker worker = new BackgroundWorker();
-                    worker.DoWork += delegate {
+                    worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
                         MethodInvoker method = null;
                         MethodInvoker invoker2 = null;
                         MethodInvoker invoker3 = null;
@@ -833,7 +833,8 @@ namespace SamFirm
 
             //백그라운드 작업 등록
             BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate {
+            worker.DoWork += delegate (object o, DoWorkEventArgs _e)
+            {
                 MethodInvoker method = null;
                 MethodInvoker invoker2 = null;
                 MethodInvoker invoker3 = null;
