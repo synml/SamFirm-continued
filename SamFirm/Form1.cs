@@ -827,7 +827,7 @@ namespace SamFirm
             //백그라운드 작업 등록
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate {
-                MethodInvoker method = null;
+                MethodInvoker invoker1 = null;
                 MethodInvoker invoker2 = null;
                 MethodInvoker invoker3 = null;
                 MethodInvoker invoker4 = null;
@@ -848,42 +848,33 @@ namespace SamFirm
                     {
                         this.FW = SamFirm.Command.UpdateCheck(this.model_textbox.Text, this.region_textbox.Text, this.pda_textbox.Text, this.csc_textbox.Text, this.phone_textbox.Text, this.pda_textbox.Text, this.binary_checkbox.Checked, false);
                     }
+
+                    //FW 구조체의 Filename멤버가 비어있지 않으면 FW의 멤버를 출력하고,
+                    //비어있으면 빈 글자를 출력한다.
                     if (!string.IsNullOrEmpty(this.FW.Filename))
                     {
-                        if (method == null)
-                        {
-                            method = () => this.file_textbox.Text = this.FW.Filename;
-                        }
-                        this.file_textbox.Invoke(method);
-                        if (invoker2 == null)
-                        {
-                            invoker2 = () => this.version_textbox.Text = this.FW.Version;
-                        }
+                        invoker1 = () => this.file_textbox.Text = FW.Filename;
+                        this.file_textbox.Invoke(invoker1);
+
+                        invoker2 = () => this.version_textbox.Text = FW.Version;
                         this.version_textbox.Invoke(invoker2);
-                        if (invoker3 == null)
-                        {
-                            invoker3 = () => this.size_textbox.Text = (long.Parse(this.FW.Size) / 0x400L / 0x400L) + " MB";
-                        }
+
+                        invoker3 = () => this.size_textbox.Text = (long.Parse(FW.Size) / 1024L / 1024L) + " MB";
                         this.size_textbox.Invoke(invoker3);
                     }
                     else
                     {
-                        if (invoker4 == null)
-                        {
-                            invoker4 = () => this.file_textbox.Text = string.Empty;
-                        }
+                        invoker4 = () => this.file_textbox.Text = string.Empty;
                         this.file_textbox.Invoke(invoker4);
-                        if (invoker5 == null)
-                        {
-                            invoker5 = () => this.version_textbox.Text = string.Empty;
-                        }
+
+                        invoker5 = () => this.version_textbox.Text = string.Empty;
                         this.version_textbox.Invoke(invoker5);
-                        if (invoker6 == null)
-                        {
-                            invoker6 = () => this.size_textbox.Text = string.Empty;
-                        }
+
+                        invoker6 = () => this.size_textbox.Text = string.Empty;
                         this.size_textbox.Invoke(invoker6);
                     }
+
+                    //출력을 완료하면 컨트롤을 활성화한다.
                     this.ControlsEnabled(true);
                 }
                 catch (Exception exception)
