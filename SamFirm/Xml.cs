@@ -39,7 +39,7 @@ namespace SamFirm
         public static string GetXMLValue(string xml, string element, string attributename = null, string attributevalue = null)
         {
             XDocument document = XDocument.Parse(xml);
-            string[] strArray = element.Split(new char[] { '/' });
+            string[] strArray = element.Split(new [] { '/' });
             XElement root = document.Root;
             for (int i = 0; i < strArray.Length; i++)
             {
