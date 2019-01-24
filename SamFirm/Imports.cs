@@ -52,7 +52,7 @@ namespace SamFirm
         //모듈(라이브러리)을 로드하는 메소드
         [DllImport("kernel32.dll", CharSet=CharSet.Unicode, SetLastError=true)]
         private static extern IntPtr LoadLibrary(string dllToLoad);
-        private static int LoadModule(string module = "AgentModule.dll")
+        private static int LoadModule(string module)
         {
             try
             {

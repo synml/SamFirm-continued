@@ -244,7 +244,8 @@ namespace SamFirm
 
         public static void ResetSpeed(long _lastBread)
         {
-            interval = lastSpeed = 0;
+            lastSpeed = 0;
+            interval = 0;
             lastBread = _lastBread;
         }
 

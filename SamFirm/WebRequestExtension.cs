@@ -12,7 +12,7 @@ namespace SamFirm
                 WebResponse response = wr.GetResponse();
                 if (response.Headers.AllKeys.Contains<string>("Set-Cookie"))
                 {
-                    Web.JSessionID = response.Headers["Set-Cookie"].Replace("JSESSIONID=", "").Split(new char[] { ';' })[0];
+                    Web.JSessionID = response.Headers["Set-Cookie"].Replace("JSESSIONID=", "").Split(new [] { ';' })[0];
                 }
                 if (response.Headers.AllKeys.Contains<string>("NONCE"))
                 {
