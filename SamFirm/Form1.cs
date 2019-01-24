@@ -914,12 +914,7 @@ namespace SamFirm
             }
             this.progressBar.Invoke(new Action(delegate {
                 this.progressBar.Value = Progress;
-                try
-                {
-                    TaskbarManager.Instance.SetProgressValue(Progress, 100);
-                }
-                catch (Exception)
-                { }
+                TaskbarManager.Instance.SetProgressValue(Progress, 100);
             }));
         }
 

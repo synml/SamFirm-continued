@@ -13,10 +13,10 @@ namespace SamFirm
     public static class Utility
     {
         private static Stopwatch dswatch = new Stopwatch();
-        private static int interval = 0;
-        private static long lastBread = 0L;
-        private static int lastSpeed = 0;
-        internal static bool ReconnectDownload = false;
+        private static int interval;
+        private static long lastBread;
+        private static int lastSpeed;
+        internal static bool ReconnectDownload;
 
         public static bool CheckConnection(string address, ref bool docheck)
         {
@@ -24,17 +24,12 @@ namespace SamFirm
             Ping ping = new Ping();
             while (docheck)
             {
-                if (flag)
+                if (flag == true)
                 {
-                    return flag;
+                    return true;
                 }
-                try
-                {
-                    flag = ping.Send(address, 0x7d0).Status == IPStatus.Success;
-                }
-                catch (PingException)
-                {
-                }
+
+                flag = ping.Send(address, 2000).Status == IPStatus.Success;
             }
             return false;
         }
@@ -48,7 +43,7 @@ namespace SamFirm
                     Logger.WriteLine("    Request was invalid. Are you sure the input data is correct?");
                     return num;
 
-                case 0x191:
+                case 401:
                     Logger.WriteLine("    Authorization failed");
                     return num;
             }
@@ -179,7 +174,7 @@ namespace SamFirm
 
         public static string InfoExtract(string info, string type)
         {
-            string[] strArray = info.Split(new char[] { '/' });
+            string[] strArray = info.Split(new [] { '/' });
             if (strArray.Length >= 2)
             {
                 switch (type)
@@ -229,7 +224,7 @@ namespace SamFirm
         public static void Reconnect(Action<object, EventArgs> action)
         {
             BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
+            worker.DoWork += delegate {
                 Thread.Sleep(1000);
                 if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ref ReconnectDownload))
                 {

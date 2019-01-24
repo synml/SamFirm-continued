@@ -185,7 +185,7 @@ namespace SamFirm
             string str = SamsungFirmwareOrgFetch(model, region);
             if (!string.IsNullOrEmpty(str))
             {
-                string[] strArray = str.Split(new char[] { '/' });
+                string[] strArray = str.Split(new [] { '/' });
                 str = strArray[0] + "/" + strArray[2] + "/" + strArray[1];
             }
             return str;
