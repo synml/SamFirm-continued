@@ -50,7 +50,7 @@ namespace SamFirm
             (Marshal.GetDelegateForFunctionPointer(GetProcAddress(module, name), typeof(T)) as T);
 
         //모듈(라이브러리)을 로드하는 메소드
-        [DllImport("kernel32.dll", SetLastError=true)]
+        [DllImport("kernel32.dll", CharSet=CharSet.Unicode, SetLastError=true)]
         private static extern IntPtr LoadLibrary(string dllToLoad);
         private static int LoadModule(string module = "AgentModule.dll")
         {
@@ -81,7 +81,7 @@ namespace SamFirm
         }
 
         //스레드 실행 상태를 설정하는 메소드
-        [DllImport("kernel32.dll", CharSet=CharSet.Auto, SetLastError=true)]
+        [DllImport("kernel32.dll", CharSet=CharSet.Unicode, SetLastError=true)]
         public static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
 
         [UnmanagedFunctionPointer(CallingConvention.Winapi)]
@@ -105,7 +105,7 @@ namespace SamFirm
             internal IntPtr UniqueProcessId;
             internal IntPtr InheritedFromUniqueProcessId;
             [DllImport("ntdll.dll")]
-            private static extern int NtQueryInformationProcess(IntPtr processHandle, int processInformationClass, ref Imports.ParentProcessUtilities processInformation, int processInformationLength, out int returnLength);
+            private static extern int NtQueryInformationProcess(IntPtr processHandle, int processInformationClass, ref ParentProcessUtilities processInformation, int processInformationLength, out int returnLength);
             public static Process GetParentProcess() => 
                 GetParentProcess(Process.GetCurrentProcess().Handle);
 
