@@ -6,8 +6,9 @@ namespace SamFirm
 {
     internal static class Logger
     {
-        public static Form1 form;
+        internal static Form1 form;
 
+        //로그 텍스트 박스의 줄 개수가 30개를 초과하면 지우는 메소드
         private static void CleanLog()
         {
             if (form.log_textbox.InvokeRequired)
@@ -25,11 +26,13 @@ namespace SamFirm
             }
         }
 
+        //현재 날짜와 시각을 알아내는 함수
         private static string GetTimeDate()
         {
             return DateTime.Now.ToString("yyyy/MM/dd") + " " + DateTime.Now.ToString("HH:mm:ss");
         }
 
+        //로그를 파일로 저장하는 메소드
         public static void SaveLog()
         {
             if (!string.IsNullOrEmpty(form.log_textbox.Text))
@@ -51,19 +54,19 @@ namespace SamFirm
             }
         }
 
-        public static void WriteLog(string str)
+        //로그 텍스트 박스에 문자열을 출력하는 메소드
+        public static void WriteLine(string str)
         {
             MethodInvoker method = null;
 
             CleanLog();
-            str = str + "\n";
 
             if (form.log_textbox.InvokeRequired)
             {
                 if (method == null)
                 {
                     method = delegate {
-                        form.log_textbox.AppendText(str);
+                        form.log_textbox.AppendText(str + "\n");
                         form.log_textbox.ScrollToCaret();
                     };
                 }

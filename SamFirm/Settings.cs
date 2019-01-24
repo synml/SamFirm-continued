@@ -42,7 +42,7 @@ namespace SamFirm
             }
             catch (Exception exception)
             {
-                Logger.WriteLog("Error reading config file: " + exception.Message);
+                Logger.WriteLine("Error reading config file: " + exception.Message);
                 return string.Empty;
             }
         }

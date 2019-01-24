@@ -521,7 +521,7 @@ namespace SamFirm
                 this.checkbox_autodecrypt.Checked = false;
             }
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-            Logger.WriteLog("SamFirm v" + versionInfo.FileVersion);
+            Logger.WriteLine("SamFirm v" + versionInfo.FileVersion);
             ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => true;
         }
 
@@ -603,14 +603,14 @@ namespace SamFirm
         {
             if (!System.IO.File.Exists(this.destinationfile))
             {
-                Logger.WriteLog("Error: File " + this.destinationfile + " does not exist");
+                Logger.WriteLine("Error: File " + this.destinationfile + " does not exist");
             }
             else
             {
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
                     Thread.Sleep(100);
-                    Logger.WriteLog("\nDecrypting firmware...");
+                    Logger.WriteLine("\nDecrypting firmware...");
                     this.ControlsEnabled(false);
                     this.decrypt_button.Invoke(new Action(() => this.decrypt_button.Enabled = false));
                     if (this.destinationfile.EndsWith(".enc2"))
@@ -632,7 +632,7 @@ namespace SamFirm
                     {
                         System.IO.File.Delete(this.destinationfile);
                     }
-                    Logger.WriteLog("Decryption finished");
+                    Logger.WriteLine("Decryption finished");
                     this.ControlsEnabled(true);
                 };
                 worker.RunWorkerAsync();
@@ -664,11 +664,11 @@ namespace SamFirm
                 }
                 if (this.PauseDownload)
                 {
-                    Logger.WriteLog("Download thread is still running. Please wait.");
+                    Logger.WriteLine("Download thread is still running. Please wait.");
                 }
                 else if (string.IsNullOrEmpty(this.file_textbox.Text))
                 {
-                    Logger.WriteLog("No file to download. Please check for update first.");
+                    Logger.WriteLine("No file to download. Please check for update first.");
                 }
                 else
                 {
@@ -684,7 +684,7 @@ namespace SamFirm
                             this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
                             if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
                             {
-                                Logger.WriteLog("Aborted.");
+                                Logger.WriteLine("Aborted.");
                                 return;
                             }
                             if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
@@ -695,7 +695,7 @@ namespace SamFirm
                             {
                                 this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(oldValue + oldValue, oldValue);
                             }
-                            Logger.WriteLog("Filename: " + this.saveFileDialog1.FileName);
+                            Logger.WriteLine("Filename: " + this.saveFileDialog1.FileName);
                             this.destinationfile = this.saveFileDialog1.FileName;
                             if (System.IO.File.Exists(this.destinationfile))
                             {
@@ -707,7 +707,7 @@ namespace SamFirm
                                         break;
 
                                     case DialogResult.Cancel:
-                                        Logger.WriteLog("Aborted.");
+                                        Logger.WriteLine("Aborted.");
                                         return;
                                 }
                             }
@@ -737,42 +737,42 @@ namespace SamFirm
                             this.download_button.Invoke(method);
                             if (this.FW.Filename == this.destinationfile)
                             {
-                                Logger.WriteLog("Trying to download " + this.FW.Filename);
+                                Logger.WriteLine("Trying to download " + this.FW.Filename);
                             }
                             else
                             {
-                                Logger.WriteLog("Trying to download " + this.FW.Filename + " to " + this.destinationfile);
+                                Logger.WriteLine("Trying to download " + this.FW.Filename + " to " + this.destinationfile);
                             }
                             SamFirm.Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
                             if (this.PauseDownload)
                             {
-                                Logger.WriteLog("Download paused");
+                                Logger.WriteLine("Download paused");
                                 this.PauseDownload = false;
                                 if (Utility.ReconnectDownload)
                                 {
-                                    Logger.WriteLog("Reconnecting...");
+                                    Logger.WriteLine("Reconnecting...");
                                     Utility.Reconnect(new Action<object, EventArgs>(this.Download_button_Click));
                                 }
                             }
                             else
                             {
-                                Logger.WriteLog("Download finished");
+                                Logger.WriteLine("Download finished");
                                 if (this.checkbox_crc.Checked)
                                 {
                                     if (this.FW.CRC == null)
                                     {
-                                        Logger.WriteLog("Unable to check CRC. Value not set by Samsung");
+                                        Logger.WriteLine("Unable to check CRC. Value not set by Samsung");
                                     }
                                     else
                                     {
-                                        Logger.WriteLog("\nChecking CRC32...");
+                                        Logger.WriteLine("\nChecking CRC32...");
                                         if (!Utility.CRCCheck(this.destinationfile, this.FW.CRC))
                                         {
-                                            Logger.WriteLog("Error: CRC does not match. Please redownload the file.");
+                                            Logger.WriteLine("Error: CRC does not match. Please redownload the file.");
                                             System.IO.File.Delete(this.destinationfile);
                                             goto Label_01C9;
                                         }
-                                        Logger.WriteLog("Success: CRC match!");
+                                        Logger.WriteLine("Success: CRC match!");
                                     }
                                 }
                                 if (invoker2 == null)
@@ -798,8 +798,8 @@ namespace SamFirm
                         }
                         catch (Exception exception)
                         {
-                            Logger.WriteLog(exception.Message);
-                            Logger.WriteLog(exception.ToString());
+                            Logger.WriteLine(exception.Message);
+                            Logger.WriteLine(exception.ToString());
                         }
                     };
                     worker.RunWorkerAsync();
@@ -813,17 +813,17 @@ namespace SamFirm
             //예외 처리
             if (string.IsNullOrEmpty(model_textbox.Text))
             {
-                Logger.WriteLog("Error: Please specify a model");
+                Logger.WriteLine("Error: Please specify a model");
                 return;
             }
             else if (string.IsNullOrEmpty(region_textbox.Text))
             {
-                Logger.WriteLog("Error: Please specify a region");
+                Logger.WriteLine("Error: Please specify a region");
                 return;
             }
             else if (checkbox_manual.Checked && (string.IsNullOrEmpty(pda_textbox.Text) || string.IsNullOrEmpty(csc_textbox.Text) || string.IsNullOrEmpty(phone_textbox.Text)))
             {
-                Logger.WriteLog("Error: Please specify PDA, CSC and Phone version or use Auto Method");
+                Logger.WriteLine("Error: Please specify PDA, CSC and Phone version or use Auto Method");
                 return;
             }
 
@@ -892,8 +892,8 @@ namespace SamFirm
                 }
                 catch (Exception exception)
                 {
-                    Logger.WriteLog(exception.Message);
-                    Logger.WriteLog(exception.ToString());
+                    Logger.WriteLine(exception.Message);
+                    Logger.WriteLine(exception.ToString());
                 }
             };
 

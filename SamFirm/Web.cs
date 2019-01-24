@@ -27,10 +27,10 @@ namespace SamFirm
                 long length = new FileInfo(saveTo).Length;
                 if (long.Parse(size) == length)
                 {
-                    Logger.WriteLog("File already downloaded.");
+                    Logger.WriteLine("File already downloaded.");
                     return 200;
                 }
-                Logger.WriteLog("File exists. Resuming download...");
+                Logger.WriteLine("File exists. Resuming download...");
                 wr.AddRange((int) length);
                 num = length;
             }
@@ -38,12 +38,12 @@ namespace SamFirm
             {
                 if (response == null)
                 {
-                    Logger.WriteLog("Error downloading: response is null");
+                    Logger.WriteLine("Error downloading: response is null");
                     return 0x385;
                 }
                 if ((response.StatusCode != HttpStatusCode.OK) && (response.StatusCode != HttpStatusCode.PartialContent))
                 {
-                    Logger.WriteLog("Error downloading: " + ((int)response.StatusCode));
+                    Logger.WriteLine("Error downloading: " + ((int)response.StatusCode));
                 }
                 else
                 {
@@ -92,17 +92,17 @@ namespace SamFirm
                         }
                         catch (IOException exception)
                         {
-                            Logger.WriteLog("Error: Can't access output file " + saveTo);
+                            Logger.WriteLine("Error: Can't access output file " + saveTo);
                             if (GUI)
                             {
                                 form.PauseDownload = true;
                             }
-                            Logger.WriteLog(exception.ToString());
+                            Logger.WriteLine(exception.ToString());
                             return -1;
                         }
                         catch (WebException)
                         {
-                            Logger.WriteLog("Error: Connection interrupted");
+                            Logger.WriteLine("Error: Connection interrupted");
                             SetReconnect();
                         }
                         finally

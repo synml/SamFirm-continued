@@ -45,11 +45,11 @@ namespace SamFirm
             switch (num)
             {
                 case 400:
-                    Logger.WriteLog("    Request was invalid. Are you sure the input data is correct?");
+                    Logger.WriteLine("    Request was invalid. Are you sure the input data is correct?");
                     return num;
 
                 case 0x191:
-                    Logger.WriteLog("    Authorization failed");
+                    Logger.WriteLine("    Authorization failed");
                     return num;
             }
             return num;

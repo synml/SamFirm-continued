@@ -12,7 +12,7 @@ namespace SamFirm
             int htmlstatus = Web.GenerateNonce();
             if (htmlstatus != 200)
             {
-                Logger.WriteLog("Error: Could not generate Nonce. Status code " + htmlstatus);
+                Logger.WriteLine("Error: Could not generate Nonce. Status code " + htmlstatus);
                 return -1;
             }
             htmlstatus = Web.DownloadBinaryInit(Xml.GetXmlBinaryInit(file, version, region, model_type), out str);
@@ -20,7 +20,7 @@ namespace SamFirm
             {
                 return Web.DownloadBinary(path, file, saveTo, size, GUI);
             }
-            Logger.WriteLog(string.Concat(new object[] { "Error: Could not send BinaryInform. Status code ", htmlstatus, "/", Utility.GetXMLStatusCode(str) }));
+            Logger.WriteLine(string.Concat(new object[] { "Error: Could not send BinaryInform. Status code ", htmlstatus, "/", Utility.GetXMLStatusCode(str) }));
             Utility.CheckHTMLXMLStatus(htmlstatus, Utility.GetXMLStatusCode(str));
             return -1;
         }
@@ -46,18 +46,18 @@ namespace SamFirm
         {
             string str;
             Firmware firmware = new Firmware();
-            Logger.WriteLog("Checking firmware for " + model + "/" + region + "/" + pda + "/" + csc + "/" + phone + "/" + data);
+            Logger.WriteLine("Checking firmware for " + model + "/" + region + "/" + pda + "/" + csc + "/" + phone + "/" + data);
             int htmlstatus = Web.GenerateNonce();
             if (htmlstatus != 200)
             {
-                Logger.WriteLog("Error: Could not generate Nonce. Status code " + htmlstatus);
+                Logger.WriteLine("Error: Could not generate Nonce. Status code " + htmlstatus);
                 firmware.ConnectionError = true;
                 return firmware;
             }
             htmlstatus = Web.DownloadBinaryInform(Xml.GetXmlBinaryInform(model, region, pda, csc, phone, data, BinaryNature), out str);
             if ((htmlstatus != 200) || (Utility.GetXMLStatusCode(str) != 200))
             {
-                Logger.WriteLog(string.Concat(new object[] { "Error: Could not send BinaryInform. Status code ", htmlstatus, "/", Utility.GetXMLStatusCode(str) }));
+                Logger.WriteLine(string.Concat(new object[] { "Error: Could not send BinaryInform. Status code ", htmlstatus, "/", Utility.GetXMLStatusCode(str) }));
                 Utility.CheckHTMLXMLStatus(htmlstatus, Utility.GetXMLStatusCode(str));
                 return firmware;
             }
@@ -89,27 +89,27 @@ namespace SamFirm
             {
                 if ((pda + "/" + csc + "/" + phone + "/" + pda) == firmware.Version)
                 {
-                    Logger.WriteLog("\nCurrent firmware is latest:");
+                    Logger.WriteLine("\nCurrent firmware is latest:");
                 }
                 else
                 {
-                    Logger.WriteLog("\nNewer firmware available:");
+                    Logger.WriteLine("\nNewer firmware available:");
                 }
             }
-            Logger.WriteLog("Model: " + firmware.Model);
-            Logger.WriteLog("Version: " + firmware.Version);
-            Logger.WriteLog("OS: " + firmware.OS);
-            Logger.WriteLog("Filename: " + firmware.Filename);
-            Logger.WriteLog("Size: " + firmware.Size + " bytes");
+            Logger.WriteLine("Model: " + firmware.Model);
+            Logger.WriteLine("Version: " + firmware.Version);
+            Logger.WriteLine("OS: " + firmware.OS);
+            Logger.WriteLine("Filename: " + firmware.Filename);
+            Logger.WriteLine("Size: " + firmware.Size + " bytes");
             if ((firmware.BinaryNature == 1) && !string.IsNullOrEmpty(firmware.LogicValueFactory))
             {
-                Logger.WriteLog("LogicValue: " + firmware.LogicValueFactory);
+                Logger.WriteLine("LogicValue: " + firmware.LogicValueFactory);
             }
             else if (!string.IsNullOrEmpty(firmware.LogicValueHome))
             {
-                Logger.WriteLog("LogicValue: " + firmware.LogicValueHome);
+                Logger.WriteLine("LogicValue: " + firmware.LogicValueHome);
             }
-            Logger.WriteLog("");
+            Logger.WriteLine("");
             return firmware;
         }
 
@@ -132,7 +132,7 @@ namespace SamFirm
             }
             if (firmware.Version == null)
             {
-                Logger.WriteLog("Could not fetch info for " + model + "/" + region + ". Please verify the input or use manual info");
+                Logger.WriteLine("Could not fetch info for " + model + "/" + region + ". Please verify the input or use manual info");
             }
             firmware.FetchAttempts = num;
             return firmware;
