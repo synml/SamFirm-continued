@@ -84,8 +84,8 @@ namespace SamFirm
             // 
             // AppendDialogBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(522, 120);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbltext);
