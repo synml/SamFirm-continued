@@ -74,7 +74,7 @@ namespace SamFirm
             }
             else
             {
-                form.log_textbox.AppendText(str);
+                form.log_textbox.AppendText(str + "\n");
                 form.log_textbox.ScrollToCaret();
             }
         }
