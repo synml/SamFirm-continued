@@ -608,7 +608,7 @@ namespace SamFirm
             else
             {
                 BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
+                worker.DoWork += delegate {
                     Thread.Sleep(100);
                     Logger.WriteLine("\nDecrypting firmware...");
                     this.ControlsEnabled(false);
