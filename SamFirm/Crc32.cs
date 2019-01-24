@@ -6,21 +6,21 @@ namespace SamFirm
 {
     public sealed class Crc32 : HashAlgorithm
     {
-        public const uint DefaultPolynomial = 0xedb88320;
-        public const uint DefaultSeed = uint.MaxValue;
+        private const uint DefaultPolynomial = 0xedb88320;
+        private const uint DefaultSeed = uint.MaxValue;
         private static uint[] defaultTable;
         private uint hash;
         private readonly uint seed;
         private readonly uint[] table;
 
         public Crc32() : this(0xedb88320, uint.MaxValue)
-        {
-        }
+        { }
 
         public Crc32(uint polynomial, uint seed)
         {
             this.table = InitializeTable(polynomial);
-            this.seed = this.hash = seed;
+            this.hash = seed;
+            this.seed = seed;
         }
 
         private static uint CalculateHash(uint[] table, uint seed, IList<byte> buffer, int start, int size)

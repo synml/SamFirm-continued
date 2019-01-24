@@ -63,13 +63,10 @@ namespace SamFirm
 
             if (form.log_textbox.InvokeRequired)
             {
-                if (method == null)
-                {
-                    method = delegate {
-                        form.log_textbox.AppendText(str + "\n");
-                        form.log_textbox.ScrollToCaret();
-                    };
-                }
+                method = delegate {
+                    form.log_textbox.AppendText(str + "\n");
+                    form.log_textbox.ScrollToCaret();
+                };
                 form.log_textbox.Invoke(method);
             }
             else
