@@ -13,7 +13,14 @@ namespace SamFirm
 {
     public class Form1 : Form
     {
+        //필드
+        private string destinationfile;
+        private Command.Firmware FW;
+        public bool PauseDownload;
+        private bool SaveFileDialog = true;
+
         //컨트롤
+        #region 컨트롤
         private CheckBox binary_checkbox;
         private CheckBox checkbox_auto;
         private CheckBox checkbox_autodecrypt;
@@ -22,11 +29,9 @@ namespace SamFirm
         private Label csc_lbl;
         private TextBox csc_textbox;
         private Button decrypt_button;
-        private string destinationfile;
         private Button download_button;
         private Label file_lbl;
         private TextBox file_textbox;
-        private SamFirm.Command.Firmware FW;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
@@ -35,7 +40,6 @@ namespace SamFirm
         public RichTextBox log_textbox;
         private Label model_lbl;
         private TextBox model_textbox;
-        public bool PauseDownload;
         private Label pda_lbl;
         private TextBox pda_textbox;
         private Label phone_lbl;
@@ -43,13 +47,13 @@ namespace SamFirm
         private ProgressBar progressBar;
         private Label region_lbl;
         private TextBox region_textbox;
-        private bool SaveFileDialog = true;
         private SaveFileDialog saveFileDialog1;
         private Label size_lbl;
         private TextBox size_textbox;
         private Button update_button;
         private Label version_lbl;
         private TextBox version_textbox;
+        #endregion
 
         //기본 생성자
         public Form1()
