@@ -460,7 +460,8 @@ namespace SamFirm
             // Form1
             // 
             this.AcceptButton = this.update_button;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(878, 538);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
