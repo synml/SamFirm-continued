@@ -54,7 +54,7 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
 ## 개발 환경
 
 - S/W 개발 환경
-  - Visual Studio 2017 Community (15.9.5)
+  - Visual Studio 2017 Community (15.9.6)
   - .NET Framework 4.7.2
   - C# Language (x86 Build)
 - 개발 환경 설정
