@@ -38,12 +38,12 @@ namespace SamFirm
             {
                 if (response == null)
                 {
-                    Logger.WriteLine("Error downloading: response is null");
+                    Logger.WriteLine("Error DownloadBinary(): response is null");
                     return 0x385;
                 }
                 if ((response.StatusCode != HttpStatusCode.OK) && (response.StatusCode != HttpStatusCode.PartialContent))
                 {
-                    Logger.WriteLine("Error downloading: " + ((int)response.StatusCode));
+                    Logger.WriteLine("Error DownloadBinary(): " + ((int)response.StatusCode));
                 }
                 else
                 {
@@ -92,17 +92,17 @@ namespace SamFirm
                         }
                         catch (IOException exception)
                         {
-                            Logger.WriteLine("Error: Can't access output file " + saveTo);
+                            Logger.WriteLine("Error DownloadBinary(): Can't access output file " + saveTo);
+                            Logger.WriteLine(exception.ToString());
                             if (GUI)
                             {
                                 form.PauseDownload = true;
                             }
-                            Logger.WriteLine(exception.ToString());
                             return -1;
                         }
                         catch (WebException)
                         {
-                            Logger.WriteLine("Error: Connection interrupted");
+                            Logger.WriteLine("Error DownloadBinary(): Connection interrupted");
                             SetReconnect();
                         }
                         finally

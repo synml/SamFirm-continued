@@ -24,7 +24,7 @@ namespace SamFirm
             {
                 if (!FreeLibrary(mod))
                 {
-                    Logger.WriteLine("Error: Unable to free library");
+                    Logger.WriteLine("Error FreeModule(): Unable to free library.");
                 }
                 mod = IntPtr.Zero;
             }
@@ -60,7 +60,7 @@ namespace SamFirm
                 modulePath = Path.Combine(modulePath, "DLL", module);
                 if (!File.Exists(modulePath))
                 {
-                    Logger.WriteLine("Error: Library " + module + " does not exist");
+                    Logger.WriteLine("Error LoadModule(): " + module + " does not exist.");
                     return 1;
                 }
 
@@ -74,7 +74,7 @@ namespace SamFirm
             }
             catch (Exception exception)
             {
-                Logger.WriteLine("Error LoadModule(): " + exception.Message);
+                Logger.WriteLine("Error LoadModule() -> " + exception.ToString());
                 return 1;
             }
             return 0;

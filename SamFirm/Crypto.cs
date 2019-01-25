@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -48,17 +49,17 @@ namespace SamFirm
                         }
                         catch (CryptographicException)
                         {
-                            Logger.WriteLine("Error decrypting file: Wrong key.");
+                            Logger.WriteLine("Error DecryptFile(): Wrong key.");
                             return 3;
                         }
                         catch (TargetInvocationException)
                         {
-                            Logger.WriteLine("Error decrypting file: Please turn off FIPS compliance checking.");
+                            Logger.WriteLine("Error DecryptFile(): Please turn off FIPS compliance checking.");
                             return 800;
                         }
-                        catch (IOException exception)
+                        catch (Exception exception)
                         {
-                            Logger.WriteLine("Error decrypting file: IOException: " + exception.Message);
+                            Logger.WriteLine("Error DecryptFile() -> " + exception.ToString());
                             return 3;
                         }
                         finally
@@ -96,4 +97,3 @@ namespace SamFirm
         }
     }
 }
-

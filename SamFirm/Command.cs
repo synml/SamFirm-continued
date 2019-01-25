@@ -12,7 +12,7 @@ namespace SamFirm
             int htmlstatus = Web.GenerateNonce();
             if (htmlstatus != 200)
             {
-                Logger.WriteLine("Error: Could not generate Nonce. Status code " + htmlstatus);
+                Logger.WriteLine("Error Download(): Could not generate Nonce. Status code (" + htmlstatus + ")");
                 return -1;
             }
             htmlstatus = Web.DownloadBinaryInit(Xml.GetXmlBinaryInit(file, version, region, model_type), out str);
@@ -20,7 +20,7 @@ namespace SamFirm
             {
                 return Web.DownloadBinary(path, file, saveTo, size, GUI);
             }
-            Logger.WriteLine(string.Concat(new object[] { "Error: Could not send BinaryInform. Status code ", htmlstatus, "/", Utility.GetXMLStatusCode(str) }));
+            Logger.WriteLine("Error Download(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXMLStatusCode(str) + ")");
             Utility.CheckHTMLXMLStatus(htmlstatus, Utility.GetXMLStatusCode(str));
             return -1;
         }
@@ -50,14 +50,14 @@ namespace SamFirm
             int htmlstatus = Web.GenerateNonce();
             if (htmlstatus != 200)
             {
-                Logger.WriteLine("Error: Could not generate Nonce. Status code " + htmlstatus);
+                Logger.WriteLine("Error UpdateCheck(): Could not generate Nonce. Status code (" + htmlstatus + ")");
                 firmware.ConnectionError = true;
                 return firmware;
             }
             htmlstatus = Web.DownloadBinaryInform(Xml.GetXmlBinaryInform(model, region, pda, csc, phone, data, BinaryNature), out str);
             if ((htmlstatus != 200) || (Utility.GetXMLStatusCode(str) != 200))
             {
-                Logger.WriteLine(string.Concat(new object[] { "Error: Could not send BinaryInform. Status code ", htmlstatus, "/", Utility.GetXMLStatusCode(str) }));
+                Logger.WriteLine("Error UpdateCheck(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXMLStatusCode(str) + ")");
                 Utility.CheckHTMLXMLStatus(htmlstatus, Utility.GetXMLStatusCode(str));
                 return firmware;
             }
@@ -132,7 +132,7 @@ namespace SamFirm
             }
             if (firmware.Version == null)
             {
-                Logger.WriteLine("Could not fetch info for " + model + "/" + region + ". Please verify the input or use manual info");
+                Logger.WriteLine("Error UpdateCheckAuto(): Could not fetch info for " + model + "/" + region + ". Please check the input data.");
             }
             firmware.FetchAttempts = num;
             return firmware;

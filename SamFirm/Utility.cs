@@ -40,11 +40,11 @@ namespace SamFirm
             switch (num)
             {
                 case 400:
-                    Logger.WriteLine("    Request was invalid. Are you sure the input data is correct?");
+                    Logger.WriteLine("Error CheckHTMLXMLStatus(): Request was invalid. Please check the input data.");
                     return num;
 
                 case 401:
-                    Logger.WriteLine("    Authorization failed");
+                    Logger.WriteLine("Error CheckHTMLXMLStatus(): Authorization failed.");
                     return num;
             }
             return num;

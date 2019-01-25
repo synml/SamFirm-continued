@@ -601,7 +601,7 @@ namespace SamFirm
         {
             if (!System.IO.File.Exists(this.destinationfile))
             {
-                Logger.WriteLine("Error: File " + this.destinationfile + " does not exist");
+                Logger.WriteLine("Error Decrypt_button_Click(): File " + this.destinationfile + " does not exist");
             }
             else
             {
@@ -680,7 +680,7 @@ namespace SamFirm
                         this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
                         if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
                         {
-                            Logger.WriteLine("Aborted.");
+                            Logger.WriteLine("Download aborted.");
                             return;
                         }
                         if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
@@ -709,7 +709,7 @@ namespace SamFirm
                                     return;
 
                                 default:
-                                    Logger.WriteLine("error: Wrong DialogResult");
+                                    Logger.WriteLine("Error: Wrong DialogResult");
                                     return;
                             }
                         }
@@ -753,12 +753,12 @@ namespace SamFirm
                             }
                             else
                             {
-                                Logger.WriteLine("Download finished");
+                                Logger.WriteLine("Download finished.");
                                 if (this.checkbox_crc.Checked)
                                 {
                                     if (this.FW.CRC == null)
                                     {
-                                        Logger.WriteLine("Unable to check CRC. Value not set by Samsung");
+                                        Logger.WriteLine("Error: Unable to check CRC. Value not set by Samsung");
                                     }
                                     else
                                     {
@@ -769,7 +769,7 @@ namespace SamFirm
                                             System.IO.File.Delete(this.destinationfile);
                                             goto Label_01C9;
                                         }
-                                        Logger.WriteLine("Success: CRC match!");
+                                        Logger.WriteLine("CRC matched.");
                                     }
                                 }
                                 if (invoker2 == null)
@@ -795,8 +795,7 @@ namespace SamFirm
                         }
                         catch (Exception exception)
                         {
-                            Logger.WriteLine(exception.Message);
-                            Logger.WriteLine(exception.ToString());
+                            Logger.WriteLine("Error Download_button_Click(): " + exception.ToString());
                         }
                     };
                     worker.RunWorkerAsync();
