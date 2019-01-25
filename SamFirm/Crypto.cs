@@ -59,7 +59,7 @@ namespace SamFirm
                         }
                         catch (Exception exception)
                         {
-                            Logger.WriteLine("Error DecryptFile() -> " + exception.ToString());
+                            Logger.WriteLine("Error DecryptFile() -> " + exception);
                             return 3;
                         }
                         finally

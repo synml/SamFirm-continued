@@ -41,7 +41,7 @@ namespace SamFirm
             }
             catch (Exception exception)
             {
-                Logger.WriteLine("Error ReadSetting() -> " + exception.ToString());
+                Logger.WriteLine("Error ReadSetting() -> " + exception);
                 return string.Empty;
             }
         }

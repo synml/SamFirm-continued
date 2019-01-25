@@ -74,7 +74,7 @@ namespace SamFirm
             }
             catch (Exception exception)
             {
-                Logger.WriteLine("Error LoadModule() -> " + exception.ToString());
+                Logger.WriteLine("Error LoadModule() -> " + exception);
                 return 1;
             }
             return 0;

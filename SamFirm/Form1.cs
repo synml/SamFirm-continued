@@ -795,7 +795,7 @@ namespace SamFirm
                         }
                         catch (Exception exception)
                         {
-                            Logger.WriteLine("Error Download_button_Click(): " + exception.ToString());
+                            Logger.WriteLine("Error Download_button_Click(): " + exception);
                         }
                     };
                     worker.RunWorkerAsync();
