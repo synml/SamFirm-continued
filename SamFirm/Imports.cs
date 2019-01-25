@@ -56,25 +56,25 @@ namespace SamFirm
         {
             try
             {
-                string directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                module = Path.Combine(directoryName, "DLL", module);
-                if (!File.Exists(module))
+                string modulePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                modulePath = Path.Combine(modulePath, "DLL", module);
+                if (!File.Exists(modulePath))
                 {
                     Logger.WriteLine("Error: Library " + module + " does not exist");
                     return 1;
                 }
 
-                mod = LoadLibrary(module);
+                mod = LoadLibrary(modulePath);
                 if (mod == IntPtr.Zero)
                 {
-                    Logger.WriteLine("Error loading library: " + Marshal.GetLastWin32Error());
+                    Logger.WriteLine("Error LoadLibrary(): " + Marshal.GetLastWin32Error().ToString());
                     Logger.WriteLine("Please make sure \"Microsoft Visual C++ 2008 Redistributable Package (x86)\" and \"Microsoft Visual C++ 2010 Redistributable Package (x86)\" are installed");
                     return 1;
                 }
             }
             catch (Exception exception)
             {
-                Logger.WriteLine("Error Loading Module: " + exception.Message);
+                Logger.WriteLine("Error LoadModule(): " + exception.Message);
                 return 1;
             }
             return 0;
