@@ -626,7 +626,7 @@ namespace SamFirm
                             Crypto.SetDecryptKey(this.FW.Version, this.FW.LogicValueHome);
                         }
                     }
-                    if (Crypto.Decrypt(this.destinationfile, Path.Combine(Path.GetDirectoryName(this.destinationfile), Path.GetFileNameWithoutExtension(this.destinationfile)), true) == 0)
+                    if (Crypto.DecryptFile(this.destinationfile, Path.Combine(Path.GetDirectoryName(this.destinationfile), Path.GetFileNameWithoutExtension(this.destinationfile)), true) == 0)
                     {
                         System.IO.File.Delete(this.destinationfile);
                     }

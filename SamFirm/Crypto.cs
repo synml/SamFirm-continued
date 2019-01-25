@@ -11,7 +11,7 @@ namespace SamFirm
         private static readonly byte[] IV = new byte[1];
         private static byte[] KEY;
 
-        public static int Decrypt(string encryptedFile, string outputFile, bool GUI = true)
+        public static int DecryptFile(string encryptedFile, string outputFile, bool GUI = true)
         {
             using (FileStream stream = new FileStream(encryptedFile, FileMode.Open))
             {
