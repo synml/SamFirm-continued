@@ -34,20 +34,22 @@ namespace SamFirm
             return false;
         }
 
-        public static int CheckHTMLXMLStatus(int htmlstatus, int xmlstatus = 0)
+        public static int CheckHtmlXmlStatus(int htmlstatus, int xmlstatus)
         {
-            int num = (xmlstatus == 0) ? htmlstatus : xmlstatus;
-            switch (num)
+            int code = (xmlstatus == 0) ? htmlstatus : xmlstatus;
+            switch (code)
             {
                 case 400:
                     Logger.WriteLine("Error CheckHTMLXMLStatus(): Request was invalid. Please check the input data.");
-                    return num;
+                    return code;
 
                 case 401:
                     Logger.WriteLine("Error CheckHTMLXMLStatus(): Authorization failed.");
-                    return num;
+                    return code;
+
+                default:
+                    return code;
             }
-            return num;
         }
 
         public static bool Compare(this byte[] arr1, byte[] arr2)
@@ -158,7 +160,7 @@ namespace SamFirm
             return (int) num;
         }
 
-        public static int GetXMLStatusCode(string xml)
+        public static int GetXmlStatusCode(string xml)
         {
             int num;
             if (string.IsNullOrEmpty(xml))
@@ -169,38 +171,45 @@ namespace SamFirm
             {
                 return num;
             }
-            return 0x29a;
+            return 666;
         }
 
         public static string InfoExtract(string info, string type)
         {
             string[] strArray = info.Split(new [] { '/' });
-            if (strArray.Length >= 2)
+
+            if (strArray.Length < 2)
             {
-                switch (type)
-                {
-                    case "pda":
-                        return strArray[0];
-
-                    case "csc":
-                        return strArray[1];
-
-                    case "phone":
-                        if ((strArray.Length >= 3) && !string.IsNullOrEmpty(strArray[2]))
-                        {
-                            return strArray[2];
-                        }
-                        return strArray[0];
-
-                    case "data":
-                        if (strArray.Length < 4)
-                        {
-                            return strArray[0];
-                        }
-                        return strArray[3];
-                }
+                Logger.WriteLine("Error InfoExtract(): The number of info is too small.");
+                return string.Empty;
             }
-            return string.Empty;
+
+            switch (type)
+            {
+                case "pda":
+                    return strArray[0];
+
+                case "csc":
+                    return strArray[1];
+
+                case "phone":
+                    if ((strArray.Length >= 3) && !string.IsNullOrEmpty(strArray[2]))
+                    {
+                        return strArray[2];
+                    }
+                    return strArray[0];
+
+                case "data":
+                    if (strArray.Length < 4)
+                    {
+                        return strArray[0];
+                    }
+                    return strArray[3];
+
+                default:
+                    Logger.WriteLine("Error InfoExtract(): Wrong type of info.");
+                    return string.Empty;
+            }
         }
 
         public static void PreventDeepSleep(PDSMode mode)

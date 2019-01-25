@@ -16,12 +16,12 @@ namespace SamFirm
                 return -1;
             }
             htmlstatus = Web.DownloadBinaryInit(Xml.GetXmlBinaryInit(file, version, region, model_type), out str);
-            if ((htmlstatus == 200) && (Utility.GetXMLStatusCode(str) == 200))
+            if ((htmlstatus == 200) && (Utility.GetXmlStatusCode(str) == 200))
             {
                 return Web.DownloadBinary(path, file, saveTo, size, GUI);
             }
-            Logger.WriteLine("Error Download(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXMLStatusCode(str) + ")");
-            Utility.CheckHTMLXMLStatus(htmlstatus, Utility.GetXMLStatusCode(str));
+            Logger.WriteLine("Error Download(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXmlStatusCode(str) + ")");
+            Utility.CheckHtmlXmlStatus(htmlstatus, Utility.GetXmlStatusCode(str));
             return -1;
         }
 
@@ -55,10 +55,10 @@ namespace SamFirm
                 return firmware;
             }
             htmlstatus = Web.DownloadBinaryInform(Xml.GetXmlBinaryInform(model, region, pda, csc, phone, data, BinaryNature), out str);
-            if ((htmlstatus != 200) || (Utility.GetXMLStatusCode(str) != 200))
+            if ((htmlstatus != 200) || (Utility.GetXmlStatusCode(str) != 200))
             {
-                Logger.WriteLine("Error UpdateCheck(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXMLStatusCode(str) + ")");
-                Utility.CheckHTMLXMLStatus(htmlstatus, Utility.GetXMLStatusCode(str));
+                Logger.WriteLine("Error UpdateCheck(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXmlStatusCode(str) + ")");
+                Utility.CheckHtmlXmlStatus(htmlstatus, Utility.GetXmlStatusCode(str));
                 return firmware;
             }
             firmware.Version = Xml.GetXMLValue(str, "FUSBody/Results/LATEST_FW_VERSION/Data", null, null);
