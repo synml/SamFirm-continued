@@ -734,11 +734,11 @@ namespace SamFirm
                             this.download_button.Invoke(method);
                             if (this.FW.Filename == this.destinationfile)
                             {
-                                Logger.WriteLine("Trying to download " + this.FW.Filename);
+                                Logger.WriteLine("Download " + this.FW.Filename);
                             }
                             else
                             {
-                                Logger.WriteLine("Trying to download " + this.FW.Filename + " to " + this.destinationfile);
+                                Logger.WriteLine("Download " + this.FW.Filename + " to " + this.destinationfile);
                             }
                             SamFirm.Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
                             if (this.PauseDownload)
