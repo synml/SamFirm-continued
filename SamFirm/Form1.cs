@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -888,16 +887,21 @@ namespace SamFirm
         }
 
         //작업 진행바를 설정하는 메소드
-        public void SetProgressBar(int Progress)
+        public void SetProgressBar(int progress)
         {
-            if (Progress > 100)
+            MethodInvoker method = delegate
             {
-                Progress = 100;
-            }
-            this.progressBar.Invoke(new Action(delegate {
-                this.progressBar.Value = Progress;
-                TaskbarManager.Instance.SetProgressValue(Progress, 100);
-            }));
+                if (progress > 100)
+                {
+                    this.progressBar.Value = 100;
+                }
+                else
+                {
+                    this.progressBar.Value = progress;
+                }
+                TaskbarManager.Instance.SetProgressValue(progress, 100);
+            };
+            this.progressBar.Invoke(method);
         }
 
         public class DownloadEventArgs : EventArgs

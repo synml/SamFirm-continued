@@ -33,11 +33,10 @@ namespace SamFirm
         //로그 텍스트 박스에 문자열을 출력하는 메소드
         public static void WriteLine(string str)
         {
-            MethodInvoker method = null;
-
             if (form.log_textbox.InvokeRequired)
             {
-                method = delegate {
+                MethodInvoker method = delegate
+                {
                     form.log_textbox.AppendText(str + "\n");
                     form.log_textbox.ScrollToCaret();
                 };
