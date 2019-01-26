@@ -15,7 +15,7 @@ namespace SamFirm
         //필드
         private string destinationfile;
         private Command.Firmware FW;
-        public bool PauseDownload;
+        public bool PauseDownload { get; set; }
 
         //컨트롤
         #region 컨트롤
@@ -34,8 +34,8 @@ namespace SamFirm
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private Label label1;
-        public Label lbl_speed;
-        public RichTextBox log_textbox;
+        internal Label lbl_speed;
+        internal RichTextBox log_textbox;
         private Label model_lbl;
         private TextBox model_textbox;
         private Label pda_lbl;
@@ -486,7 +486,7 @@ namespace SamFirm
         //폼을 로드했을 때 호출하는 메소드
         private void Form1_Load(object sender, EventArgs e)
         {
-            Logger.form = this;
+            Logger.Form = this;
             Web.form = this;
             Crypto.form = this;
 
