@@ -77,10 +77,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SamFirm\Command.cs" />
-    <Compile Include="SamFirm\Crypto.cs" />
     <Compile Include="SamFirm\AppendDialogBox.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SamFirm\Decrypt.cs" />
     <Compile Include="SamFirm\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

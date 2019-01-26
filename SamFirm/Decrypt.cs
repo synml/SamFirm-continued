@@ -6,9 +6,9 @@ using System.Text;
 
 namespace SamFirm
 {
-    internal static class Crypto
+    internal static class Decrypt
     {
-        public static Form1 form;
+        public static Form1 Form { get; set; }
         private static readonly byte[] IV = new byte[1];
         private static byte[] KEY;
 
@@ -41,7 +41,7 @@ namespace SamFirm
                                     stream2.Write(buffer, 0, count);
                                     if (GUI)
                                     {
-                                        form.SetProgressBar(Utility.GetProgress(num, stream.Length));
+                                        Form.SetProgressBar(Utility.GetProgress(num, stream.Length));
                                     }
                                 }
                                 while (count > 0);

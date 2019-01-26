@@ -488,7 +488,7 @@ namespace SamFirm
         {
             Logger.Form = this;
             Web.form = this;
-            Crypto.form = this;
+            Decrypt.Form = this;
 
             //각 컨트롤에 설정파일에서 불러온 값을 적용한다.
             this.model_textbox.Text = Settings.ReadSetting("Model");
@@ -610,20 +610,20 @@ namespace SamFirm
                     this.decrypt_button.Invoke(new Action(() => this.decrypt_button.Enabled = false));
                     if (this.destinationfile.EndsWith(".enc2"))
                     {
-                        Crypto.SetDecryptKey(this.FW.Region, this.FW.Model, this.FW.Version);
+                        Decrypt.SetDecryptKey(this.FW.Region, this.FW.Model, this.FW.Version);
                     }
                     else if (this.destinationfile.EndsWith(".enc4"))
                     {
                         if (this.FW.BinaryNature == 1)
                         {
-                            Crypto.SetDecryptKey(this.FW.Version, this.FW.LogicValueFactory);
+                            Decrypt.SetDecryptKey(this.FW.Version, this.FW.LogicValueFactory);
                         }
                         else
                         {
-                            Crypto.SetDecryptKey(this.FW.Version, this.FW.LogicValueHome);
+                            Decrypt.SetDecryptKey(this.FW.Version, this.FW.LogicValueHome);
                         }
                     }
-                    if (Crypto.DecryptFile(this.destinationfile, Path.Combine(Path.GetDirectoryName(this.destinationfile), Path.GetFileNameWithoutExtension(this.destinationfile)), true) == 0)
+                    if (Decrypt.DecryptFile(this.destinationfile, Path.Combine(Path.GetDirectoryName(this.destinationfile), Path.GetFileNameWithoutExtension(this.destinationfile)), true) == 0)
                     {
                         System.IO.File.Delete(this.destinationfile);
                     }
@@ -904,7 +904,7 @@ namespace SamFirm
 
         public class DownloadEventArgs : EventArgs
         {
-            public bool isReconnect;
+            internal bool isReconnect;
         }
     }
 }
