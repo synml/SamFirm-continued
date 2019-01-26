@@ -6,7 +6,7 @@ namespace SamFirm
 {
     internal static class Logger
     {
-        public static Form1 Form { get; set; }
+        public static MainForm Form { get; set; }
 
         //현재 날짜와 시각을 알아내는 함수
         private static string GetTimeDate()

@@ -8,7 +8,7 @@ namespace SamFirm
 {
     internal static class Decrypt
     {
-        public static Form1 Form { get; set; }
+        public static MainForm Form { get; set; }
         private static readonly byte[] IV = new byte[1];
         private static byte[] KEY;
 

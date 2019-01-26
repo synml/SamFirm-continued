@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SamFirm
 {
-    public class Form1 : Form
+    public class MainForm : Form
     {
         //필드
         private string destinationfile;
@@ -54,7 +54,7 @@ namespace SamFirm
         #endregion
 
         //기본 생성자
-        public Form1()
+        public MainForm()
         {
             this.InitializeComponent();
         }
@@ -62,7 +62,7 @@ namespace SamFirm
         //컴포넌트 초기화 메소드
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.model_textbox = new System.Windows.Forms.TextBox();
             this.model_lbl = new System.Windows.Forms.Label();
             this.download_button = new System.Windows.Forms.Button();
@@ -471,8 +471,8 @@ namespace SamFirm
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "SamFirm Continued";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Close);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_Close);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -484,7 +484,7 @@ namespace SamFirm
         }
 
         //폼을 로드했을 때 호출하는 메소드
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             Logger.Form = this;
             Web.Form = this;
@@ -522,7 +522,7 @@ namespace SamFirm
         }
 
         //폼을 닫았을 때 호출하는 메소드
-        private void Form1_Close(object sender, EventArgs e)
+        private void MainForm_Close(object sender, EventArgs e)
         {
             Settings.SetSetting("Model", this.model_textbox.Text.ToUpper());
             Settings.SetSetting("Region", this.region_textbox.Text.ToUpper());

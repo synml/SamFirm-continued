@@ -9,7 +9,7 @@ namespace SamFirm
 {
     internal static class Web
     {
-        public static Form1 Form { get; set; }
+        public static MainForm Form { get; set; }
         public static string JSessionID { get; set; } = string.Empty;
         public static string Nonce { get; set; } = string.Empty;
 

@@ -237,7 +237,7 @@ namespace SamFirm
                 Thread.Sleep(1000);
                 if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ref ReconnectDownload))
                 {
-                    Form1.DownloadEventArgs args = new Form1.DownloadEventArgs {
+                    MainForm.DownloadEventArgs args = new MainForm.DownloadEventArgs {
                         isReconnect = true
                     };
                     action(null, args);
