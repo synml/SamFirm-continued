@@ -9,7 +9,7 @@ namespace SamFirm
 {
     internal static class FWFetch
     {
-        public static readonly List<Func<string, string, string>> FWFetchFuncs;
+        internal static readonly List<Func<string, string, string>> FWFetchFuncs;
         private static string SamMobileHtml;
         private static string SamsungFirmwareOrgHtml;
 
