@@ -9,9 +9,9 @@ namespace SamFirm
 {
     internal static class Web
     {
-        public static Form1 form;
-        public static string JSessionID = string.Empty;
-        public static string Nonce = string.Empty;
+        public static Form1 Form { get; set; }
+        public static string JSessionID { get; set; } = string.Empty;
+        public static string Nonce { get; set; } = string.Empty;
 
         public static int DownloadBinary(string path, string file, string saveTo, string size, bool GUI = true)
         {
@@ -62,7 +62,7 @@ namespace SamFirm
                                 do
                                 {
                                     Utility.PreventDeepSleep(Utility.PDSMode.Continue);
-                                    if (GUI && form.PauseDownload)
+                                    if (GUI && Form.PauseDownload)
                                     {
                                         goto Label_02BB;
                                     }
@@ -76,15 +76,15 @@ namespace SamFirm
                                             int dlspeed = Utility.DownloadSpeed(num, sw);
                                             if (dlspeed != -1)
                                             {
-                                                form.lbl_speed.Invoke(new Action(delegate {
-                                                    form.lbl_speed.Text = dlspeed + "kB/s";
+                                                Form.lbl_speed.Invoke(new Action(delegate {
+                                                    Form.lbl_speed.Text = dlspeed + "kB/s";
                                                 }));
                                             }
                                         }
                                     }
                                     if (GUI)
                                     {
-                                        form.SetProgressBar(Utility.GetProgress(num, total));
+                                        Form.SetProgressBar(Utility.GetProgress(num, total));
                                     }
                                 }
                                 while (count > 0);
@@ -96,7 +96,7 @@ namespace SamFirm
                             Logger.WriteLine(exception.ToString());
                             if (GUI)
                             {
-                                form.PauseDownload = true;
+                                Form.PauseDownload = true;
                             }
                             return -1;
                         }
@@ -110,8 +110,8 @@ namespace SamFirm
                             Utility.PreventDeepSleep(Utility.PDSMode.Stop);
                             if (GUI)
                             {
-                                form.lbl_speed.Invoke(new Action(delegate {
-                                    form.lbl_speed.Text = "0kB/s";
+                                Form.lbl_speed.Invoke(new Action(delegate {
+                                    Form.lbl_speed.Text = "0kB/s";
                                 }));
                             }
                         }
@@ -146,11 +146,11 @@ namespace SamFirm
 
         public static void SetReconnect()
         {
-            if (!form.PauseDownload)
+            if (!Form.PauseDownload)
             {
                 Utility.ReconnectDownload = true;
             }
-            form.PauseDownload = true;
+            Form.PauseDownload = true;
         }
 
         private static int XMLFUSRequest(string URL, string xml, out string xmlresponse)

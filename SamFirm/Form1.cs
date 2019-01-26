@@ -487,7 +487,7 @@ namespace SamFirm
         private void Form1_Load(object sender, EventArgs e)
         {
             Logger.Form = this;
-            Web.form = this;
+            Web.Form = this;
             Decrypt.Form = this;
 
             //각 컨트롤에 설정파일에서 불러온 값을 적용한다.
