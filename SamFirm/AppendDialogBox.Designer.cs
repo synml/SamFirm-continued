@@ -75,7 +75,7 @@
             this.label1.Location = new System.Drawing.Point(111, 13);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(328, 30);
+            this.label1.Size = new System.Drawing.Size(347, 40);
             this.label1.TabIndex = 3;
             this.label1.Text = "The destination file already exists.\r\nWould you like to append it? (resume downlo" +
     "ad)";
@@ -92,7 +92,6 @@
             // 
             // AppendDialogBox
             // 
-            this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(522, 120);
