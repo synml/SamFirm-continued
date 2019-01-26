@@ -9,20 +9,20 @@ namespace SamFirm
 {
     internal static class FWFetch
     {
-        public static List<Func<string, string, string>> FWFetchFuncs;
+        public static readonly List<Func<string, string, string>> FWFetchFuncs;
         private static string SamMobileHtml;
         private static string SamsungFirmwareOrgHtml;
 
         static FWFetch()
         {
             List<Func<string, string, string>> list = new List<Func<string, string, string>> {
-                new Func<string, string, string>(FWFetch.FOTAInfoFetch1),
-                new Func<string, string, string>(FWFetch.FOTAInfoFetch2),
-                new Func<string, string, string>(FWFetch.SamsungFirmwareOrgFetch1),
-                new Func<string, string, string>(FWFetch.SamsungFirmwareOrgFetch2),
-                new Func<string, string, string>(FWFetch.SamMobileFetch1),
-                new Func<string, string, string>(FWFetch.SamMobileFetch2),
-                new Func<string, string, string>(FWFetch.SamsungUpdatesFetch)
+                new Func<string, string, string>(FOTAInfoFetch1),
+                new Func<string, string, string>(FOTAInfoFetch2),
+                new Func<string, string, string>(SamsungFirmwareOrgFetch1),
+                new Func<string, string, string>(SamsungFirmwareOrgFetch2),
+                new Func<string, string, string>(SamMobileFetch1),
+                new Func<string, string, string>(SamMobileFetch2),
+                new Func<string, string, string>(SamsungUpdatesFetch)
             };
             FWFetchFuncs = list;
         }
