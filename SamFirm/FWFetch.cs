@@ -27,7 +27,7 @@ namespace SamFirm
             FWFetchFuncs = list;
         }
 
-        public static string FOTAInfoFetch(string model, string region, bool latest = true)
+        public static string FOTAInfoFetch(string model, string region, bool latest)
         {
             string str3;
             try
