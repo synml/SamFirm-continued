@@ -29,29 +29,25 @@ namespace SamFirm
 
         public static string FOTAInfoFetch(string model, string region, bool latest)
         {
-            string str3;
             try
             {
-                using (WebClient client = new WebClient())
+                WebClient client = new WebClient();
+                string xml = client.DownloadString("http://fota-cloud-dn.ospserver.net/firmware/" + region + "/" + model + "/version.xml");
+                string str2;
+                if (latest == true)
                 {
-                    string xml = client.DownloadString("http://fota-cloud-dn.ospserver.net/firmware/" + region + "/" + model + "/version.xml");
-                    string str2 = null;
-                    if (latest)
-                    {
-                        str2 = Xml.GetXMLValue(xml, "firmware/version/latest", null, null).ToUpper();
-                    }
-                    else
-                    {
-                        str2 = Xml.GetXMLValue(xml, "firmware/version/upgrade/value", null, null).ToUpper();
-                    }
-                    str3 = str2;
+                    str2 = Xml.GetXMLValue(xml, "firmware/version/latest", null, null).ToUpper();
                 }
+                else
+                {
+                    str2 = Xml.GetXMLValue(xml, "firmware/version/upgrade/value", null, null).ToUpper();
+                }
+                return str2;
             }
             catch (Exception)
             {
-                str3 = string.Empty;
+                return string.Empty;
             }
-            return str3;
         }
 
         public static string FOTAInfoFetch1(string model, string region) => 
@@ -100,7 +96,7 @@ namespace SamFirm
             samMobileHtml = Utility.GetHtml(str2.Substring(0, str2.IndexOf('"')));
 
             StringReader reader = new StringReader(samMobileHtml);
-            StringBuilder strbld = new StringBuilder();
+            StringBuilder bld = new StringBuilder();
             string str4;
             bool flag = false;
             while ((str4 = reader.ReadLine()) != null)
@@ -114,11 +110,11 @@ namespace SamFirm
 
                 if (flag)
                 {
-                    strbld.Append(str5 + "/");
+                    bld.Append(str5 + "/");
                     flag = false;
                 }
             }
-            string input = strbld.ToString();
+            string input = bld.ToString();
             return Regex.Replace(input, "^(.*)/(.*)/$", "$1/$2/$1");
         }
 
@@ -147,22 +143,24 @@ namespace SamFirm
                 return string.Empty;
             }
             samsungFirmwareOrgHtml = samsungFirmwareOrgHtml.Substring(index);
-            string url = "https://samsung-firmware.org";
-            using (StringReader reader = new StringReader(samsungFirmwareOrgHtml))
+
+            StringBuilder bld = new StringBuilder();
+            bld.Append("https://samsung-firmware.org");
+
+            StringReader reader = new StringReader(samsungFirmwareOrgHtml);
+            string str3;
+            while ((str3 = reader.ReadLine()) != null)
             {
-                string str3;
-                while ((str3 = reader.ReadLine()) != null)
+                if (str3.Contains("Download"))
                 {
-                    if (str3.Contains("Download"))
-                    {
-                        int num2 = str3.IndexOf('"');
-                        int length = str3.Substring(num2 + 1).IndexOf('"');
-                        url = url + str3.Substring(num2 + 1, length);
-                        goto Label_0098;
-                    }
+                    int num2 = str3.IndexOf('"');
+                    int length = str3.Substring(num2 + 1).IndexOf('"');
+                    bld.Append(str3.Substring(num2 + 1, length));
+                    break;
                 }
             }
-        Label_0098:
+
+            string url = bld.ToString();
             samsungFirmwareOrgHtml = Utility.GetHtml(url);
             string infoSFO = GetInfoSFO(samsungFirmwareOrgHtml, "PDA Version");
             string str5 = GetInfoSFO(samsungFirmwareOrgHtml, "CSC Version");
@@ -193,54 +191,51 @@ namespace SamFirm
 
         private static string SamsungUpdatesFetch(string model, string region)
         {
-            string str5;
             try
             {
-                using (WebClient client = new WebClient())
+                WebClient client = new WebClient();
+                string s = client.DownloadString("http://samsung-updates.com/device/?id=" + model);
+                StringBuilder bld = new StringBuilder();
+                bld.Append("http://samsung-updates.com");
+                bool flag = false;
+
+                StringReader reader = new StringReader(s);
+                string str3;
+                while ((str3 = reader.ReadLine()) != null)
                 {
-                    string s = client.DownloadString("http://samsung-updates.com/device/?id=" + model);
-                    string address = "http://samsung-updates.com";
-                    bool flag = false;
-                    using (StringReader reader = new StringReader(s))
+                    if (str3.Contains("/" + model + "/" + region + "/"))
                     {
-                        string str3;
-                        while ((str3 = reader.ReadLine()) != null)
-                        {
-                            if (str3.Contains("/" + model + "/" + region + "/"))
-                            {
-                                int index = str3.IndexOf("a href=\"");
-                                int length = str3.Substring(index + 8).IndexOf('"');
-                                address = address + str3.Substring(index + 8, length);
-                                flag = true;
-                                goto Label_00BE;
-                            }
-                        }
+                        int index = str3.IndexOf("a href=\"");
+                        int length = str3.Substring(index + 8).IndexOf('"');
+                        bld.Append(str3.Substring(index + 8, length));
+                        flag = true;
+                        break;
                     }
-                Label_00BE:
-                    if (!flag)
-                    {
-                        return string.Empty;
-                    }
-                    s = client.DownloadString(address);
-                    Match match = Regex.Match(s, @"PDA:</b> ([^\s]+) <b>");
-                    if (!match.Success)
-                    {
-                        return string.Empty;
-                    }
-                    string format = match.Groups[1].Value + "/{0}/" + match.Groups[1].Value;
-                    match = Regex.Match(s, @"CSC:</b> ([^\s]+) <b>");
-                    if (!match.Success)
-                    {
-                        return string.Empty;
-                    }
-                    str5 = string.Format(format, match.Groups[1].Value);
                 }
+
+                if (!flag)
+                {
+                    return string.Empty;
+                }
+                string address = bld.ToString();
+                s = client.DownloadString(address);
+                Match match = Regex.Match(s, @"PDA:</b> ([^\s]+) <b>");
+                if (!match.Success)
+                {
+                    return string.Empty;
+                }
+                string format = match.Groups[1].Value + "/{0}/" + match.Groups[1].Value;
+                match = Regex.Match(s, @"CSC:</b> ([^\s]+) <b>");
+                if (!match.Success)
+                {
+                    return string.Empty;
+                }
+                return string.Format(format, match.Groups[1].Value);
             }
             catch (WebException)
             {
-                str5 = string.Empty;
+                return string.Empty;
             }
-            return str5;
         }
 
         private static string tdExtract(string line)
