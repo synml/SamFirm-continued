@@ -132,8 +132,7 @@ namespace SamFirm
             // 
             // log_textbox
             // 
-            this.log_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.log_textbox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this.log_textbox.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.log_textbox.Location = new System.Drawing.Point(13, 269);
             this.log_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -143,7 +142,6 @@ namespace SamFirm
             this.log_textbox.Size = new System.Drawing.Size(851, 257);
             this.log_textbox.TabIndex = 3;
             this.log_textbox.TabStop = false;
-            this.log_textbox.Text = "";
             // 
             // region_lbl
             // 
