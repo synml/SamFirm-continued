@@ -646,7 +646,7 @@ namespace SamFirm
             }
             else
             {
-                if (((e != null) && (e.GetType() == typeof(DownloadEventArgs))) && ((DownloadEventArgs) e).isReconnect)
+                if ((e != null) && (e.GetType() == typeof(DownloadEventArgs)) && ((DownloadEventArgs) e).isReconnect)
                 {
                     if (this.download_button.Text == "Pause")
                     {
@@ -737,7 +737,7 @@ namespace SamFirm
                             {
                                 Logger.WriteLine("Download " + this.FW.Filename + " to " + this.destinationfile);
                             }
-                            SamFirm.Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
+                            Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
                             if (this.PauseDownload)
                             {
                                 Logger.WriteLine("Download paused.");
