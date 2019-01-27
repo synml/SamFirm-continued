@@ -1,6 +1,6 @@
 ﻿namespace SamFirm
 {
-    partial class MainForm2
+    partial class MainForm
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.update_button = new System.Windows.Forms.Button();
             this.binary_checkbox = new System.Windows.Forms.CheckBox();
@@ -442,12 +442,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label size_label;
-        private System.Windows.Forms.Label speed_label;
+        internal System.Windows.Forms.Label speed_label;
         private System.Windows.Forms.Label remainSize_label;
         private System.Windows.Forms.Label remainTime_label;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.RichTextBox log_textbox;
+        internal System.Windows.Forms.RichTextBox log_textbox;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TextBox model_textbox;
         private System.Windows.Forms.TextBox region_textbox;

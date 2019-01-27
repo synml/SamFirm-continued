@@ -11,15 +11,7 @@ namespace SamFirm
             Imports.FreeConsole();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            if (args.Length == 0)
-            {
-                Application.Run(new MainForm());
-            }
-            else if (args[0] == "beta")
-            {
-                Application.Run(new MainForm2());
-            }
+            Application.Run(new MainForm());
         }
     }
 }

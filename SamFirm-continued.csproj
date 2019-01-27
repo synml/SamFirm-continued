@@ -84,18 +84,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SamFirm\Command.cs" />
     <Compile Include="SamFirm\Decrypt.cs" />
-    <Compile Include="SamFirm\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="SamFirm\FWFetch.cs" />
     <Compile Include="SamFirm\Imports.cs" />
     <Compile Include="SamFirm\KiesRequest.cs" />
     <Compile Include="SamFirm\Logger.cs" />
-    <Compile Include="SamFirm\MainForm2.cs">
+    <Compile Include="SamFirm\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SamFirm\MainForm2.Designer.cs">
-      <DependentUpon>MainForm2.cs</DependentUpon>
+    <Compile Include="SamFirm\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SamFirm\Program.cs" />
     <Compile Include="SamFirm\Settings.cs" />
@@ -118,9 +115,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SamFirm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SamFirm\MainForm2.resx">
-      <DependentUpon>MainForm2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
