@@ -132,8 +132,9 @@ namespace SamFirm
             // 
             // log_textbox
             // 
-            this.log_textbox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            this.log_textbox.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.log_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.log_textbox.Location = new System.Drawing.Point(13, 269);
             this.log_textbox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.log_textbox.Name = "log_textbox";
@@ -142,6 +143,7 @@ namespace SamFirm
             this.log_textbox.Size = new System.Drawing.Size(851, 257);
             this.log_textbox.TabIndex = 3;
             this.log_textbox.TabStop = false;
+            this.log_textbox.Text = "";
             // 
             // region_lbl
             // 
@@ -281,7 +283,6 @@ namespace SamFirm
             this.groupBox1.Controls.Add(this.update_button);
             this.groupBox1.Controls.Add(this.region_textbox);
             this.groupBox1.Controls.Add(this.region_lbl);
-            this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(13, 14);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
@@ -377,7 +378,6 @@ namespace SamFirm
             this.groupBox2.Controls.Add(this.file_textbox);
             this.groupBox2.Controls.Add(this.version_textbox);
             this.groupBox2.Controls.Add(this.version_lbl);
-            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox2.Location = new System.Drawing.Point(370, 14);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
@@ -457,7 +457,7 @@ namespace SamFirm
             // 
             this.saveFileDialog1.SupportMultiDottedExtensions = true;
             // 
-            // Form1
+            // MainForm
             // 
             this.AcceptButton = this.update_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -466,10 +466,11 @@ namespace SamFirm
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.log_textbox);
+            this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "SamFirm Continued";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_Close);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -637,167 +638,165 @@ namespace SamFirm
         //Download 버튼 클릭시 실행하는 메소드
         private void Download_button_Click(object sender, EventArgs e)
         {
+            //다운로드를 일시정지한다.
             if (this.download_button.Text == "Pause")
             {
                 Utility.TaskBarProgressState(true);
                 this.PauseDownload = true;
                 Utility.ReconnectDownload = false;
                 this.download_button.Text = "Download";
+                return;
             }
-            else
+
+            //예외 처리
+            if ((e.GetType() == typeof(DownloadEventArgs)) && ((DownloadEventArgs)e).isReconnect)
             {
-                if ((e != null) && (e.GetType() == typeof(DownloadEventArgs)) && ((DownloadEventArgs) e).isReconnect)
+                if (this.download_button.Text == "Pause" || !Utility.ReconnectDownload)
                 {
-                    if (this.download_button.Text == "Pause")
-                    {
-                        return;
-                    }
-                    if (!Utility.ReconnectDownload)
-                    {
-                        return;
-                    }
+                    return;
                 }
-                if (this.PauseDownload)
+            }
+            if (this.PauseDownload)
+            {
+                Logger.WriteLine("Download thread is still running. Please wait.");
+                return;
+            }
+            else if (string.IsNullOrEmpty(this.file_textbox.Text))
+            {
+                Logger.WriteLine("No file to download. Please check for update first.");
+                return;
+            }
+
+            //다운로드 작업
+            if ((e.GetType() != typeof(DownloadEventArgs)) || !((DownloadEventArgs)e).isReconnect)
+            {
+                string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(this.FW.Filename));
+                string oldValue = extension + Path.GetExtension(this.FW.Filename);
+                this.saveFileDialog1.SupportMultiDottedExtensions = true;
+                this.saveFileDialog1.OverwritePrompt = false;
+                this.saveFileDialog1.FileName = this.FW.Filename.Replace(oldValue, "");
+                this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
+                if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
                 {
-                    Logger.WriteLine("Download thread is still running. Please wait.");
+                    Logger.WriteLine("Download aborted.");
+                    return;
                 }
-                else if (string.IsNullOrEmpty(this.file_textbox.Text))
+                if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
                 {
-                    Logger.WriteLine("No file to download. Please check for update first.");
+                    this.saveFileDialog1.FileName = this.saveFileDialog1.FileName + oldValue;
                 }
                 else
                 {
-                    if ((e.GetType() != typeof(DownloadEventArgs)) || !((DownloadEventArgs) e).isReconnect)
+                    this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(oldValue + oldValue, oldValue);
+                }
+                Logger.WriteLine("Filename: " + this.saveFileDialog1.FileName);
+                this.destinationfile = this.saveFileDialog1.FileName;
+                if (System.IO.File.Exists(this.destinationfile))
+                {
+                    switch (new AppendDialogBox().ShowDialog())
                     {
-                        string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(this.FW.Filename));
-                        string oldValue = extension + Path.GetExtension(this.FW.Filename);
-                        this.saveFileDialog1.SupportMultiDottedExtensions = true;
-                        this.saveFileDialog1.OverwritePrompt = false;
-                        this.saveFileDialog1.FileName = this.FW.Filename.Replace(oldValue, "");
-                        this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
-                        if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
-                        {
+                        case DialogResult.Yes:
+                            break;
+
+                        case DialogResult.No:
+                            System.IO.File.Delete(this.destinationfile);
+                            break;
+
+                        case DialogResult.Cancel:
                             Logger.WriteLine("Download aborted.");
                             return;
-                        }
-                        if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
-                        {
-                            this.saveFileDialog1.FileName = this.saveFileDialog1.FileName + oldValue;
-                        }
-                        else
-                        {
-                            this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(oldValue + oldValue, oldValue);
-                        }
-                        Logger.WriteLine("Filename: " + this.saveFileDialog1.FileName);
-                        this.destinationfile = this.saveFileDialog1.FileName;
-                        if (System.IO.File.Exists(this.destinationfile))
-                        {
-                            switch (new AppendDialogBox().ShowDialog())
-                            {
-                                case DialogResult.Yes:
-                                    break;
 
-                                case DialogResult.No:
-                                    System.IO.File.Delete(this.destinationfile);
-                                    break;
-
-                                case DialogResult.Cancel:
-                                    Logger.WriteLine("Download aborted.");
-                                    return;
-
-                                default:
-                                    Logger.WriteLine("Error: Wrong DialogResult");
-                                    return;
-                            }
-                        }
+                        default:
+                            Logger.WriteLine("Error: Wrong DialogResult");
+                            return;
                     }
-                    Utility.TaskBarProgressState(false);
-                    BackgroundWorker worker = new BackgroundWorker();
-                    worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
-                        MethodInvoker method = null;
-                        MethodInvoker invoker2 = null;
-                        MethodInvoker invoker3 = null;
-                        try
-                        {
-                            this.ControlsEnabled(false);
-                            Utility.ReconnectDownload = false;
-                            if (method == null)
-                            {
-                                method = delegate {
-                                    this.download_button.Enabled = true;
-                                    this.download_button.Text = "Pause";
-                                };
-                            }
-                            this.download_button.Invoke(method);
-                            if (this.FW.Filename == this.destinationfile)
-                            {
-                                Logger.WriteLine("Download " + this.FW.Filename);
-                            }
-                            else
-                            {
-                                Logger.WriteLine("Download " + this.FW.Filename + " to " + this.destinationfile);
-                            }
-                            Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
-                            if (this.PauseDownload)
-                            {
-                                Logger.WriteLine("Download paused.");
-                                this.PauseDownload = false;
-                                if (Utility.ReconnectDownload)
-                                {
-                                    Logger.WriteLine("Reconnecting...");
-                                    Utility.Reconnect(new Action<object, EventArgs>(this.Download_button_Click));
-                                }
-                            }
-                            else
-                            {
-                                Logger.WriteLine("Download finished.");
-                                if (this.checkbox_crc.Checked)
-                                {
-                                    if (this.FW.CRC == null)
-                                    {
-                                        Logger.WriteLine("Error: Unable to check CRC. Value not set by Samsung");
-                                    }
-                                    else
-                                    {
-                                        Logger.WriteLine("\nChecking CRC32...");
-                                        if (!Utility.CRCCheck(this.destinationfile, this.FW.CRC))
-                                        {
-                                            Logger.WriteLine("Error: CRC does not match. Please redownload the file.");
-                                            System.IO.File.Delete(this.destinationfile);
-                                            goto Label_01C9;
-                                        }
-                                        Logger.WriteLine("CRC matched.");
-                                    }
-                                }
-                                if (invoker2 == null)
-                                {
-                                    invoker2 = () => this.decrypt_button.Enabled = true;
-                                }
-                                this.decrypt_button.Invoke(invoker2);
-                                if (this.checkbox_autodecrypt.Checked)
-                                {
-                                    this.Decrypt_button_Click(o, null);
-                                }
-                            }
-                        Label_01C9:
-                            if (!Utility.ReconnectDownload)
-                            {
-                                this.ControlsEnabled(true);
-                            }
-                            if (invoker3 == null)
-                            {
-                                invoker3 = () => this.download_button.Text = "Download";
-                            }
-                            this.download_button.Invoke(invoker3);
-                        }
-                        catch (Exception exception)
-                        {
-                            Logger.WriteLine("Error Download_button_Click(): " + exception);
-                        }
-                    };
-                    worker.RunWorkerAsync();
                 }
             }
+            Utility.TaskBarProgressState(false);
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
+                MethodInvoker invoker1 = null;
+                MethodInvoker invoker2 = null;
+                MethodInvoker invoker3 = null;
+                try
+                {
+                    this.ControlsEnabled(false);
+                    Utility.ReconnectDownload = false;
+                    if (invoker1 == null)
+                    {
+                        invoker1 = delegate {
+                            this.download_button.Enabled = true;
+                            this.download_button.Text = "Pause";
+                        };
+                    }
+                    this.download_button.Invoke(invoker1);
+                    if (this.FW.Filename == this.destinationfile)
+                    {
+                        Logger.WriteLine("Download " + this.FW.Filename);
+                    }
+                    else
+                    {
+                        Logger.WriteLine("Download " + this.FW.Filename + " to " + this.destinationfile);
+                    }
+                    Command.Download(this.FW.Path, this.FW.Filename, this.FW.Version, this.FW.Region, this.FW.Model_Type, this.destinationfile, this.FW.Size, true);
+                    if (this.PauseDownload)
+                    {
+                        Logger.WriteLine("Download paused.");
+                        this.PauseDownload = false;
+                        if (Utility.ReconnectDownload)
+                        {
+                            Logger.WriteLine("Reconnecting...");
+                            Utility.Reconnect(new Action<object, EventArgs>(this.Download_button_Click));
+                        }
+                    }
+                    else
+                    {
+                        Logger.WriteLine("Download finished.");
+                        if (this.checkbox_crc.Checked)
+                        {
+                            if (this.FW.CRC == null)
+                            {
+                                Logger.WriteLine("Error: Unable to check CRC. Value not set by Samsung");
+                            }
+                            else
+                            {
+                                Logger.WriteLine("\nChecking CRC32...");
+                                if (!Utility.CRCCheck(this.destinationfile, this.FW.CRC))
+                                {
+                                    Logger.WriteLine("Error: CRC does not match. Please redownload the file.");
+                                    System.IO.File.Delete(this.destinationfile);
+                                    goto Label_01C9;
+                                }
+                                Logger.WriteLine("CRC matched.");
+                            }
+                        }
+                        if (invoker2 == null)
+                        {
+                            invoker2 = () => this.decrypt_button.Enabled = true;
+                        }
+                        this.decrypt_button.Invoke(invoker2);
+                        if (this.checkbox_autodecrypt.Checked)
+                        {
+                            this.Decrypt_button_Click(o, null);
+                        }
+                    }
+                Label_01C9:
+                    if (!Utility.ReconnectDownload)
+                    {
+                        this.ControlsEnabled(true);
+                    }
+                    if (invoker3 == null)
+                    {
+                        invoker3 = () => this.download_button.Text = "Download";
+                    }
+                    this.download_button.Invoke(invoker3);
+                }
+                catch (Exception exception)
+                {
+                    Logger.WriteLine("Error Download_button_Click(): " + exception);
+                }
+            };
+            worker.RunWorkerAsync();
         }
 
         //Update 버튼 클릭시 실행하는 메소드
