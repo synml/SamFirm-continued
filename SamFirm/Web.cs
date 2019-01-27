@@ -13,7 +13,7 @@ namespace SamFirm
         public static string JSessionID { get; set; } = string.Empty;
         public static string Nonce { get; set; } = string.Empty;
 
-        public static int DownloadBinary(string path, string file, string saveTo, string size, bool GUI = true)
+        public static int DownloadBinary(string path, string file, string saveTo, string size)
         {
             int num5;
             long num = 0L;
@@ -62,7 +62,7 @@ namespace SamFirm
                                 do
                                 {
                                     Utility.PreventDeepSleep(Utility.PDSMode.Continue);
-                                    if (GUI && Form.PauseDownload)
+                                    if (Form.PauseDownload)
                                     {
                                         goto Label_02BB;
                                     }
@@ -71,21 +71,15 @@ namespace SamFirm
                                     if (count > 0)
                                     {
                                         writer.Write(buffer, 0, count);
-                                        if (GUI)
+                                        int dlspeed = Utility.DownloadSpeed(num, sw);
+                                        if (dlspeed != -1)
                                         {
-                                            int dlspeed = Utility.DownloadSpeed(num, sw);
-                                            if (dlspeed != -1)
-                                            {
-                                                Form.lbl_speed.Invoke(new Action(delegate {
-                                                    Form.lbl_speed.Text = dlspeed + "kB/s";
-                                                }));
-                                            }
+                                            Form.speed_label.Invoke(new Action(delegate {
+                                                Form.speed_label.Text = dlspeed + "kB/s";
+                                            }));
                                         }
                                     }
-                                    if (GUI)
-                                    {
-                                        Form.SetProgressBar(Utility.GetProgress(num, total));
-                                    }
+                                    Form.SetProgressBar(Utility.GetProgress(num, total));
                                 }
                                 while (count > 0);
                             }
@@ -94,10 +88,7 @@ namespace SamFirm
                         {
                             Logger.WriteLine("Error DownloadBinary(): Can't access output file " + saveTo);
                             Logger.WriteLine(exception.ToString());
-                            if (GUI)
-                            {
-                                Form.PauseDownload = true;
-                            }
+                            Form.PauseDownload = true;
                             return -1;
                         }
                         catch (WebException)
@@ -108,12 +99,7 @@ namespace SamFirm
                         finally
                         {
                             Utility.PreventDeepSleep(Utility.PDSMode.Stop);
-                            if (GUI)
-                            {
-                                Form.lbl_speed.Invoke(new Action(delegate {
-                                    Form.lbl_speed.Text = "0kB/s";
-                                }));
-                            }
+                            Form.speed_label.Invoke(new Action(() => Form.speed_label.Text = "0kB/s"));
                         }
                     }
                 }

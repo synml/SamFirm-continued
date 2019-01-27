@@ -18,7 +18,7 @@ namespace SamFirm
             htmlstatus = Web.DownloadBinaryInit(Xml.GetXmlBinaryInit(file, version, region, model_type), out str);
             if ((htmlstatus == 200) && (Utility.GetXmlStatusCode(str) == 200))
             {
-                return Web.DownloadBinary(path, file, saveTo, size, GUI);
+                return Web.DownloadBinary(path, file, saveTo, size);
             }
             Logger.WriteLine("Error Download(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXmlStatusCode(str) + ")");
             Utility.CheckHtmlXmlStatus(htmlstatus, Utility.GetXmlStatusCode(str));
