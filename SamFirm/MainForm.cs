@@ -25,7 +25,7 @@ namespace SamFirm
 
 
         //폼을 로드하면 호출하는 메소드
-        private void MainForm2_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             Logger.Form = this;
             Web.Form = this;
@@ -48,7 +48,7 @@ namespace SamFirm
         }
 
         //폼을 닫으면 호출하는 메소드
-        private void MainForm2_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //설정값을 저장한다.
             Settings.SetSetting("Model", model_textbox.Text.ToUpper());
