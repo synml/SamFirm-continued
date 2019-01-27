@@ -47,7 +47,7 @@
             this.remainSize_label = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.remainTime_label = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.size_label = new System.Windows.Forms.Label();
             this.speed_label = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -91,6 +91,7 @@
             this.update_button.TabIndex = 8;
             this.update_button.Text = "Update Check";
             this.update_button.UseVisualStyleBackColor = true;
+            this.update_button.Click += new System.EventHandler(this.update_button_Click);
             // 
             // binary_checkbox
             // 
@@ -206,7 +207,7 @@
             this.groupBox3.Controls.Add(this.remainSize_label);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.remainTime_label);
-            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.size_label);
             this.groupBox3.Controls.Add(this.speed_label);
             this.groupBox3.Controls.Add(this.label9);
@@ -253,14 +254,14 @@
             this.remainTime_label.TabIndex = 15;
             this.remainTime_label.Text = "0.0 Min";
             // 
-            // label12
+            // label11
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(211, 187);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(117, 20);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "Remaining time";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(211, 187);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(117, 20);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Remaining time";
             // 
             // size_label
             // 
@@ -304,6 +305,7 @@
             this.decrypt_button.TabIndex = 9;
             this.decrypt_button.Text = "Decrypt";
             this.decrypt_button.UseVisualStyleBackColor = true;
+            this.decrypt_button.Click += new System.EventHandler(this.decrypt_button_Click);
             // 
             // download_button
             // 
@@ -313,6 +315,7 @@
             this.download_button.TabIndex = 8;
             this.download_button.Text = "Download";
             this.download_button.UseVisualStyleBackColor = true;
+            this.download_button.Click += new System.EventHandler(this.download_button_Click);
             // 
             // autoDecrypt_checkbox
             // 
@@ -404,6 +407,8 @@
             this.MaximizeBox = false;
             this.Name = "MainForm2";
             this.Text = "SamFirm Continued";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm2_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm2_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -433,9 +438,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label speed_label;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label size_label;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label speed_label;
+        private System.Windows.Forms.Label remainSize_label;
         private System.Windows.Forms.Label remainTime_label;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ProgressBar progressBar1;
@@ -448,7 +455,5 @@
         private System.Windows.Forms.TextBox phone_textbox;
         private System.Windows.Forms.TextBox file_textbox;
         private System.Windows.Forms.TextBox version_textbox;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label remainSize_label;
     }
 }
