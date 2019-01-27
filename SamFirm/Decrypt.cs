@@ -12,7 +12,7 @@ namespace SamFirm
         private static readonly byte[] IV = new byte[1];
         private static byte[] KEY;
 
-        public static int DecryptFile(string encryptedFile, string outputFile, bool GUI = true)
+        public static int DecryptFile(string encryptedFile, string outputFile)
         {
             using (FileStream stream = new FileStream(encryptedFile, FileMode.Open))
             {
@@ -39,10 +39,7 @@ namespace SamFirm
                                     count = stream3.Read(buffer, 0, buffer.Length);
                                     num += count;
                                     stream2.Write(buffer, 0, count);
-                                    if (GUI)
-                                    {
-                                        Form.SetProgressBar(Utility.GetProgress(num, stream.Length));
-                                    }
+                                    Form.SetProgressBar(Utility.GetProgress(num, stream.Length));
                                 }
                                 while (count > 0);
                             }
@@ -50,17 +47,17 @@ namespace SamFirm
                         catch (CryptographicException)
                         {
                             Logger.WriteLine("Error DecryptFile(): Wrong key.");
-                            return 3;
+                            return 2;
                         }
                         catch (TargetInvocationException)
                         {
                             Logger.WriteLine("Error DecryptFile(): Please turn off FIPS compliance checking.");
-                            return 800;
+                            return 3;
                         }
                         catch (Exception exception)
                         {
                             Logger.WriteLine("Error DecryptFile() -> " + exception);
-                            return 3;
+                            return 1;
                         }
                         finally
                         {
@@ -72,6 +69,7 @@ namespace SamFirm
             return 0;
         }
 
+        //Binary Nature가 체크상태이면 호출하는 메소드
         public static void SetDecryptKey(string version, string LogicValue)
         {
             string logicCheck = Utility.GetLogicCheck(version, LogicValue);
@@ -82,6 +80,7 @@ namespace SamFirm
             }
         }
 
+        //Binary Nature가 체크되어 있지 않으면 호출하는 메소드
         public static void SetDecryptKey(string region, string model, string version)
         {
             StringBuilder builder = new StringBuilder(region);

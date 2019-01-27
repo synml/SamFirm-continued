@@ -89,22 +89,22 @@ namespace SamFirm
                     ControlsEnabled(false);
                     Utility.ReconnectDownload = false;
 
-                    //업데이트 검사
+                    //업데이트를 검사한다.
                     FW = Command.UpdateCheckAuto(model_textbox.Text, region_textbox.Text, binary_checkbox.Checked);
 
-                    //FW 구조체의 Filename멤버가 비어있지 않으면 FW의 멤버를 출력하고,
-                    //비어있으면 빈 글자를 출력한다.
-                    if (!string.IsNullOrEmpty(FW.Filename))
-                    {
-                        file_textbox.Invoke(new Action(() => file_textbox.Text = FW.Filename));
-                        version_textbox.Invoke(new Action(() => version_textbox.Text = FW.Version));
-                        size_label.Invoke(new Action(() => size_label.Text = (long.Parse(FW.Size) / 1024L / 1024L) + " MB"));
-                    }
-                    else
+                    //FW 구조체의 Filename멤버가 비어있으면 빈 글자를 출력하고,
+                    //비어있지 않으면 FW의 멤버를 출력한다.
+                    if (string.IsNullOrEmpty(FW.Filename))
                     {
                         file_textbox.Invoke(new Action(() => file_textbox.Text = string.Empty));
                         version_textbox.Invoke(new Action(() => version_textbox.Text = string.Empty));
                         size_label.Invoke(new Action(() => size_label.Text = string.Empty));
+                    }
+                    else
+                    {
+                        file_textbox.Invoke(new Action(() => file_textbox.Text = FW.Filename));
+                        version_textbox.Invoke(new Action(() => version_textbox.Text = FW.Version));
+                        size_label.Invoke(new Action(() => size_label.Text = (long.Parse(FW.Size) / 1024L / 1024L) + " MB"));
                     }
 
                     //출력을 완료하면 컨트롤을 활성화한다.
@@ -112,8 +112,7 @@ namespace SamFirm
                 }
                 catch (Exception exception)
                 {
-                    Logger.WriteLine(exception.Message);
-                    Logger.WriteLine(exception.ToString());
+                    Logger.WriteLine("Error Update_button_Click() -> " + exception);
                 }
             };
             worker.RunWorkerAsync();
@@ -198,7 +197,8 @@ namespace SamFirm
             }
             Utility.TaskBarProgressState(false);
             BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
+            worker.DoWork += delegate (object o, DoWorkEventArgs _e)
+            {
                 try
                 {
                     ControlsEnabled(false);
@@ -261,7 +261,7 @@ namespace SamFirm
                 }
                 catch (Exception exception)
                 {
-                    Logger.WriteLine("Error Download_button_Click(): " + exception);
+                    Logger.WriteLine("Error Download_button_Click() -> " + exception);
                 }
             };
             worker.RunWorkerAsync();
@@ -277,6 +277,7 @@ namespace SamFirm
                 return;
             }
 
+            //백그라운드 작업 등록
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate
             {
@@ -298,12 +299,12 @@ namespace SamFirm
                         Decrypt.SetDecryptKey(FW.Version, FW.LogicValueHome);
                     }
                 }
-                if (Decrypt.DecryptFile(destinationFile, Path.Combine(Path.GetDirectoryName(destinationFile), Path.GetFileNameWithoutExtension(destinationFile)), true) == 0)
+                if (Decrypt.DecryptFile(destinationFile, Path.Combine(Path.GetDirectoryName(destinationFile), Path.GetFileNameWithoutExtension(destinationFile))) == 0)
                 {
-                    File.Delete(this.destinationFile);
+                    File.Delete(destinationFile);
                 }
                 Logger.WriteLine("Decryption finished.");
-                this.ControlsEnabled(true);
+                ControlsEnabled(true);
             };
             worker.RunWorkerAsync();
         }
