@@ -6,12 +6,20 @@ namespace SamFirm
     internal static class Program
     {
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Imports.FreeConsole();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            if (args[0] == "beta")
+            {
+                Application.Run(new MainForm2());
+            }
+            else
+            {
+                Application.Run(new MainForm());
+            }
         }
     }
 }
