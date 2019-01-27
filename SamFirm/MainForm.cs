@@ -103,7 +103,8 @@ namespace SamFirm
                     {
                         file_textbox.Invoke(new Action(() => file_textbox.Text = FW.Filename));
                         version_textbox.Invoke(new Action(() => version_textbox.Text = FW.Version));
-                        size_label.Invoke(new Action(() => size_label.Text = (long.Parse(FW.Size) / 1024L / 1024L) + " MB"));
+                        double size = Math.Round(long.Parse(FW.Size) / 1024.0 / 1024.0 / 1024.0, 3);
+                        size_label.Invoke(new Action(() => size_label.Text = size.ToString() + " GB"));
                     }
 
                     //출력을 완료하면 컨트롤을 활성화한다.

@@ -75,7 +75,7 @@ namespace SamFirm
                                         if (dlspeed != -1)
                                         {
                                             Form.Speed_label.Invoke(new Action(delegate {
-                                                Form.Speed_label.Text = dlspeed + " kB/s";
+                                                Form.Speed_label.Text = dlspeed + " KB/s";
                                             }));
                                         }
                                     }
@@ -99,7 +99,7 @@ namespace SamFirm
                         finally
                         {
                             Utility.PreventDeepSleep(Utility.PDSMode.Stop);
-                            Form.Speed_label.Invoke(new Action(() => Form.Speed_label.Text = "0 kB/s"));
+                            Form.Speed_label.Invoke(new Action(() => Form.Speed_label.Text = "0 KB/s"));
                         }
                     }
                 }
