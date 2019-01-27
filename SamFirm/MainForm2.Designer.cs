@@ -91,7 +91,7 @@
             this.update_button.TabIndex = 8;
             this.update_button.Text = "Update Check";
             this.update_button.UseVisualStyleBackColor = true;
-            this.update_button.Click += new System.EventHandler(this.update_button_Click);
+            this.update_button.Click += new System.EventHandler(this.Update_button_Click);
             // 
             // binary_checkbox
             // 
@@ -305,7 +305,7 @@
             this.decrypt_button.TabIndex = 9;
             this.decrypt_button.Text = "Decrypt";
             this.decrypt_button.UseVisualStyleBackColor = true;
-            this.decrypt_button.Click += new System.EventHandler(this.decrypt_button_Click);
+            this.decrypt_button.Click += new System.EventHandler(this.Decrypt_button_Click);
             // 
             // download_button
             // 
@@ -315,7 +315,7 @@
             this.download_button.TabIndex = 8;
             this.download_button.Text = "Download";
             this.download_button.UseVisualStyleBackColor = true;
-            this.download_button.Click += new System.EventHandler(this.download_button_Click);
+            this.download_button.Click += new System.EventHandler(this.Download_button_Click);
             // 
             // autoDecrypt_checkbox
             // 
@@ -387,6 +387,7 @@
             // 
             // saveFileDialog1
             // 
+            this.saveFileDialog1.OverwritePrompt = false;
             this.saveFileDialog1.SupportMultiDottedExtensions = true;
             // 
             // openFileDialog1

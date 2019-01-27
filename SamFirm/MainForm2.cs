@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Threading;
@@ -18,7 +19,7 @@ namespace SamFirm
         }
 
         //필드
-        private string destinationfile;
+        private string destinationFile;
         private Command.Firmware FW;
         public bool PauseDownload { get; set; }
 
@@ -66,7 +67,7 @@ namespace SamFirm
         }
 
         //Update 버튼 클릭시 실행하는 메소드
-        private void update_button_Click(object sender, EventArgs e)
+        private void Update_button_Click(object sender, EventArgs e)
         {
             //예외 처리
             if (string.IsNullOrEmpty(model_textbox.Text))
@@ -120,13 +121,155 @@ namespace SamFirm
         }
 
         //Download 버튼 클릭시 실행하는 메소드
-        private void download_button_Click(object sender, EventArgs e)
+        private void Download_button_Click(object sender, EventArgs e)
         {
+            //다운로드를 일시정지한다.
+            if (download_button.Text == "Pause")
+            {
+                Utility.TaskBarProgressState(true);
+                PauseDownload = true;
+                Utility.ReconnectDownload = false;
+                download_button.Text = "Download";
+                return;
+            }
 
+            //예외 처리
+            if ((e.GetType() == typeof(DownloadEventArgs)) && ((DownloadEventArgs)e).isReconnect)
+            {
+                if (download_button.Text == "Pause" || !Utility.ReconnectDownload)
+                {
+                    return;
+                }
+            }
+            if (PauseDownload)
+            {
+                Logger.WriteLine("Download thread is still running. Please wait.");
+                return;
+            }
+            else if (string.IsNullOrEmpty(file_textbox.Text))
+            {
+                Logger.WriteLine("No file to download. Please check for update first.");
+                return;
+            }
+
+            //다운로드 작업
+            if ((e.GetType() != typeof(DownloadEventArgs)) || !((DownloadEventArgs)e).isReconnect)
+            {
+                //.zip + .enc4
+                string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(FW.Filename)) + Path.GetExtension(FW.Filename);
+                saveFileDialog1.OverwritePrompt = false;
+                saveFileDialog1.FileName = FW.Filename.Replace(extension, "");
+                saveFileDialog1.Filter = "Firmware|*" + extension;
+                if (saveFileDialog1.ShowDialog() != DialogResult.OK)
+                {
+                    Logger.WriteLine("Download aborted.");
+                    return;
+                }
+                if (!saveFileDialog1.FileName.EndsWith(extension))
+                {
+                    saveFileDialog1.FileName = saveFileDialog1.FileName + extension;
+                }
+                else
+                {
+                    saveFileDialog1.FileName = saveFileDialog1.FileName.Replace(extension + extension, extension);
+                }
+                Logger.WriteLine("Filename: " + saveFileDialog1.FileName);
+
+                destinationFile = saveFileDialog1.FileName;
+                if (File.Exists(destinationFile))
+                {
+                    switch (new AppendDialogBox().ShowDialog())
+                    {
+                        case DialogResult.Yes:
+                            break;
+
+                        case DialogResult.No:
+                            File.Delete(destinationFile);
+                            break;
+
+                        case DialogResult.Cancel:
+                            Logger.WriteLine("Download aborted.");
+                            return;
+
+                        default:
+                            Logger.WriteLine("Error: Wrong DialogResult");
+                            return;
+                    }
+                }
+            }
+            Utility.TaskBarProgressState(false);
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
+                try
+                {
+                    ControlsEnabled(false);
+                    Utility.ReconnectDownload = false;
+                    MethodInvoker invoker1 = delegate
+                    {
+                        download_button.Enabled = true;
+                        download_button.Text = "Pause";
+                    };
+                    download_button.Invoke(invoker1);
+                    if (FW.Filename == destinationFile)
+                    {
+                        Logger.WriteLine("Download " + FW.Filename);
+                    }
+                    else
+                    {
+                        Logger.WriteLine("Download " + FW.Filename + " to " + destinationFile);
+                    }
+                    Command.Download(FW.Path, FW.Filename, FW.Version, FW.Region, FW.Model_Type, destinationFile, FW.Size, true);
+                    if (PauseDownload == true)
+                    {
+                        Logger.WriteLine("Download paused.");
+                        PauseDownload = false;
+                        if (Utility.ReconnectDownload)
+                        {
+                            Logger.WriteLine("Reconnecting...");
+                            Utility.Reconnect(new Action<object, EventArgs>(Download_button_Click));
+                        }
+                    }
+                    else
+                    {
+                        Logger.WriteLine("Download finished.");
+                        if (FW.CRC == null)
+                        {
+                            Logger.WriteLine("Error: Unable to check CRC. Value not set by Samsung");
+                        }
+                        else
+                        {
+                            Logger.WriteLine("\nChecking CRC32...");
+                            if (!Utility.CRCCheck(destinationFile, FW.CRC))
+                            {
+                                Logger.WriteLine("Error: CRC does not match. Please redownload the file.");
+                                File.Delete(destinationFile);
+                                goto Label_01C9;
+                            }
+                            Logger.WriteLine("CRC matched.");
+                        }
+                        decrypt_button.Invoke(new Action(() => decrypt_button.Enabled = true));
+                        if (autoDecrypt_checkbox.Checked)
+                        {
+                            Decrypt_button_Click(o, null);
+                        }
+                    }
+                Label_01C9:
+                    if (!Utility.ReconnectDownload)
+                    {
+                        ControlsEnabled(true);
+                    }
+                    download_button.Invoke(new Action(() => download_button.Text = "Download"));
+                }
+                catch (Exception exception)
+                {
+                    Logger.WriteLine("Error Download_button_Click(): " + exception);
+                }
+            };
+            worker.RunWorkerAsync();
         }
 
         //Decrypt 버튼 클릭시 실행하는 메소드
-        private void decrypt_button_Click(object sender, EventArgs e)
+        private void Decrypt_button_Click(object sender, EventArgs e)
         {
 
         }

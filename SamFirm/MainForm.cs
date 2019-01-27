@@ -670,26 +670,26 @@ namespace SamFirm
             //다운로드 작업
             if ((e.GetType() != typeof(DownloadEventArgs)) || !((DownloadEventArgs)e).isReconnect)
             {
-                string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(this.FW.Filename));
-                string oldValue = extension + Path.GetExtension(this.FW.Filename);
-                this.saveFileDialog1.SupportMultiDottedExtensions = true;
+                //.zip + .enc4
+                string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(FW.Filename)) + Path.GetExtension(FW.Filename);
                 this.saveFileDialog1.OverwritePrompt = false;
-                this.saveFileDialog1.FileName = this.FW.Filename.Replace(oldValue, "");
-                this.saveFileDialog1.Filter = "Firmware|*" + oldValue;
+                this.saveFileDialog1.FileName = this.FW.Filename.Replace(extension, "");
+                this.saveFileDialog1.Filter = "Firmware|*" + extension;
                 if (this.saveFileDialog1.ShowDialog() != DialogResult.OK)
                 {
                     Logger.WriteLine("Download aborted.");
                     return;
                 }
-                if (!this.saveFileDialog1.FileName.EndsWith(oldValue))
+                if (!this.saveFileDialog1.FileName.EndsWith(extension))
                 {
-                    this.saveFileDialog1.FileName = this.saveFileDialog1.FileName + oldValue;
+                    this.saveFileDialog1.FileName = this.saveFileDialog1.FileName + extension;
                 }
                 else
                 {
-                    this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(oldValue + oldValue, oldValue);
+                    this.saveFileDialog1.FileName = this.saveFileDialog1.FileName.Replace(extension + extension, extension);
                 }
                 Logger.WriteLine("Filename: " + this.saveFileDialog1.FileName);
+
                 this.destinationfile = this.saveFileDialog1.FileName;
                 if (System.IO.File.Exists(this.destinationfile))
                 {
@@ -715,20 +715,15 @@ namespace SamFirm
             Utility.TaskBarProgressState(false);
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate (object o, DoWorkEventArgs _e) {
-                MethodInvoker invoker1 = null;
-                MethodInvoker invoker2 = null;
-                MethodInvoker invoker3 = null;
                 try
                 {
                     this.ControlsEnabled(false);
                     Utility.ReconnectDownload = false;
-                    if (invoker1 == null)
+                    MethodInvoker invoker1 = delegate
                     {
-                        invoker1 = delegate {
-                            this.download_button.Enabled = true;
-                            this.download_button.Text = "Pause";
-                        };
-                    }
+                        this.download_button.Enabled = true;
+                        this.download_button.Text = "Pause";
+                    };
                     this.download_button.Invoke(invoker1);
                     if (this.FW.Filename == this.destinationfile)
                     {
@@ -770,11 +765,7 @@ namespace SamFirm
                                 Logger.WriteLine("CRC matched.");
                             }
                         }
-                        if (invoker2 == null)
-                        {
-                            invoker2 = () => this.decrypt_button.Enabled = true;
-                        }
-                        this.decrypt_button.Invoke(invoker2);
+                        decrypt_button.Invoke(new Action(() => decrypt_button.Enabled = true));
                         if (this.checkbox_autodecrypt.Checked)
                         {
                             this.Decrypt_button_Click(o, null);
@@ -785,11 +776,7 @@ namespace SamFirm
                     {
                         this.ControlsEnabled(true);
                     }
-                    if (invoker3 == null)
-                    {
-                        invoker3 = () => this.download_button.Text = "Download";
-                    }
-                    this.download_button.Invoke(invoker3);
+                    this.download_button.Invoke(new Action(() => this.download_button.Text = "Download"));
                 }
                 catch (Exception exception)
                 {
