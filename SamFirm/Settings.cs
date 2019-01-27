@@ -17,12 +17,7 @@ namespace SamFirm
                 "<SamFirm>\r\n" +
                     "\t<Model></Model>\r\n" +
                     "\t<Region></Region>\r\n" +
-                    "\t<PDAVer></PDAVer>\r\n" +
-                    "\t<CSCVer></CSCVer>\r\n" +
-                    "\t<PHONEVer></PHONEVer>\r\n" +
-                    "\t<AutoInfo>True</AutoInfo>\r\n" +
                     "\t<BinaryNature>False</BinaryNature>\r\n" +
-                    "\t<CheckCRC>True</CheckCRC>\r\n" +
                     "\t<AutoDecrypt>True</AutoDecrypt>\r\n" +
                 "</SamFirm>";
             File.WriteAllText(settingsXml, default_contents);
