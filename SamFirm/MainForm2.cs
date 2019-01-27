@@ -146,7 +146,7 @@ namespace SamFirm
         //작업 진행바를 설정하는 메소드
         public void SetProgressBar(int progress)
         {
-            MethodInvoker method = delegate
+            MethodInvoker invoker1 = delegate
             {
                 if (progress > 100)
                 {
@@ -158,7 +158,7 @@ namespace SamFirm
                 }
                 TaskbarManager.Instance.SetProgressValue(progress, 100);
             };
-            this.progressBar1.Invoke(method);
+            this.progressBar1.Invoke(invoker1);
         }
 
         public class DownloadEventArgs : EventArgs
