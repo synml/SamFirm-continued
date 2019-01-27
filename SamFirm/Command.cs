@@ -31,15 +31,15 @@ namespace SamFirm
             {
                 return new Firmware();
             }
-            string str = Utility.InfoExtract(info, "pda");
-            if (string.IsNullOrEmpty(str))
+            string pda = Utility.InfoExtract(info, "pda");
+            if (string.IsNullOrEmpty(pda))
             {
                 return new Firmware();
             }
             string csc = Utility.InfoExtract(info, "csc");
             string phone = Utility.InfoExtract(info, "phone");
             string data = Utility.InfoExtract(info, "data");
-            return UpdateCheck(model, region, str, csc, phone, data, BinaryNature, AutoFetch);
+            return UpdateCheck(model, region, pda, csc, phone, data, BinaryNature, AutoFetch);
         }
 
         public static Firmware UpdateCheck(string model, string region, string pda, string csc, string phone, string data, bool BinaryNature, bool AutoFetch = false)
@@ -109,7 +109,6 @@ namespace SamFirm
             {
                 Logger.WriteLine("LogicValue: " + firmware.LogicValueHome);
             }
-            Logger.WriteLine("");
             return firmware;
         }
 

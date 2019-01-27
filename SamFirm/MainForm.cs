@@ -171,7 +171,7 @@ namespace SamFirm
                 {
                     saveFileDialog1.FileName = saveFileDialog1.FileName.Replace(extension + extension, extension);
                 }
-                Logger.WriteLine("Filename: " + saveFileDialog1.FileName);
+                Logger.WriteLine("\nFilename: " + saveFileDialog1.FileName);
 
                 destinationFile = saveFileDialog1.FileName;
                 if (File.Exists(destinationFile))
