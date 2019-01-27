@@ -12,13 +12,13 @@ namespace SamFirm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (args[0] == "beta")
-            {
-                Application.Run(new MainForm2());
-            }
-            else
+            if (args.Length == 0)
             {
                 Application.Run(new MainForm());
+            }
+            else if (args[0] == "beta")
+            {
+                Application.Run(new MainForm2());
             }
         }
     }
