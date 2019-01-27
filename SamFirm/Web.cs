@@ -74,8 +74,8 @@ namespace SamFirm
                                         int dlspeed = Utility.DownloadSpeed(num, sw);
                                         if (dlspeed != -1)
                                         {
-                                            Form.speed_label.Invoke(new Action(delegate {
-                                                Form.speed_label.Text = dlspeed + "kB/s";
+                                            Form.Speed_label.Invoke(new Action(delegate {
+                                                Form.Speed_label.Text = dlspeed + " kB/s";
                                             }));
                                         }
                                     }
@@ -99,7 +99,7 @@ namespace SamFirm
                         finally
                         {
                             Utility.PreventDeepSleep(Utility.PDSMode.Stop);
-                            Form.speed_label.Invoke(new Action(() => Form.speed_label.Text = "0kB/s"));
+                            Form.Speed_label.Invoke(new Action(() => Form.Speed_label.Text = "0 kB/s"));
                         }
                     }
                 }

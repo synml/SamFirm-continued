@@ -445,7 +445,7 @@ namespace SamFirm
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label size_label;
-        internal System.Windows.Forms.Label speed_label;
+        private System.Windows.Forms.Label speed_label;
         private System.Windows.Forms.Label remainSize_label;
         private System.Windows.Forms.Label remainTime_label;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -462,5 +462,6 @@ namespace SamFirm
 
         //Getter, Setter 메소드
         public RichTextBox Log_textbox { get => log_textbox; set => log_textbox = value; }
+        public Label Speed_label { get => speed_label; set => speed_label = value; }
     }
 }
