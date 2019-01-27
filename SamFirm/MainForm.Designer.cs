@@ -1,4 +1,6 @@
-﻿namespace SamFirm
+﻿using System.Windows.Forms;
+
+namespace SamFirm
 {
     partial class MainForm
     {
@@ -422,6 +424,7 @@
 
         #endregion
 
+        //필드 (컨트롤)
         private System.Windows.Forms.Button update_button;
         private System.Windows.Forms.Button download_button;
         private System.Windows.Forms.Button decrypt_button;
@@ -447,7 +450,7 @@
         private System.Windows.Forms.Label remainTime_label;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        internal System.Windows.Forms.RichTextBox log_textbox;
+        private System.Windows.Forms.RichTextBox log_textbox;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TextBox model_textbox;
         private System.Windows.Forms.TextBox region_textbox;
@@ -456,5 +459,8 @@
         private System.Windows.Forms.TextBox phone_textbox;
         private System.Windows.Forms.TextBox file_textbox;
         private System.Windows.Forms.TextBox version_textbox;
+
+        //Getter, Setter 메소드
+        public RichTextBox Log_textbox { get => log_textbox; set => log_textbox = value; }
     }
 }

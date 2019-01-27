@@ -17,12 +17,12 @@ namespace SamFirm
         //로그를 파일로 저장하는 메소드
         public static void SaveLog()
         {
-            if (!string.IsNullOrEmpty(Form.log_textbox.Text))
+            if (!string.IsNullOrEmpty(Form.Log_textbox.Text))
             {
                 using (TextWriter writer = new StreamWriter(new FileStream("SamFirm.log", FileMode.Create)))
                 {
                     writer.WriteLine(GetTimeDate());
-                    foreach (string str in Form.log_textbox.Lines)
+                    foreach (string str in Form.Log_textbox.Lines)
                     {
                         writer.WriteLine(str);
                     }
@@ -33,19 +33,19 @@ namespace SamFirm
         //로그 텍스트 박스에 문자열을 출력하는 메소드
         public static void WriteLine(string str)
         {
-            if (Form.log_textbox.InvokeRequired)
+            if (Form.Log_textbox.InvokeRequired)
             {
                 MethodInvoker method = delegate
                 {
-                    Form.log_textbox.AppendText(str + "\n");
-                    Form.log_textbox.ScrollToCaret();
+                    Form.Log_textbox.AppendText(str + "\n");
+                    Form.Log_textbox.ScrollToCaret();
                 };
-                Form.log_textbox.Invoke(method);
+                Form.Log_textbox.Invoke(method);
             }
             else
             {
-                Form.log_textbox.AppendText(str + "\n");
-                Form.log_textbox.ScrollToCaret();
+                Form.Log_textbox.AppendText(str + "\n");
+                Form.Log_textbox.ScrollToCaret();
             }
         }
     }
