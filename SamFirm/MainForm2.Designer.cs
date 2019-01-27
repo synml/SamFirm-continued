@@ -28,35 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm2));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.update_button = new System.Windows.Forms.Button();
+            this.binary_checkbox = new System.Windows.Forms.CheckBox();
+            this.region_textbox = new System.Windows.Forms.TextBox();
+            this.model_textbox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.phone_textbox = new System.Windows.Forms.TextBox();
+            this.csc_textbox = new System.Windows.Forms.TextBox();
+            this.pda_textbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.remainSize_label = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.remainTime_label = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.size_label = new System.Windows.Forms.Label();
+            this.speed_label = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.decrypt_button = new System.Windows.Forms.Button();
+            this.download_button = new System.Windows.Forms.Button();
+            this.autoDecrypt_checkbox = new System.Windows.Forms.CheckBox();
+            this.version_textbox = new System.Windows.Forms.TextBox();
+            this.file_textbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.log_textbox = new System.Windows.Forms.RichTextBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.label11 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -64,10 +70,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.checkBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.update_button);
+            this.groupBox1.Controls.Add(this.binary_checkbox);
+            this.groupBox1.Controls.Add(this.region_textbox);
+            this.groupBox1.Controls.Add(this.model_textbox);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -77,38 +83,40 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Firmware Info";
             // 
-            // button1
+            // update_button
             // 
-            this.button1.Location = new System.Drawing.Point(180, 231);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 28);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Check Update";
-            this.button1.UseVisualStyleBackColor = true;
+            this.update_button.Location = new System.Drawing.Point(180, 231);
+            this.update_button.Name = "update_button";
+            this.update_button.Size = new System.Drawing.Size(124, 28);
+            this.update_button.TabIndex = 8;
+            this.update_button.Text = "Update Check";
+            this.update_button.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // binary_checkbox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(10, 234);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(124, 24);
-            this.checkBox3.TabIndex = 7;
-            this.checkBox3.Text = "Binary Nature";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.binary_checkbox.AutoSize = true;
+            this.binary_checkbox.Location = new System.Drawing.Point(10, 234);
+            this.binary_checkbox.Name = "binary_checkbox";
+            this.binary_checkbox.Size = new System.Drawing.Size(124, 24);
+            this.binary_checkbox.TabIndex = 7;
+            this.binary_checkbox.Text = "Binary Nature";
+            this.binary_checkbox.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // region_textbox
             // 
-            this.textBox2.Location = new System.Drawing.Point(106, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(162, 27);
-            this.textBox2.TabIndex = 3;
+            this.region_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.region_textbox.Location = new System.Drawing.Point(106, 59);
+            this.region_textbox.Name = "region_textbox";
+            this.region_textbox.Size = new System.Drawing.Size(162, 27);
+            this.region_textbox.TabIndex = 3;
             // 
-            // textBox1
+            // model_textbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(106, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(162, 27);
-            this.textBox1.TabIndex = 2;
+            this.model_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.model_textbox.Location = new System.Drawing.Point(106, 26);
+            this.model_textbox.Name = "model_textbox";
+            this.model_textbox.Size = new System.Drawing.Size(162, 27);
+            this.model_textbox.TabIndex = 2;
             // 
             // label2
             // 
@@ -130,38 +138,41 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox5);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.phone_textbox);
+            this.groupBox2.Controls.Add(this.csc_textbox);
+            this.groupBox2.Controls.Add(this.pda_textbox);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(12, 104);
+            this.groupBox2.Location = new System.Drawing.Point(18, 104);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(309, 136);
+            this.groupBox2.Size = new System.Drawing.Size(303, 136);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             // 
-            // textBox5
+            // phone_textbox
             // 
-            this.textBox5.Location = new System.Drawing.Point(106, 92);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(198, 27);
-            this.textBox5.TabIndex = 5;
+            this.phone_textbox.Location = new System.Drawing.Point(99, 92);
+            this.phone_textbox.Name = "phone_textbox";
+            this.phone_textbox.ReadOnly = true;
+            this.phone_textbox.Size = new System.Drawing.Size(198, 27);
+            this.phone_textbox.TabIndex = 5;
             // 
-            // textBox4
+            // csc_textbox
             // 
-            this.textBox4.Location = new System.Drawing.Point(106, 59);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(198, 27);
-            this.textBox4.TabIndex = 4;
+            this.csc_textbox.Location = new System.Drawing.Point(99, 59);
+            this.csc_textbox.Name = "csc_textbox";
+            this.csc_textbox.ReadOnly = true;
+            this.csc_textbox.Size = new System.Drawing.Size(198, 27);
+            this.csc_textbox.TabIndex = 4;
             // 
-            // textBox3
+            // pda_textbox
             // 
-            this.textBox3.Location = new System.Drawing.Point(106, 26);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(198, 27);
-            this.textBox3.TabIndex = 3;
+            this.pda_textbox.Location = new System.Drawing.Point(99, 26);
+            this.pda_textbox.Name = "pda_textbox";
+            this.pda_textbox.ReadOnly = true;
+            this.pda_textbox.Size = new System.Drawing.Size(198, 27);
+            this.pda_textbox.TabIndex = 3;
             // 
             // label5
             // 
@@ -192,15 +203,19 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.remainSize_label);
             this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.remainTime_label);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.size_label);
+            this.groupBox3.Controls.Add(this.speed_label);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.progressBar1);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.checkBox4);
-            this.groupBox3.Controls.Add(this.textBox7);
-            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.decrypt_button);
+            this.groupBox3.Controls.Add(this.download_button);
+            this.groupBox3.Controls.Add(this.autoDecrypt_checkbox);
+            this.groupBox3.Controls.Add(this.version_textbox);
+            this.groupBox3.Controls.Add(this.file_textbox);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
@@ -211,19 +226,64 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Download";
             // 
+            // remainSize_label
+            // 
+            this.remainSize_label.AutoSize = true;
+            this.remainSize_label.Location = new System.Drawing.Point(360, 161);
+            this.remainSize_label.Name = "remainSize_label";
+            this.remainSize_label.Size = new System.Drawing.Size(45, 20);
+            this.remainSize_label.TabIndex = 17;
+            this.remainSize_label.Text = "0 MB";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(95, 184);
+            this.label10.Location = new System.Drawing.Point(211, 161);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 20);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "0 MB/s";
+            this.label10.Size = new System.Drawing.Size(112, 20);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Remaining size";
+            // 
+            // remainTime_label
+            // 
+            this.remainTime_label.AutoSize = true;
+            this.remainTime_label.Location = new System.Drawing.Point(360, 187);
+            this.remainTime_label.Name = "remainTime_label";
+            this.remainTime_label.Size = new System.Drawing.Size(60, 20);
+            this.remainTime_label.TabIndex = 15;
+            this.remainTime_label.Text = "0.0 Min";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(211, 187);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(117, 20);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Remaining time";
+            // 
+            // size_label
+            // 
+            this.size_label.AutoSize = true;
+            this.size_label.Location = new System.Drawing.Point(95, 161);
+            this.size_label.Name = "size_label";
+            this.size_label.Size = new System.Drawing.Size(42, 20);
+            this.size_label.TabIndex = 13;
+            this.size_label.Text = "0 GB";
+            // 
+            // speed_label
+            // 
+            this.speed_label.AutoSize = true;
+            this.speed_label.Location = new System.Drawing.Point(95, 187);
+            this.speed_label.Name = "speed_label";
+            this.speed_label.Size = new System.Drawing.Size(57, 20);
+            this.speed_label.TabIndex = 12;
+            this.speed_label.Text = "0 MB/s";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 184);
+            this.label9.Location = new System.Drawing.Point(6, 187);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(51, 20);
             this.label9.TabIndex = 11;
@@ -236,52 +296,56 @@
             this.progressBar1.Size = new System.Drawing.Size(428, 27);
             this.progressBar1.TabIndex = 10;
             // 
-            // button3
+            // decrypt_button
             // 
-            this.button3.Location = new System.Drawing.Point(215, 125);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 30);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Decrypt";
-            this.button3.UseVisualStyleBackColor = true;
+            this.decrypt_button.Location = new System.Drawing.Point(215, 125);
+            this.decrypt_button.Name = "decrypt_button";
+            this.decrypt_button.Size = new System.Drawing.Size(110, 30);
+            this.decrypt_button.TabIndex = 9;
+            this.decrypt_button.Text = "Decrypt";
+            this.decrypt_button.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // download_button
             // 
-            this.button2.Location = new System.Drawing.Point(99, 125);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 30);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Download";
-            this.button2.UseVisualStyleBackColor = true;
+            this.download_button.Location = new System.Drawing.Point(99, 125);
+            this.download_button.Name = "download_button";
+            this.download_button.Size = new System.Drawing.Size(110, 30);
+            this.download_button.TabIndex = 8;
+            this.download_button.Text = "Download";
+            this.download_button.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // autoDecrypt_checkbox
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(346, 129);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(181, 24);
-            this.checkBox4.TabIndex = 6;
-            this.checkBox4.Text = "Decrypt Automatically";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.autoDecrypt_checkbox.AutoSize = true;
+            this.autoDecrypt_checkbox.Checked = true;
+            this.autoDecrypt_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoDecrypt_checkbox.Location = new System.Drawing.Point(346, 129);
+            this.autoDecrypt_checkbox.Name = "autoDecrypt_checkbox";
+            this.autoDecrypt_checkbox.Size = new System.Drawing.Size(181, 24);
+            this.autoDecrypt_checkbox.TabIndex = 6;
+            this.autoDecrypt_checkbox.Text = "Decrypt Automatically";
+            this.autoDecrypt_checkbox.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // version_textbox
             // 
-            this.textBox7.Location = new System.Drawing.Point(99, 59);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(428, 27);
-            this.textBox7.TabIndex = 4;
+            this.version_textbox.Location = new System.Drawing.Point(99, 59);
+            this.version_textbox.Name = "version_textbox";
+            this.version_textbox.ReadOnly = true;
+            this.version_textbox.Size = new System.Drawing.Size(428, 27);
+            this.version_textbox.TabIndex = 4;
             // 
-            // textBox6
+            // file_textbox
             // 
-            this.textBox6.Location = new System.Drawing.Point(99, 26);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(428, 27);
-            this.textBox6.TabIndex = 3;
+            this.file_textbox.Location = new System.Drawing.Point(99, 26);
+            this.file_textbox.Name = "file_textbox";
+            this.file_textbox.ReadOnly = true;
+            this.file_textbox.Size = new System.Drawing.Size(428, 27);
+            this.file_textbox.TabIndex = 3;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 158);
+            this.label8.Location = new System.Drawing.Point(6, 161);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 20);
             this.label8.TabIndex = 2;
@@ -305,37 +369,39 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "File";
             // 
-            // richTextBox1
+            // log_textbox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 284);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(854, 242);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.log_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.log_textbox.Location = new System.Drawing.Point(12, 284);
+            this.log_textbox.Name = "log_textbox";
+            this.log_textbox.ReadOnly = true;
+            this.log_textbox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.log_textbox.Size = new System.Drawing.Size(854, 242);
+            this.log_textbox.TabIndex = 2;
+            this.log_textbox.Text = "";
             // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.SupportMultiDottedExtensions = true;
             // 
-            // label11
+            // openFileDialog1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(95, 158);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 20);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "0 GB";
+            this.openFileDialog1.SupportMultiDottedExtensions = true;
             // 
             // MainForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(878, 538);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.log_textbox);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm2";
             this.Text = "SamFirm Continued";
             this.groupBox1.ResumeLayout(false);
@@ -350,12 +416,11 @@
 
         #endregion
 
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.Button update_button;
+        private System.Windows.Forms.Button download_button;
+        private System.Windows.Forms.Button decrypt_button;
+        private System.Windows.Forms.CheckBox binary_checkbox;
+        private System.Windows.Forms.CheckBox autoDecrypt_checkbox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -368,17 +433,22 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label speed_label;
+        private System.Windows.Forms.Label size_label;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label remainTime_label;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox log_textbox;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox model_textbox;
+        private System.Windows.Forms.TextBox region_textbox;
+        private System.Windows.Forms.TextBox pda_textbox;
+        private System.Windows.Forms.TextBox csc_textbox;
+        private System.Windows.Forms.TextBox phone_textbox;
+        private System.Windows.Forms.TextBox file_textbox;
+        private System.Windows.Forms.TextBox version_textbox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label remainSize_label;
     }
 }
