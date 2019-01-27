@@ -597,42 +597,43 @@ namespace SamFirm
         //Decrypt 버튼 클릭시 실행하는 메소드
         private void Decrypt_button_Click(object sender, EventArgs e)
         {
-            if (!System.IO.File.Exists(this.destinationfile))
+            //목적경로에 파일이 없으면 실행안함.
+            if (!File.Exists(this.destinationfile))
             {
                 Logger.WriteLine("Error Decrypt_button_Click(): File " + this.destinationfile + " does not exist");
+                return;
             }
-            else
+
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += delegate
             {
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += delegate {
-                    Thread.Sleep(100);
-                    Logger.WriteLine("\nDecrypting firmware...");
-                    this.ControlsEnabled(false);
-                    this.decrypt_button.Invoke(new Action(() => this.decrypt_button.Enabled = false));
-                    if (this.destinationfile.EndsWith(".enc2"))
+                Thread.Sleep(100);
+                Logger.WriteLine("\nDecrypting firmware...");
+                this.ControlsEnabled(false);
+                this.decrypt_button.Invoke(new Action(() => this.decrypt_button.Enabled = false));
+                if (this.destinationfile.EndsWith(".enc2"))
+                {
+                    Decrypt.SetDecryptKey(this.FW.Region, this.FW.Model, this.FW.Version);
+                }
+                else if (this.destinationfile.EndsWith(".enc4"))
+                {
+                    if (this.FW.BinaryNature == 1)
                     {
-                        Decrypt.SetDecryptKey(this.FW.Region, this.FW.Model, this.FW.Version);
+                        Decrypt.SetDecryptKey(this.FW.Version, this.FW.LogicValueFactory);
                     }
-                    else if (this.destinationfile.EndsWith(".enc4"))
+                    else
                     {
-                        if (this.FW.BinaryNature == 1)
-                        {
-                            Decrypt.SetDecryptKey(this.FW.Version, this.FW.LogicValueFactory);
-                        }
-                        else
-                        {
-                            Decrypt.SetDecryptKey(this.FW.Version, this.FW.LogicValueHome);
-                        }
+                        Decrypt.SetDecryptKey(this.FW.Version, this.FW.LogicValueHome);
                     }
-                    if (Decrypt.DecryptFile(this.destinationfile, Path.Combine(Path.GetDirectoryName(this.destinationfile), Path.GetFileNameWithoutExtension(this.destinationfile)), true) == 0)
-                    {
-                        System.IO.File.Delete(this.destinationfile);
-                    }
-                    Logger.WriteLine("Decryption finished");
-                    this.ControlsEnabled(true);
-                };
-                worker.RunWorkerAsync();
-            }
+                }
+                if (Decrypt.DecryptFile(this.destinationfile, Path.Combine(Path.GetDirectoryName(this.destinationfile), Path.GetFileNameWithoutExtension(this.destinationfile)), true) == 0)
+                {
+                    File.Delete(this.destinationfile);
+                }
+                Logger.WriteLine("Decryption finished.");
+                this.ControlsEnabled(true);
+            };
+            worker.RunWorkerAsync();
         }
 
         //Download 버튼 클릭시 실행하는 메소드

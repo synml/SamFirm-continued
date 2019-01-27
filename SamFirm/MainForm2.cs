@@ -61,7 +61,6 @@ namespace SamFirm
             this.PauseDownload = true;
 
             //모듈을 메모리에서 내리고, 로그를 파일로 저장한다.
-            Thread.Sleep(100);
             Imports.FreeModule();
             Logger.SaveLog();
         }
@@ -271,7 +270,42 @@ namespace SamFirm
         //Decrypt 버튼 클릭시 실행하는 메소드
         private void Decrypt_button_Click(object sender, EventArgs e)
         {
+            //목적경로에 파일이 없으면 실행안함.
+            if (!File.Exists(destinationFile))
+            {
+                Logger.WriteLine("Error Decrypt_button_Click(): File " + destinationFile + " does not exist");
+                return;
+            }
 
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += delegate
+            {
+                Logger.WriteLine("\nDecrypting firmware...");
+                ControlsEnabled(false);
+                decrypt_button.Invoke(new Action(() => decrypt_button.Enabled = false));
+                if (destinationFile.EndsWith(".enc2"))
+                {
+                    Decrypt.SetDecryptKey(FW.Region, FW.Model, FW.Version);
+                }
+                else if (destinationFile.EndsWith(".enc4"))
+                {
+                    if (FW.BinaryNature == 1)
+                    {
+                        Decrypt.SetDecryptKey(FW.Version, FW.LogicValueFactory);
+                    }
+                    else
+                    {
+                        Decrypt.SetDecryptKey(FW.Version, FW.LogicValueHome);
+                    }
+                }
+                if (Decrypt.DecryptFile(destinationFile, Path.Combine(Path.GetDirectoryName(destinationFile), Path.GetFileNameWithoutExtension(destinationFile)), true) == 0)
+                {
+                    File.Delete(this.destinationFile);
+                }
+                Logger.WriteLine("Decryption finished.");
+                this.ControlsEnabled(true);
+            };
+            worker.RunWorkerAsync();
         }
 
         //컨트롤 활성화/비활성화 설정 메소드
