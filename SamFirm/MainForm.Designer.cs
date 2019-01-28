@@ -407,6 +407,7 @@ namespace SamFirm
             // 
             // MainForm
             // 
+            this.AcceptButton = this.update_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(878, 538);
