@@ -16,13 +16,13 @@ namespace SamFirm
         private static int interval;
         private static long lastBread;
         private static int lastSpeed;
-        internal static bool ReconnectDownload;
+        public static bool ReconnectDownload { get; set; }
 
-        public static bool CheckConnection(string address, ref bool docheck)
+        public static bool CheckConnection(string address)
         {
             bool flag = false;
             Ping ping = new Ping();
-            while (docheck)
+            for (int i = 1; i <= 4; i++)
             {
                 if (flag == true)
                 {
@@ -237,7 +237,7 @@ namespace SamFirm
             worker.DoWork += delegate
             {
                 Thread.Sleep(1000);
-                if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ref ReconnectDownload))
+                if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net"))
                 {
                     MainForm.DownloadEventArgs args = new MainForm.DownloadEventArgs {
                         isReconnect = true
