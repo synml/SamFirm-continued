@@ -98,7 +98,6 @@
     <Compile Include="SamFirm\Settings.cs" />
     <Compile Include="SamFirm\Utility.cs" />
     <Compile Include="SamFirm\Web.cs" />
-    <Compile Include="SamFirm\WebRequestExtension.cs" />
     <Compile Include="SamFirm\Xml.cs" />
     <Compile Include="SamFirm\Crc32.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

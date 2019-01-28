@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -34,7 +35,7 @@ namespace SamFirm
                 wr.AddRange((int) length);
                 num = length;
             }
-            using (HttpWebResponse response = (HttpWebResponse) wr.GetResponseFUS())
+            using (HttpWebResponse response = (HttpWebResponse) wr.GetFUSResponse())
             {
                 if (response == null)
                 {
@@ -120,7 +121,7 @@ namespace SamFirm
             HttpWebRequest wr = KiesRequest.Create("https://neofussvr.sslcs.cdngc.net/NF_DownloadGenerateNonce.do");
             wr.Method = "POST";
             wr.ContentLength = 0L;
-            using (HttpWebResponse response = (HttpWebResponse) wr.GetResponseFUS())
+            using (HttpWebResponse response = (HttpWebResponse) wr.GetFUSResponse())
             {
                 if (response == null)
                 {
@@ -151,7 +152,7 @@ namespace SamFirm
             {
                 stream.Write(bytes, 0, bytes.Length);
             }
-            using (HttpWebResponse response = (HttpWebResponse) wr.GetResponseFUS())
+            using (HttpWebResponse response = (HttpWebResponse) wr.GetFUSResponse())
             {
                 if (response == null)
                 {
@@ -169,6 +170,32 @@ namespace SamFirm
                     }
                 }
                 return (int) response.StatusCode;
+            }
+        }
+
+        public static WebResponse GetFUSResponse(this WebRequest wr)
+        {
+            try
+            {
+                WebResponse response = wr.GetResponse();
+                if (response.Headers.AllKeys.Contains("Set-Cookie"))
+                {
+                    JSessionID = response.Headers["Set-Cookie"].Replace("JSESSIONID=", "").Split(new[] { ';' })[0];
+                }
+                if (response.Headers.AllKeys.Contains("NONCE"))
+                {
+                    Nonce = response.Headers["NONCE"];
+                }
+                return response;
+            }
+            catch (WebException exception)
+            {
+                Logger.WriteLine("Error GetResponseFUS() -> " + exception.ToString());
+                if (exception.Status == WebExceptionStatus.NameResolutionFailure)
+                {
+                    SetReconnect();
+                }
+                return exception.Response;
             }
         }
     }
