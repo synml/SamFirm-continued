@@ -66,6 +66,7 @@ namespace SamFirm
                     }
                 }
             }
+            Logger.WriteLine("Decryption finished.");
             return 0;
         }
 

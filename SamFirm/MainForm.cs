@@ -2,10 +2,10 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Reflection;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace SamFirm
@@ -19,31 +19,30 @@ namespace SamFirm
         }
 
         //필드
-        private string destinationFile;
-        private Command.Firmware FW;
-        public bool PauseDownload { get; set; }
+        private string destinationFile;     //다운로드하는 파일의 경로와 이름을 저장한다.
+        private Command.Firmware FW;        //다운로드할 펌웨어의 정보를 저장하는 구조체 객체.
+        public bool PauseDownload { get; set; }     //다운로드가 일시정지 되었는지 여부를 저장한다.
 
 
         //폼을 로드하면 호출하는 메소드
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //각 클래스의 form필드에 이 클래스를 붙여준다.
             Logger.Form = this;
             Web.Form = this;
             Decrypt.Form = this;
 
             //각 컨트롤에 설정파일에서 불러온 값을 적용한다.
-            this.model_textbox.Text = Settings.ReadSetting("Model");
-            this.region_textbox.Text = Settings.ReadSetting("Region");
-            if (Settings.ReadSetting("BinaryNature") == "True")
-            {
-                this.binary_checkbox.Checked = true;
-            }
-            if (Settings.ReadSetting("AutoDecrypt") == "False")
-            {
-                this.autoDecrypt_checkbox.Checked = false;
-            }
+            model_textbox.Text = Settings.ReadSetting("Model");
+            region_textbox.Text = Settings.ReadSetting("Region");
+            binary_checkbox.Checked = bool.Parse(Settings.ReadSetting("BinaryNature"));
+            autoDecrypt_checkbox.Checked = bool.Parse(Settings.ReadSetting("AutoDecrypt"));
+
+            //버전정보를 출력한다.
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             Logger.WriteLine("SamFirm v" + versionInfo.FileVersion);
+
+            //서버 인증서의 유효성을 검사하는 콜백을 설정한다.
             ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => true;
         }
 
@@ -51,13 +50,13 @@ namespace SamFirm
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //설정값을 저장한다.
-            Settings.SetSetting("Model", model_textbox.Text.ToUpper());
-            Settings.SetSetting("Region", region_textbox.Text.ToUpper());
+            Settings.SetSetting("Model", model_textbox.Text);
+            Settings.SetSetting("Region", region_textbox.Text);
             Settings.SetSetting("BinaryNature", binary_checkbox.Checked.ToString());
             Settings.SetSetting("AutoDecrypt", autoDecrypt_checkbox.Checked.ToString());
 
             //다운로드 일시정지 필드를 true로 한다.
-            this.PauseDownload = true;
+            PauseDownload = true;
 
             //모듈을 메모리에서 내리고, 로그를 파일로 저장한다.
             Imports.FreeModule();
@@ -68,20 +67,16 @@ namespace SamFirm
         private void Update_button_Click(object sender, EventArgs e)
         {
             //예외 처리
-            if (string.IsNullOrEmpty(model_textbox.Text))
+            if (string.IsNullOrEmpty(model_textbox.Text) || string.IsNullOrEmpty(region_textbox.Text))
             {
-                Logger.WriteLine("Error: Please specify a model");
-                return;
-            }
-            else if (string.IsNullOrEmpty(region_textbox.Text))
-            {
-                Logger.WriteLine("Error: Please specify a region");
+                Logger.WriteLine("Error: Please specify a model or a region.");
                 return;
             }
 
             //백그라운드 작업 등록
             BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate {
+            worker.DoWork += delegate
+            {
                 try
                 {
                     SetProgressBar(0);
@@ -104,7 +99,7 @@ namespace SamFirm
                         file_textbox.Invoke(new Action(() => file_textbox.Text = FW.Filename));
                         version_textbox.Invoke(new Action(() => version_textbox.Text = FW.Version));
                         double size = Math.Round(long.Parse(FW.Size) / 1024.0 / 1024.0 / 1024.0, 3);
-                        size_label.Invoke(new Action(() => size_label.Text = size.ToString() + " GB"));
+                        size_label.Invoke(new Action(() => size_label.Text = size.ToString(CultureInfo.InvariantCulture) + " GB"));
                     }
 
                     //출력을 완료하면 컨트롤을 활성화한다.
@@ -269,20 +264,25 @@ namespace SamFirm
         //Decrypt 버튼 클릭시 실행하는 메소드
         private void Decrypt_button_Click(object sender, EventArgs e)
         {
-            //목적경로에 파일이 없으면 실행안함.
+            //목적경로에 파일이 없으면 파일열기 대화상자를 보여준다.
             if (!File.Exists(destinationFile))
             {
-                Logger.WriteLine("Error Decrypt_button_Click(): File " + destinationFile + " does not exist");
-                return;
+                if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                {
+                    Logger.WriteLine("Decrypt aborted.");
+                    return;
+                }
+                destinationFile = openFileDialog1.FileName;
             }
 
             //백그라운드 작업 등록
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate
             {
-                Logger.WriteLine("\nDecrypting firmware...");
                 ControlsEnabled(false);
-                decrypt_button.Invoke(new Action(() => decrypt_button.Enabled = false));
+                Logger.WriteLine("\nDecrypting firmware...");
+
+                //복호화 키를 설정한다.
                 if (destinationFile.EndsWith(".enc2"))
                 {
                     Decrypt.SetDecryptKey(FW.Region, FW.Model, FW.Version);
@@ -298,11 +298,15 @@ namespace SamFirm
                         Decrypt.SetDecryptKey(FW.Version, FW.LogicValueHome);
                     }
                 }
-                if (Decrypt.DecryptFile(destinationFile, Path.Combine(Path.GetDirectoryName(destinationFile), Path.GetFileNameWithoutExtension(destinationFile))) == 0)
+                else
                 {
-                    File.Delete(destinationFile);
+                    Logger.WriteLine("Error: Wrong extension.");
+                    ControlsEnabled(true);
+                    return;
                 }
-                Logger.WriteLine("Decryption finished.");
+
+                //복호화를 실행한다.
+                Decrypt.DecryptFile(destinationFile, Path.Combine(Path.GetDirectoryName(destinationFile), Path.GetFileNameWithoutExtension(destinationFile)));
                 ControlsEnabled(true);
             };
             worker.RunWorkerAsync();

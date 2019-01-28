@@ -395,11 +395,13 @@ namespace SamFirm
             // 
             // saveFileDialog1
             // 
+            this.saveFileDialog1.AddExtension = false;
             this.saveFileDialog1.OverwritePrompt = false;
             this.saveFileDialog1.SupportMultiDottedExtensions = true;
             // 
             // openFileDialog1
             // 
+            this.openFileDialog1.Filter = "All files|*.*";
             this.openFileDialog1.SupportMultiDottedExtensions = true;
             // 
             // MainForm
