@@ -90,7 +90,7 @@ namespace SamFirm
             this.update_button.Location = new System.Drawing.Point(180, 231);
             this.update_button.Name = "update_button";
             this.update_button.Size = new System.Drawing.Size(124, 28);
-            this.update_button.TabIndex = 8;
+            this.update_button.TabIndex = 3;
             this.update_button.Text = "Update Check";
             this.update_button.UseVisualStyleBackColor = true;
             this.update_button.Click += new System.EventHandler(this.Update_button_Click);
@@ -101,7 +101,7 @@ namespace SamFirm
             this.binary_checkbox.Location = new System.Drawing.Point(10, 234);
             this.binary_checkbox.Name = "binary_checkbox";
             this.binary_checkbox.Size = new System.Drawing.Size(124, 24);
-            this.binary_checkbox.TabIndex = 7;
+            this.binary_checkbox.TabIndex = 2;
             this.binary_checkbox.Text = "Binary Nature";
             this.binary_checkbox.UseVisualStyleBackColor = true;
             // 
@@ -111,7 +111,7 @@ namespace SamFirm
             this.region_textbox.Location = new System.Drawing.Point(106, 59);
             this.region_textbox.Name = "region_textbox";
             this.region_textbox.Size = new System.Drawing.Size(162, 27);
-            this.region_textbox.TabIndex = 3;
+            this.region_textbox.TabIndex = 1;
             // 
             // model_textbox
             // 
@@ -119,7 +119,7 @@ namespace SamFirm
             this.model_textbox.Location = new System.Drawing.Point(106, 26);
             this.model_textbox.Name = "model_textbox";
             this.model_textbox.Size = new System.Drawing.Size(162, 27);
-            this.model_textbox.TabIndex = 2;
+            this.model_textbox.TabIndex = 0;
             // 
             // label2
             // 
@@ -160,6 +160,7 @@ namespace SamFirm
             this.phone_textbox.ReadOnly = true;
             this.phone_textbox.Size = new System.Drawing.Size(198, 27);
             this.phone_textbox.TabIndex = 5;
+            this.phone_textbox.TabStop = false;
             // 
             // csc_textbox
             // 
@@ -168,6 +169,7 @@ namespace SamFirm
             this.csc_textbox.ReadOnly = true;
             this.csc_textbox.Size = new System.Drawing.Size(198, 27);
             this.csc_textbox.TabIndex = 4;
+            this.csc_textbox.TabStop = false;
             // 
             // pda_textbox
             // 
@@ -176,6 +178,7 @@ namespace SamFirm
             this.pda_textbox.ReadOnly = true;
             this.pda_textbox.Size = new System.Drawing.Size(198, 27);
             this.pda_textbox.TabIndex = 3;
+            this.pda_textbox.TabStop = false;
             // 
             // label5
             // 
@@ -304,7 +307,7 @@ namespace SamFirm
             this.decrypt_button.Location = new System.Drawing.Point(215, 125);
             this.decrypt_button.Name = "decrypt_button";
             this.decrypt_button.Size = new System.Drawing.Size(110, 30);
-            this.decrypt_button.TabIndex = 9;
+            this.decrypt_button.TabIndex = 1;
             this.decrypt_button.Text = "Decrypt";
             this.decrypt_button.UseVisualStyleBackColor = true;
             this.decrypt_button.Click += new System.EventHandler(this.Decrypt_button_Click);
@@ -314,7 +317,7 @@ namespace SamFirm
             this.download_button.Location = new System.Drawing.Point(99, 125);
             this.download_button.Name = "download_button";
             this.download_button.Size = new System.Drawing.Size(110, 30);
-            this.download_button.TabIndex = 8;
+            this.download_button.TabIndex = 0;
             this.download_button.Text = "Download";
             this.download_button.UseVisualStyleBackColor = true;
             this.download_button.Click += new System.EventHandler(this.Download_button_Click);
@@ -327,7 +330,7 @@ namespace SamFirm
             this.autoDecrypt_checkbox.Location = new System.Drawing.Point(346, 129);
             this.autoDecrypt_checkbox.Name = "autoDecrypt_checkbox";
             this.autoDecrypt_checkbox.Size = new System.Drawing.Size(181, 24);
-            this.autoDecrypt_checkbox.TabIndex = 6;
+            this.autoDecrypt_checkbox.TabIndex = 2;
             this.autoDecrypt_checkbox.Text = "Decrypt Automatically";
             this.autoDecrypt_checkbox.UseVisualStyleBackColor = true;
             // 
@@ -338,6 +341,7 @@ namespace SamFirm
             this.version_textbox.ReadOnly = true;
             this.version_textbox.Size = new System.Drawing.Size(428, 27);
             this.version_textbox.TabIndex = 4;
+            this.version_textbox.TabStop = false;
             // 
             // file_textbox
             // 
@@ -346,6 +350,7 @@ namespace SamFirm
             this.file_textbox.ReadOnly = true;
             this.file_textbox.Size = new System.Drawing.Size(428, 27);
             this.file_textbox.TabIndex = 3;
+            this.file_textbox.TabStop = false;
             // 
             // label8
             // 
@@ -385,6 +390,7 @@ namespace SamFirm
             this.log_textbox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.log_textbox.Size = new System.Drawing.Size(854, 242);
             this.log_textbox.TabIndex = 2;
+            this.log_textbox.TabStop = false;
             this.log_textbox.Text = "";
             // 
             // saveFileDialog1
