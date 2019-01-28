@@ -18,7 +18,8 @@ namespace SamFirm
             {
                 using (FileStream stream2 = new FileStream(outputFile, FileMode.Create))
                 {
-                    RijndaelManaged managed = new RijndaelManaged {
+                    RijndaelManaged managed = new RijndaelManaged
+                    {
                         Mode = CipherMode.ECB,
                         BlockSize = 0x80,
                         Padding = PaddingMode.PKCS7
@@ -47,17 +48,17 @@ namespace SamFirm
                         catch (CryptographicException)
                         {
                             Logger.WriteLine("Error DecryptFile(): Wrong key.");
-                            return 2;
+                            return 3;
                         }
                         catch (TargetInvocationException)
                         {
                             Logger.WriteLine("Error DecryptFile(): Please turn off FIPS compliance checking.");
-                            return 3;
+                            return 800;
                         }
                         catch (Exception exception)
                         {
                             Logger.WriteLine("Error DecryptFile() -> " + exception);
-                            return 1;
+                            return 3;
                         }
                         finally
                         {
@@ -66,7 +67,6 @@ namespace SamFirm
                     }
                 }
             }
-            Logger.WriteLine("Decryption finished.");
             return 0;
         }
 
@@ -74,6 +74,20 @@ namespace SamFirm
         {
             string logicCheck = Utility.GetLogicCheck(version, LogicValue);
             byte[] bytes = Encoding.ASCII.GetBytes(logicCheck);
+            using (MD5 md = MD5.Create())
+            {
+                KEY = md.ComputeHash(bytes);
+            }
+        }
+
+        public static void SetDecryptKey(string region, string model, string version)
+        {
+            StringBuilder builder = new StringBuilder(region);
+            builder.Append(':');
+            builder.Append(model);
+            builder.Append(':');
+            builder.Append(version);
+            byte[] bytes = Encoding.ASCII.GetBytes(builder.ToString());
             using (MD5 md = MD5.Create())
             {
                 KEY = md.ComputeHash(bytes);

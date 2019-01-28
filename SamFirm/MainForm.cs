@@ -293,23 +293,25 @@ namespace SamFirm
                 Logger.WriteLine("\nDecrypting firmware...");
 
                 //복호화 키를 설정한다.
-                if (destinationFile.EndsWith(".enc4") != true)
+                if (destinationFile.EndsWith(".enc2"))
                 {
-                    Logger.WriteLine("Error: Wrong extension.");
-                    ControlsEnabled(true);
-                    return;
+                    Decrypt.SetDecryptKey(FW.Region, FW.Model, FW.Version);
                 }
-                if (FW.BinaryNature == 1)
+                else if (destinationFile.EndsWith(".enc4"))
                 {
-                    Decrypt.SetDecryptKey(FW.Version, FW.LogicValueFactory);
-                }
-                else
-                {
-                    Decrypt.SetDecryptKey(FW.Version, FW.LogicValueHome);
+                    if (FW.BinaryNature == 1)
+                    {
+                        Decrypt.SetDecryptKey(FW.Version, FW.LogicValueFactory);
+                    }
+                    else
+                    {
+                        Decrypt.SetDecryptKey(FW.Version, FW.LogicValueHome);
+                    }
                 }
 
                 //복호화를 실행한다.
                 Decrypt.DecryptFile(destinationFile, Path.Combine(Path.GetDirectoryName(destinationFile), Path.GetFileNameWithoutExtension(destinationFile)));
+                Logger.WriteLine("Decryption finished");
                 ControlsEnabled(true);
             };
             worker.RunWorkerAsync();
