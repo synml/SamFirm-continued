@@ -5,7 +5,7 @@ namespace SamFirm
 {
     internal class KiesRequest : WebRequest
     {
-        public new static HttpWebRequest Create(string requestUriString)
+        public static new HttpWebRequest Create(string requestUriString)
         {
             HttpWebRequest request = (HttpWebRequest) WebRequest.Create(requestUriString);
             request.Headers["Cache-Control"] = "no-cache";
