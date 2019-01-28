@@ -15,13 +15,13 @@ namespace SamFirm
                 return -1;
             }
             htmlstatus = Web.DownloadBinaryInit(Xml.GetXmlBinaryInit(file, version, region, model_type), out string str);
-            if ((htmlstatus == 200) && (Utility.GetXmlStatusCode(str) == 200))
+            if ((htmlstatus != 200) || (Utility.GetXmlStatusCode(str) != 200))
             {
-                return Web.DownloadBinary(path, file, saveTo, size);
+                Logger.WriteLine("Error Download(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXmlStatusCode(str) + ")");
+                Utility.CheckHtmlXmlStatus(htmlstatus, Utility.GetXmlStatusCode(str));
+                return -1;
             }
-            Logger.WriteLine("Error Download(): Could not send BinaryInform. Status code (" + htmlstatus + "/" + Utility.GetXmlStatusCode(str) + ")");
-            Utility.CheckHtmlXmlStatus(htmlstatus, Utility.GetXmlStatusCode(str));
-            return -1;
+            return Web.DownloadBinary(path, file, saveTo, size);
         }
 
         public static Firmware UpdateCheck(string model, string region, string info, bool BinaryNature, bool AutoFetch = false)

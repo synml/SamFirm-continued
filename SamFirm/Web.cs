@@ -22,7 +22,7 @@ namespace SamFirm
             wr.Headers["Authorization"] = Imports.GetAuthorization(Nonce).Replace("Authorization: ", "").Replace("nonce=\"", "nonce=\"" + Nonce);
             wr.Timeout = 0x61a8;
             wr.ReadWriteTimeout = 0x61a8;
-            if (System.IO.File.Exists(saveTo))
+            if (File.Exists(saveTo))
             {
                 long length = new FileInfo(saveTo).Length;
                 if (long.Parse(size) == length)
@@ -48,7 +48,7 @@ namespace SamFirm
                 else
                 {
                     long total = long.Parse(response.GetResponseHeader("content-length")) + num;
-                    if (!System.IO.File.Exists(saveTo) || (new FileInfo(saveTo).Length != total))
+                    if (!File.Exists(saveTo) || (new FileInfo(saveTo).Length != total))
                     {
                         byte[] buffer = new byte[0x2000];
                         Stopwatch sw = new Stopwatch();

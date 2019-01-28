@@ -248,9 +248,11 @@ namespace SamFirm
                             }
                             Logger.WriteLine("CRC matched.");
                         }
-                        decrypt_button.Invoke(new Action(() => decrypt_button.Enabled = true));
+
+                        //자동 복호화가 체크되어 있으면 복호화 버튼 클릭 이벤트를 호출한다.
                         if (autoDecrypt_checkbox.Checked)
                         {
+                            decrypt_button.Invoke(new Action(() => decrypt_button.Enabled = true));
                             Decrypt_button_Click(o, null);
                         }
                     }
