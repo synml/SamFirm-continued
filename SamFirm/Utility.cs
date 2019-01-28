@@ -233,7 +233,8 @@ namespace SamFirm
         public static void Reconnect(Action<object, EventArgs> action)
         {
             BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate {
+            worker.DoWork += delegate
+            {
                 Thread.Sleep(1000);
                 if (CheckConnection("cloud-neofussvr.sslcs.cdngc.net", ref ReconnectDownload))
                 {

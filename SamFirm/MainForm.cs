@@ -134,12 +134,12 @@ namespace SamFirm
                     return;
                 }
             }
-            if (PauseDownload)
+            if (PauseDownload == true)
             {
                 Logger.WriteLine("Download thread is still running. Please wait.");
                 return;
             }
-            else if (string.IsNullOrEmpty(file_textbox.Text))
+            else if (string.IsNullOrEmpty(FW.Filename))
             {
                 Logger.WriteLine("No file to download. Please check for update first.");
                 return;
@@ -150,37 +150,44 @@ namespace SamFirm
             {
                 //extension = .zip.enc4
                 string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(FW.Filename)) + Path.GetExtension(FW.Filename);
-                saveFileDialog1.FileName = FW.Filename.Replace(extension, "");
-                saveFileDialog1.Filter = "Firmware|*" + extension;
+
+                //파일이름의 기본값을 FW구조체의 파일이름으로 설정한다.
+                saveFileDialog1.FileName = FW.Filename;
+
+                //확인 버튼을 누르지 않으면 다운로드를 취소한다.
                 if (saveFileDialog1.ShowDialog() != DialogResult.OK)
                 {
-                    Logger.WriteLine("Download aborted.");
+                    Logger.WriteLine("Download canceled.");
                     return;
                 }
-                if (!saveFileDialog1.FileName.EndsWith(extension))
+
+                //확장자가 .zip.enc4로 끝나지 않으면 따로 붙여준다.
+                if (saveFileDialog1.FileName.EndsWith(extension) != true)
                 {
-                    saveFileDialog1.FileName = saveFileDialog1.FileName + extension;
+                    destinationFile = saveFileDialog1.FileName + extension;
                 }
                 else
                 {
-                    saveFileDialog1.FileName = saveFileDialog1.FileName.Replace(extension + extension, extension);
+                    destinationFile = saveFileDialog1.FileName;
                 }
-                Logger.WriteLine("\nFilename: " + saveFileDialog1.FileName);
 
-                destinationFile = saveFileDialog1.FileName;
+                //파일명을 출력한다.
+                Logger.WriteLine("\nFilename: " + FW.Filename);
+
+                //목적지에 파일이 존재하면 대화상자를 보여준다.
                 if (File.Exists(destinationFile))
                 {
                     switch (new AppendDialogBox().ShowDialog())
                     {
-                        case DialogResult.Yes:
+                        case DialogResult.Yes:  //append
                             break;
 
-                        case DialogResult.No:
+                        case DialogResult.No:   //overwrite
                             File.Delete(destinationFile);
                             break;
 
                         case DialogResult.Cancel:
-                            Logger.WriteLine("Download aborted.");
+                            Logger.WriteLine("Download canceled.");
                             return;
 
                         default:
@@ -189,6 +196,8 @@ namespace SamFirm
                     }
                 }
             }
+
+            //백그라운드 작업 등록
             Utility.TaskBarProgressPaused(false);
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate (object o, DoWorkEventArgs _e)
@@ -197,21 +206,20 @@ namespace SamFirm
                 {
                     ControlsEnabled(false);
                     Utility.ReconnectDownload = false;
+
+                    //다운로드 버튼을 일시정지 버튼으로 바꾼다.
                     MethodInvoker invoker1 = delegate
                     {
                         download_button.Enabled = true;
                         download_button.Text = "Pause";
                     };
                     download_button.Invoke(invoker1);
-                    if (FW.Filename == destinationFile)
-                    {
-                        Logger.WriteLine("Download " + FW.Filename);
-                    }
-                    else
-                    {
-                        Logger.WriteLine("Download " + FW.Filename + " to " + destinationFile);
-                    }
-                    Command.Download(FW.Path, FW.Filename, FW.Version, FW.Region, FW.Model_Type, destinationFile, FW.Size, true);
+
+                    //다운로드 경로와 파일명을 출력한다.
+                    Logger.WriteLine("Download: " + destinationFile);
+
+                    //펌웨어 다운로드를 시작한다.
+                    Command.Download(FW.Path, FW.Filename, FW.Version, FW.Region, FW.Model_Type, destinationFile, FW.Size);
                     if (PauseDownload == true)
                     {
                         Logger.WriteLine("Download paused.");
@@ -269,7 +277,7 @@ namespace SamFirm
             {
                 if (openFileDialog1.ShowDialog() != DialogResult.OK)
                 {
-                    Logger.WriteLine("Decrypt aborted.");
+                    Logger.WriteLine("Decrypt canceled.");
                     return;
                 }
                 destinationFile = openFileDialog1.FileName;

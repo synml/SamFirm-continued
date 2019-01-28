@@ -6,16 +6,15 @@ namespace SamFirm
 {
     internal class Command
     {
-        public static int Download(string path, string file, string version, string region, string model_type, string saveTo, string size, bool GUI = true)
+        public static int Download(string path, string file, string version, string region, string model_type, string saveTo, string size)
         {
-            string str;
             int htmlstatus = Web.GenerateNonce();
             if (htmlstatus != 200)
             {
                 Logger.WriteLine("Error Download(): Could not generate Nonce. Status code (" + htmlstatus + ")");
                 return -1;
             }
-            htmlstatus = Web.DownloadBinaryInit(Xml.GetXmlBinaryInit(file, version, region, model_type), out str);
+            htmlstatus = Web.DownloadBinaryInit(Xml.GetXmlBinaryInit(file, version, region, model_type), out string str);
             if ((htmlstatus == 200) && (Utility.GetXmlStatusCode(str) == 200))
             {
                 return Web.DownloadBinary(path, file, saveTo, size);

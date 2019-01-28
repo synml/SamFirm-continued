@@ -396,6 +396,7 @@ namespace SamFirm
             // saveFileDialog1
             // 
             this.saveFileDialog1.AddExtension = false;
+            this.saveFileDialog1.Filter = "All files|*.*";
             this.saveFileDialog1.OverwritePrompt = false;
             this.saveFileDialog1.SupportMultiDottedExtensions = true;
             // 
