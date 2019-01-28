@@ -31,7 +31,27 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
 
 ## 사용 방법, 예제
 
-현재 베타버전이라 예전 SamFirm 프로그램의 사용법과 동일합니다. 정식버전 게시 이후 작성할 예정입니다.
+- 사용 방법
+
+  1. 모델명과 지역코드를 입력하고 Update Check 버튼을 클릭한다. Binary Nature 체크 시, PIT 파일을 추가로 다운로드할 수 있다.
+
+     ![Update Check](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Update%20Check.PNG)
+
+  2. Download 버튼을 클릭한다. Decrypt Automatically 체크 시, 자동으로 복호화를 수행한다.
+
+     ![Download](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Download.PNG)
+
+  3. 자동으로 CRC32 검사를 수행한다.
+
+     ![CRC32](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/CRC32.PNG)
+
+  4. 다운로드한 파일은 암호화가 되어있다. 자동 복호화에 체크했다면 알아서 복호화 과정을 수행하지만, 수동으로 하려면 Decrypt 버튼을 클릭하면 된다.
+
+     ![Decrypt](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Decrypt.PNG)
+
+  5. 다운로드가 완료되면 압축파일과 암호화 파일이 있다. 펌웨어는 압축을 풀고 사용하면 되며, 암호화 파일은 삭제하거나 보관해도 된다.
+
+     ![Complete](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Complete.PNG)
 
 ## 기능
 
@@ -65,6 +85,12 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
 
 ## 변경 로그
 
+- 1.0.0
+  - 정식 릴리즈
+- 0.3.0
+  - 이슈 모두 수정
+- 0.2.0
+  - HiDPI 지원 (윈도우10에서만)
 - 0.1.0
   - 첫 베타 릴리즈
 
