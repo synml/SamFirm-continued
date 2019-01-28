@@ -153,9 +153,8 @@ namespace SamFirm
             //다운로드 작업
             if ((e.GetType() != typeof(DownloadEventArgs)) || !((DownloadEventArgs)e).isReconnect)
             {
-                //.zip + .enc4
+                //extension = .zip.enc4
                 string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(FW.Filename)) + Path.GetExtension(FW.Filename);
-                saveFileDialog1.OverwritePrompt = false;
                 saveFileDialog1.FileName = FW.Filename.Replace(extension, "");
                 saveFileDialog1.Filter = "Firmware|*" + extension;
                 if (saveFileDialog1.ShowDialog() != DialogResult.OK)
