@@ -119,7 +119,7 @@ namespace SamFirm
             //다운로드를 일시정지한다.
             if (download_button.Text == "Pause")
             {
-                Utility.TaskBarProgressState(true);
+                Utility.TaskBarProgressPaused(true);
                 PauseDownload = true;
                 Utility.ReconnectDownload = false;
                 download_button.Text = "Download";
@@ -189,7 +189,7 @@ namespace SamFirm
                     }
                 }
             }
-            Utility.TaskBarProgressState(false);
+            Utility.TaskBarProgressPaused(false);
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate (object o, DoWorkEventArgs _e)
             {
@@ -327,19 +327,11 @@ namespace SamFirm
         //작업 진행바를 설정하는 메소드
         public void SetProgressBar(int progress)
         {
-            MethodInvoker invoker1 = delegate
-            {
-                if (progress > 100)
-                {
-                    this.progressBar1.Value = 100;
-                }
-                else
-                {
-                    this.progressBar1.Value = progress;
-                }
-                TaskbarManager.Instance.SetProgressValue(progress, 100);
-            };
-            this.progressBar1.Invoke(invoker1);
+            //폼의 진행바 컨트롤의 값을 변경한다.
+            progressBar1.Invoke(new Action(() => progressBar1.Value = progress > 100 ? 100 : progress));
+
+            //작업 표시줄의 진행바의 값을 변경한다.
+            TaskbarManager.Instance.SetProgressValue(progress, 100);
         }
 
         public class DownloadEventArgs : EventArgs

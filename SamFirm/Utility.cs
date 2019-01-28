@@ -263,7 +263,7 @@ namespace SamFirm
             return ((num / ((int) num2)) * ((int) num2));
         }
 
-        public static void TaskBarProgressState(bool paused)
+        public static void TaskBarProgressPaused(bool paused)
         {
             if (paused)
             {
