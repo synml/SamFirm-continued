@@ -11,11 +11,14 @@ namespace SamFirm
         private readonly uint[] table;
         private static uint[] defaultTable;
 
-        public Crc32()
-        {
-            hash = uint.MaxValue;
-            seed = uint.MaxValue;
-            table = InitializeTable(0xedb88320);
+        public Crc32() : this(0xedb88320, uint.MaxValue)
+        { }
+
+        public Crc32(uint polynomial, uint seed)
+        { 
+            table = InitializeTable(polynomial);
+            hash = seed;
+            this.seed = seed;
         }
 
         private static uint CalculateHash(uint[] table, uint seed, IList<byte> buffer, int start, int size)

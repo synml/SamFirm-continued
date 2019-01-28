@@ -78,8 +78,10 @@ namespace SamFirm
                 throw new FileNotFoundException("File for crc check not found");
             }
             Crc32 crc2 = new Crc32();
-            FileStream stream = File.Open(file, FileMode.Open, FileAccess.Read);
-            buffer = crc2.ComputeHash(stream);
+            using (FileStream stream = File.Open(file, FileMode.Open, FileAccess.Read))
+            {
+                buffer = crc2.ComputeHash(stream);
+            }
             return crc.Compare(buffer);
         }
 
