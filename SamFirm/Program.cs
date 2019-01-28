@@ -8,6 +8,7 @@ namespace SamFirm
         [STAThread]
         static void Main(string[] args)
         {
+            Imports.FreeConsole();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
