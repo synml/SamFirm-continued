@@ -44,6 +44,10 @@ namespace SamFirm
 
             //서버 인증서의 유효성을 검사하는 콜백을 설정한다.
             ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => true;
+
+            //다운로드 버튼, 복호화 버튼 비활성화
+            download_button.Enabled = false;
+            decrypt_button.Enabled = false;
         }
 
         //폼을 닫으면 호출하는 메소드
