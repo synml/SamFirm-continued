@@ -52,6 +52,7 @@ namespace SamFirm
             }
         }
 
+        //배열 2개가 같은 원소를 가졌는지 검사하는 메소드
         public static bool Compare(this byte[] arr1, byte[] arr2)
         {
             if (arr1.Length != arr2.Length)
@@ -68,21 +69,21 @@ namespace SamFirm
             return true;
         }
 
+        //CRC32를 검사하는 메소드
         public static bool CRCCheck(string file, byte[] crc)
         {
             byte[] buffer;
-            if (!System.IO.File.Exists(file))
+            if (!File.Exists(file))
             {
                 throw new FileNotFoundException("File for crc check not found");
             }
             Crc32 crc2 = new Crc32();
-            using (FileStream stream = System.IO.File.Open(file, FileMode.Open, FileAccess.Read))
-            {
-                buffer = crc2.ComputeHash(stream);
-            }
+            FileStream stream = File.Open(file, FileMode.Open, FileAccess.Read);
+            buffer = crc2.ComputeHash(stream);
             return crc.Compare(buffer);
         }
 
+        //다운로드 속도를 알아내는 메소드
         public static int DownloadSpeed(long bread, Stopwatch sw)
         {
             if (!sw.IsRunning)
@@ -256,12 +257,12 @@ namespace SamFirm
 
         public static int Round(int num, int pos)
         {
-            double num2 = Math.Pow(10.0, (double) pos);
+            double num2 = Math.Pow(10.0, pos);
             if (num2 > num)
             {
                 return num;
             }
-            return ((num / ((int) num2)) * ((int) num2));
+            return num / ((int) num2) * ((int) num2);
         }
 
         public static void TaskBarProgressPaused(bool paused)

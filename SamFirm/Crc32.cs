@@ -6,21 +6,16 @@ namespace SamFirm
 {
     public sealed class Crc32 : HashAlgorithm
     {
-        //기본값 Polynomial = 0xedb88320
-        //기본값 Seed = uint.MaxValue
         private uint hash;
         private readonly uint seed;
-        private static uint[] defaultTable;
         private readonly uint[] table;
+        private static uint[] defaultTable;
 
-        public Crc32() : this(0xedb88320, uint.MaxValue)
-        { }
-
-        public Crc32(uint polynomial, uint seed)
+        public Crc32()
         {
-            this.table = InitializeTable(polynomial);
-            this.hash = seed;
-            this.seed = seed;
+            hash = uint.MaxValue;
+            seed = uint.MaxValue;
+            table = InitializeTable(0xedb88320);
         }
 
         private static uint CalculateHash(uint[] table, uint seed, IList<byte> buffer, int start, int size)

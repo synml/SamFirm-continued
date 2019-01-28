@@ -70,26 +70,10 @@ namespace SamFirm
             return 0;
         }
 
-        //Binary Nature가 체크상태이면 호출하는 메소드
         public static void SetDecryptKey(string version, string LogicValue)
         {
             string logicCheck = Utility.GetLogicCheck(version, LogicValue);
             byte[] bytes = Encoding.ASCII.GetBytes(logicCheck);
-            using (MD5 md = MD5.Create())
-            {
-                KEY = md.ComputeHash(bytes);
-            }
-        }
-
-        //Binary Nature가 체크되어 있지 않으면 호출하는 메소드
-        public static void SetDecryptKey(string region, string model, string version)
-        {
-            StringBuilder builder = new StringBuilder(region);
-            builder.Append(':');
-            builder.Append(model);
-            builder.Append(':');
-            builder.Append(version);
-            byte[] bytes = Encoding.ASCII.GetBytes(builder.ToString());
             using (MD5 md = MD5.Create())
             {
                 KEY = md.ComputeHash(bytes);
