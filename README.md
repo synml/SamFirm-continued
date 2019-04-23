@@ -45,7 +45,7 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
 
      ![CRC32](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/CRC32.PNG)
 
-  4. 다운로드한 파일은 암호화가 되어있다. 자동 복호화에 체크했다면 알아서 복호화 과정을 수행하지만, 수동으로 하려면 Decrypt 버튼을 클릭하면 된다.
+  4. 다운로드한 파일은 암호화가 되어있다. 자동 복호화에 체크했다면 자동으로 복호화 과정을 수행하지만, 수동으로 하려면 Decrypt 버튼을 클릭한다.
 
      ![Decrypt](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Decrypt.PNG)
 
@@ -74,13 +74,13 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
 ## 개발 환경
 
 - S/W 개발 환경
-  - Visual Studio 2017 Community (15.9.6)
+  - Visual Studio 2019 Community (16.0.2)
   - .NET Framework 4.7.2
   - C# Language (x86 Build)
 - 개발 환경 설정
   1. 리포지토리를 클론, 포크하거나 압축파일로 코드를 다운로드하세요.
-  2. .NET Framework 4.7.2 개발 도구가 설치되어 있는지 확인하세요. 없으면 설치.
-  3. Visual Studio 2017로 솔루션 파일(.sln)을 여세요.
+  2. .NET Framework 4.7.2개발 도구가 설치되어 있는지 확인하세요. 없으면 설치.
+  3. Visual Studio 2019로 솔루션 파일(.sln)을 여세요.
   4. 코딩 시작~!
 
 ## 변경 로그
@@ -97,14 +97,14 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
 ## 개발자 정보와 크레딧
 
 - 개발자
-  - Lulin Pollux - [GitHub 프로필](https://github.com/Lulin-Pollux), [kistssy+dev@gmail.com](mailto:kistssy+dev@gmail.com)
+  - Lulin Pollux - [GitHub 프로필](https://github.com/LulinPollux), [kistssy+dev@gmail.com](mailto:kistssy+dev@gmail.com)
 - 크레딧
   - 원본 프로젝트: [eladkarako/SamFirm-Source](https://github.com/eladkarako/SamFirm-Source)
   - XDA Forum: [forum.xda-developers.com/...](https://forum.xda-developers.com/galaxy-tab-s/general/tool-samfirm-samsung-firmware-t2988647) (zxz0O0)
 
 ## 기여 방법
 
-1. [이 프로젝트](https://github.com/Lulin-Pollux/SamFirm-continued)를 포크합니다.
+1. [이 프로젝트](https://github.com/LulinPollux/SamFirm-continued)를 포크합니다.
 2. GitHub Desktop에서 새 브랜치를 만드세요.
 3. 수정사항을 커밋하세요.
 4. 새 브랜치에 푸시하세요.
