@@ -1,69 +1,65 @@
 # SamFirm-continued
 
-> SamFirm의 연장 지원 프로젝트입니다.
+> This is a SamFirm extension support project.
 
-SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 프로그램입니다. [XDA 포럼](https://forum.xda-developers.com/galaxy-tab-s/general/tool-samfirm-samsung-firmware-t2988647)에 처음 게시되었고, 저를 포함한 많은 사용자에게 큰 도움이 되었습니다.
+SamFirm is a program that lets you download stock firmware for your Samsung smartphone. It was first posted to the [XDA Forum](https://forum.xda-developers.com/galaxy-tab-s/general/tool-samfirm-samsung-firmware-t2988647), and it was very helpful to many people, including me.
 
-그러나 2016년 이후로 업데이트가 끊기면서 .NET Framework 4 이상을 지원하지 않으며, 최신 이외의 펌웨어는 다운로드가 불가능한 문제로 인해 [updato.com](https://updato.com/)이라는 사이트를 대신 이용하게 되었습니다. 이 사이트는 각 기종에 대한 펌웨어를 아카이빙한 것으로, 현재까지 출시된 펌웨어를 회원가입, 속도제한 없이 다운로드 할 수 있지만 최신 펌웨어 반영이 미흡한 것이 흠입니다.
+However, the update has been down since 2016, .NET Framework 4 or later is not supported and non-up-to-date firmwares can't download anymore. So I used [updato.com](https://updato.com/) instead. This is an archive of firmware for each model, which allows users to download firmware that has been released so far without a subscription or speed limit, but the latest firmware is not apply quickly.
 
-따라서 [GitHub에 게시된 소스코드](https://github.com/eladkarako/SamFirm-Source)를 이용해 .NET Framework를 최신버전으로 변경하고, 작동불능 기능이나 불필요한 기능은 삭제하며 기존의 어려운 사용법을 최대한 쉽게 만들기로 했습니다.
+Therefore, using the source code posted on [GitHub](https://github.com/eladkarako/SamFirm-Source), I decided to change the "NET Framework" to the latest version, delete the inoperable or unnecessary features, and make the existing difficult usage as easy as possible.
 
-이 프로젝트가 많은 사용자에게 유용히 사용되면 좋겠습니다. 😎
+I hope this project will be useful to many users. 😎
 
-## 프로젝트 소개
+## Project Introduction
 
-- 동기
-  - SamFirm 프로그램을 현재에도 원활히 사용할 수 있도록 개량하기 위해 시작했습니다.
-- 목적
-  - 최신 순정 펌웨어를 쉽게 다운로드 할 수 있다.
-- 주요 기능
-  - 최신 펌웨어 확인, 암호화 파일 다운로드, 복호화
+- Motive
+  - I've started to improve the SamFirm program to make it work today.
+- Purpose
+  - It is easy to download the latest stock firmware.
+- Main functions
+  - Latest firmware check, encrypted file download, decryption
 
 ## Build Status
 
 [![release](https://img.shields.io/github/release/Lulin-Pollux/SamFirm-continued.svg?style=popout-square)](https://github.com/Lulin-Pollux/SamFirm-continued/releases/latest) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/47cf571666ef46a09a8087f18daed6d4)](https://www.codacy.com/app/Lulin-Pollux/SamFirm-continued?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Lulin-Pollux/SamFirm-continued&amp;utm_campaign=Badge_Grade) ![last commit](https://img.shields.io/github/last-commit/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) ![](https://img.shields.io/github/downloads/Lulin-Pollux/SamFirm-continued/total.svg?style=popout-square) ![License](https://img.shields.io/github/license/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) 
 
-## 설치 방법
+## How to Install
 
-1. Release 뱃지를 클릭하여 릴리즈 페이지로 이동한다.
-2. 가장 최신 버전을 다운로드한다. (Latest Release)
-3. .NET Framework 4.7, [Visual C++ 2010 x86](http://www.microsoft.com/ko-kr/download/details.aspx?id=5555), [Visual C++ 2008 x86](https://www.microsoft.com/ko-kr/download/details.aspx?id=5582)가 설치되어있는지 확인해주세요. 누락된 부분은 구글링이나 각 링크를 클릭하여 설치파일을 다운로드 받은 후 설치하세요.
+1. Click the Release badge above or the [Release link](https://github.com/Lulin-Pollux/SamFirm-continued/releases/latest).
+2. Download the latest version. (Latest Release)
+3. Check that .NET Framework 4.7, [Visual C++ 2010 x86](http://www.microsoft.com/ko-kr/download/details.aspx?id=5555), [Visual C++ 2008 x86](https://www.microsoft.com/ko-kr/download/details.aspx?id=5582) are installed. Please download and install the missing parts by clicking each link or search on google.
 
-## 사용 방법, 예제
+## How to Use, Example
 
-- 사용 방법
+1. Enter the model name and region code, and click the Update Check button. Additional PIT files can be downloaded when checking the 'Binary Nature'.
 
-  1. 모델명과 지역코드를 입력하고 Update Check 버튼을 클릭한다. Binary Nature 체크 시, PIT 파일을 추가로 다운로드할 수 있다.
+   ![Update Check](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Update%20Check.PNG)
 
-     ![Update Check](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Update%20Check.PNG)
+2. Click the Download button. Decrypt automatically when checking the 'Decrypt Automatically'.
 
-  2. Download 버튼을 클릭한다. Decrypt Automatically 체크 시, 자동으로 복호화를 수행한다.
+   ![Download](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Download.PNG)
 
-     ![Download](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Download.PNG)
+3. Perform the CRC32 inspection automatically.
 
-  3. 자동으로 CRC32 검사를 수행한다.
+   ![CRC32](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/CRC32.PNG)
 
-     ![CRC32](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/CRC32.PNG)
+4. The downloaded file is encrypted. If you checked for automatic decryption, perform the decryption process automatically, but click the Decrypt button to manually do so.
 
-  4. 다운로드한 파일은 암호화가 되어있다. 자동 복호화에 체크했다면 자동으로 복호화 과정을 수행하지만, 수동으로 하려면 Decrypt 버튼을 클릭한다.
+5. The download is complete, there is a archive file and an encryption file. Unzip the firmware file and use it, and encryption file can be deleted or stored.
 
-     ![Decrypt](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Decrypt.PNG)
+   ![Complete](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Complete.PNG)
 
-  5. 다운로드가 완료되면 압축파일과 암호화 파일이 있다. 펌웨어는 압축을 풀고 사용하면 되며, 암호화 파일은 삭제하거나 보관해도 된다.
+## Functions
 
-     ![Complete](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Complete.PNG)
+- Check the latest firmware for each variant.
+- One-click Download the Latest Firmware.
+- CRC32 Inspection.
+- Automatically decrypt.
 
-## 기능
-
-- 각 기종에 대한 최신 펌웨어 확인
-- 원클릭 최신 펌웨어 다운로드 (이어받기 가능)
-- CRC32 검사
-- 자동 복호화
-
-## API, 프레임워크
+## API, Framework
 
 - .NET Framework 4.7.2
-- NuGet 패키지
+- NuGet Packages
   - [Microsoft-WindowsAPICodePack-Core](https://www.nuget.org/packages/Microsoft-WindowsAPICodePack-Core/) 1.1.3.3
   - [Microsoft-WindowsAPICodePack-Shell](https://www.nuget.org/packages/Microsoft-WindowsAPICodePack-Shell/) 1.1.3.3
 - DLL
@@ -71,47 +67,47 @@ SamFirm은 삼성 스마트폰의 순정 펌웨어를 다운받을 수 있는 �
   - CommonModule.dll
   - GlobalUtil.dll
 
-## 개발 환경
+## develop environment
 
-- S/W 개발 환경
+- S/W develop environment
   - Visual Studio 2019 Community (16.0.2)
   - .NET Framework 4.7.2
   - C# Language (x86 Build)
-- 개발 환경 설정
-  1. 리포지토리를 클론, 포크하거나 압축파일로 코드를 다운로드하세요.
-  2. .NET Framework 4.7.2개발 도구가 설치되어 있는지 확인하세요. 없으면 설치.
-  3. Visual Studio 2019로 솔루션 파일(.sln)을 여세요.
-  4. 코딩 시작~!
+- setting up development environment
+  1. Download the code as a clone, fork, or archive file from the repository.
+  2. Make sure that the .NET Framework 4.7.2 Development Tool is installed. If not, install.
+  3. Open the solution file (.sln) with Visual Studio 2019.
+  4. Start coding!
 
-## 변경 로그
+## Change Log
 
 - 1.0.0
-  - 정식 릴리즈
+  - First official release.
 - 0.3.0
-  - 이슈 모두 수정
+  - Fix all issues.
 - 0.2.0
-  - HiDPI 지원 (윈도우10에서만)
+  - HiDPI support (Windows 10 only)
 - 0.1.0
-  - 첫 베타 릴리즈
+  - First Beta Release.
 
-## 개발자 정보와 크레딧
+## Developer information and credits
 
-- 개발자
+- Developer
   - Lulin Pollux - [GitHub 프로필](https://github.com/LulinPollux), [kistssy+dev@gmail.com](mailto:kistssy+dev@gmail.com)
-- 크레딧
-  - 원본 프로젝트: [eladkarako/SamFirm-Source](https://github.com/eladkarako/SamFirm-Source)
+- Credits
+  - Original project: [eladkarako/SamFirm-Source](https://github.com/eladkarako/SamFirm-Source)
   - XDA Forum: [forum.xda-developers.com/...](https://forum.xda-developers.com/galaxy-tab-s/general/tool-samfirm-samsung-firmware-t2988647) (zxz0O0)
 
-## 기여 방법
+## contribution method
 
-1. [이 프로젝트](https://github.com/LulinPollux/SamFirm-continued)를 포크합니다.
-2. GitHub Desktop에서 새 브랜치를 만드세요.
-3. 수정사항을 커밋하세요.
-4. 새 브랜치에 푸시하세요.
-5. 풀리퀘스트를 보내주세요.
+1. Fork [this project](https://github.com/LulinPollux/SamFirm-continued).
+2. Create a new branch or use the master branch in the GitHub Desktop.
+3. Commit the modification.
+4. Push on the selected branch.
+5. Please send a pull request.
 
-## 라이센스
+## License
 
 MIT License © Lulin Pollux
 
-`LICENSE`에서 자세한 정보를 확인할 수 있습니다.
+You can find more information in `LICENSE`.
