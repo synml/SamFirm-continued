@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace SamFirm
@@ -11,7 +13,12 @@ namespace SamFirm
             Imports.FreeConsole();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            MainForm mainForm = new MainForm();
+
+            //버전정보를 출력한다.
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            mainForm.Text = "SamFirm Continued (v" + versionInfo.FileVersion + ")";
+            Application.Run(mainForm);
         }
     }
 }
