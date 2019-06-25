@@ -272,7 +272,7 @@ namespace SamFirm
             this.log_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.log_textbox.Font = new System.Drawing.Font("D2Coding", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.log_textbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.log_textbox.Location = new System.Drawing.Point(12, 179);
             this.log_textbox.Name = "log_textbox";
             this.log_textbox.ReadOnly = true;
