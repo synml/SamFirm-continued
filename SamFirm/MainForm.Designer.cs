@@ -169,6 +169,8 @@ namespace SamFirm
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.progressBar1);
             this.groupBox3.Controls.Add(this.decrypt_button);
             this.groupBox3.Controls.Add(this.download_button);
@@ -186,6 +188,8 @@ namespace SamFirm
             // 
             // progressBar1
             // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(99, 92);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(428, 27);
@@ -225,6 +229,8 @@ namespace SamFirm
             // 
             // version_textbox
             // 
+            this.version_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.version_textbox.Location = new System.Drawing.Point(99, 59);
             this.version_textbox.Name = "version_textbox";
             this.version_textbox.ReadOnly = true;
@@ -234,6 +240,8 @@ namespace SamFirm
             // 
             // file_textbox
             // 
+            this.file_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.file_textbox.Location = new System.Drawing.Point(99, 26);
             this.file_textbox.Name = "file_textbox";
             this.file_textbox.ReadOnly = true;
@@ -300,7 +308,7 @@ namespace SamFirm
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(863, 493);
             this.Name = "MainForm";
-            this.Text = "SamFirm Continued (v1.1.0)";
+            this.Text = "SamFirm Continued";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
