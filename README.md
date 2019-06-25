@@ -45,6 +45,8 @@ I hope this project will be useful to many users. 😎
 
 4. The downloaded file is encrypted. If you checked for automatic decryption, perform the decryption process automatically, but click the Decrypt button to manually do so.
 
+   ![Decrypt](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Decrypt.PNG)
+
 5. The download is complete, there is a archive file and an encryption file. Unzip the firmware file and use it, and encryption file can be deleted or stored.
 
    ![Complete](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Complete.PNG)
