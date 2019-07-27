@@ -14,55 +14,56 @@ namespace SamFirm
 
         public static int DecryptFile(string encryptedFile, string outputFile)
         {
-            using (FileStream stream = new FileStream(encryptedFile, FileMode.Open))
+            using (FileStream stream1 = new FileStream(encryptedFile, FileMode.Open))
             {
                 using (FileStream stream2 = new FileStream(outputFile, FileMode.Create))
                 {
-                    RijndaelManaged managed = new RijndaelManaged
+                    using (RijndaelManaged managed = new RijndaelManaged())
                     {
-                        Mode = CipherMode.ECB,
-                        BlockSize = 0x80,
-                        Padding = PaddingMode.PKCS7
-                    };
-                    using (ICryptoTransform transform = managed.CreateDecryptor(KEY, IV))
-                    {
-                        try
+                        managed.Mode = CipherMode.ECB;
+                        managed.BlockSize = 0x80;
+                        managed.Padding = PaddingMode.PKCS7;
+
+                        using (ICryptoTransform transform = managed.CreateDecryptor(KEY, IV))
                         {
-                            Utility.PreventDeepSleep(Utility.PDSMode.Start);
-                            using (CryptoStream stream3 = new CryptoStream(stream, transform, CryptoStreamMode.Read))
+                            try
                             {
-                                byte[] buffer = new byte[0x1000];
-                                long num = 0L;
-                                int count = 0;
-                                do
+                                Utility.PreventDeepSleep(Utility.PDSMode.Start);
+                                using (CryptoStream stream3 = new CryptoStream(stream1, transform, CryptoStreamMode.Read))
                                 {
-                                    Utility.PreventDeepSleep(Utility.PDSMode.Continue);
-                                    count = stream3.Read(buffer, 0, buffer.Length);
-                                    num += count;
-                                    stream2.Write(buffer, 0, count);
-                                    Form.SetProgressBar(Utility.GetProgress(num, stream.Length));
+                                    byte[] buffer = new byte[0x1000];
+                                    long num = 0L;
+                                    int count = 0;
+                                    do
+                                    {
+                                        Utility.PreventDeepSleep(Utility.PDSMode.Continue);
+                                        count = stream3.Read(buffer, 0, buffer.Length);
+                                        num += count;
+                                        stream2.Write(buffer, 0, count);
+                                        Form.SetProgressBar(Utility.GetProgress(num, stream1.Length));
+                                    }
+                                    while (count > 0);
                                 }
-                                while (count > 0);
                             }
-                        }
-                        catch (CryptographicException)
-                        {
-                            Logger.WriteLine("Error DecryptFile(): Wrong key.");
-                            return 3;
-                        }
-                        catch (TargetInvocationException)
-                        {
-                            Logger.WriteLine("Error DecryptFile(): Please turn off FIPS compliance checking.");
-                            return 800;
-                        }
-                        catch (Exception exception)
-                        {
-                            Logger.WriteLine("Error DecryptFile() -> " + exception);
-                            return 3;
-                        }
-                        finally
-                        {
-                            Utility.PreventDeepSleep(Utility.PDSMode.Stop);
+                            catch (CryptographicException)
+                            {
+                                Logger.WriteLine("Error DecryptFile(): Wrong key.");
+                                return 3;
+                            }
+                            catch (TargetInvocationException)
+                            {
+                                Logger.WriteLine("Error DecryptFile(): Please turn off FIPS compliance checking.");
+                                return 800;
+                            }
+                            catch (Exception exception)
+                            {
+                                Logger.WriteLine("Error DecryptFile() -> " + exception);
+                                return 3;
+                            }
+                            finally
+                            {
+                                Utility.PreventDeepSleep(Utility.PDSMode.Stop);
+                            }
                         }
                     }
                 }

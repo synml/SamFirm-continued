@@ -8,7 +8,7 @@ namespace SamFirm
     internal static class Program
     {
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Imports.FreeConsole();
             Application.EnableVisualStyles();
