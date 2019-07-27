@@ -181,7 +181,7 @@ namespace SamFirm
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Location = new System.Drawing.Point(294, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(605, 161);
+            this.groupBox3.Size = new System.Drawing.Size(610, 161);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Download";
@@ -192,7 +192,7 @@ namespace SamFirm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(99, 92);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(495, 27);
+            this.progressBar1.Size = new System.Drawing.Size(500, 27);
             this.progressBar1.TabIndex = 10;
             // 
             // decrypt_button
@@ -234,7 +234,7 @@ namespace SamFirm
             this.version_textbox.Location = new System.Drawing.Point(99, 59);
             this.version_textbox.Name = "version_textbox";
             this.version_textbox.ReadOnly = true;
-            this.version_textbox.Size = new System.Drawing.Size(495, 27);
+            this.version_textbox.Size = new System.Drawing.Size(500, 27);
             this.version_textbox.TabIndex = 4;
             this.version_textbox.TabStop = false;
             // 
@@ -245,7 +245,7 @@ namespace SamFirm
             this.file_textbox.Location = new System.Drawing.Point(99, 26);
             this.file_textbox.Name = "file_textbox";
             this.file_textbox.ReadOnly = true;
-            this.file_textbox.Size = new System.Drawing.Size(495, 27);
+            this.file_textbox.Size = new System.Drawing.Size(500, 27);
             this.file_textbox.TabIndex = 3;
             this.file_textbox.TabStop = false;
             // 
@@ -277,7 +277,7 @@ namespace SamFirm
             this.log_textbox.Name = "log_textbox";
             this.log_textbox.ReadOnly = true;
             this.log_textbox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.log_textbox.Size = new System.Drawing.Size(888, 262);
+            this.log_textbox.Size = new System.Drawing.Size(893, 262);
             this.log_textbox.TabIndex = 2;
             this.log_textbox.TabStop = false;
             this.log_textbox.Text = "";
@@ -299,14 +299,14 @@ namespace SamFirm
             this.AcceptButton = this.update_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(912, 453);
+            this.ClientSize = new System.Drawing.Size(917, 453);
             this.Controls.Add(this.log_textbox);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(930, 500);
+            this.MinimumSize = new System.Drawing.Size(935, 500);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SamFirm Continued";

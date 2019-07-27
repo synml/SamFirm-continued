@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -93,43 +91,6 @@ namespace SamFirm
             ES_CONTINUOUS = 0x80000000,
             ES_DISPLAY_REQUIRED = 2,
             ES_SYSTEM_REQUIRED = 1
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct ParentProcessUtilities
-        {
-            internal IntPtr Reserved1;
-            internal IntPtr PebBaseAddress;
-            internal IntPtr Reserved2_0;
-            internal IntPtr Reserved2_1;
-            internal IntPtr UniqueProcessId;
-            internal IntPtr InheritedFromUniqueProcessId;
-            [DllImport("ntdll.dll")]
-            private static extern int NtQueryInformationProcess(IntPtr processHandle, int processInformationClass, ref ParentProcessUtilities processInformation, int processInformationLength, out int returnLength);
-            public static Process GetParentProcess() => 
-                GetParentProcess(Process.GetCurrentProcess().Handle);
-
-            public static Process GetParentProcess(int id) => 
-                GetParentProcess(Process.GetProcessById(id).Handle);
-
-            public static Process GetParentProcess(IntPtr handle)
-            {
-                int num;
-                Imports.ParentProcessUtilities processInformation = new Imports.ParentProcessUtilities();
-                int error = NtQueryInformationProcess(handle, 0, ref processInformation, Marshal.SizeOf(processInformation), out num);
-                if (error != 0)
-                {
-                    throw new Win32Exception(error);
-                }
-                try
-                {
-                    return Process.GetProcessById(processInformation.InheritedFromUniqueProcessId.ToInt32());
-                }
-                catch (ArgumentException)
-                {
-                    return null;
-                }
-            }
         }
     }
 }
