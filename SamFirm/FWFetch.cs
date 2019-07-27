@@ -31,18 +31,20 @@ namespace SamFirm
         {
             try
             {
-                WebClient client = new WebClient();
-                string xml = client.DownloadString("http://fota-cloud-dn.ospserver.net/firmware/" + region + "/" + model + "/version.xml");
-                string str2;
-                if (latest == true)
+                using (WebClient client = new WebClient())
                 {
-                    str2 = Xml.GetXMLValue(xml, "firmware/version/latest", null, null).ToUpper();
+                    string xml = client.DownloadString("http://fota-cloud-dn.ospserver.net/firmware/" + region + "/" + model + "/version.xml");
+                    string str2;
+                    if (latest == true)
+                    {
+                        str2 = Xml.GetXMLValue(xml, "firmware/version/latest", null, null).ToUpper();
+                    }
+                    else
+                    {
+                        str2 = Xml.GetXMLValue(xml, "firmware/version/upgrade/value", null, null).ToUpper();
+                    }
+                    return str2;
                 }
-                else
-                {
-                    str2 = Xml.GetXMLValue(xml, "firmware/version/upgrade/value", null, null).ToUpper();
-                }
-                return str2;
             }
             catch (Exception)
             {
@@ -95,26 +97,29 @@ namespace SamFirm
             string str2 = samMobileHtml.Substring(num + 0x24);
             samMobileHtml = Utility.GetHtml(str2.Substring(0, str2.IndexOf('"')));
 
-            StringReader reader = new StringReader(samMobileHtml);
-            StringBuilder bld = new StringBuilder();
-            string str4;
-            bool flag = false;
-            while ((str4 = reader.ReadLine()) != null)
+            string input = string.Empty;
+            using (StringReader reader = new StringReader(samMobileHtml))
             {
-                string str5 = tdExtract(str4).Trim();
-                if ((str5 == "PDA") || (str5 == "CSC"))
+                StringBuilder bld = new StringBuilder();
+                string str4;
+                bool flag = false;
+                while ((str4 = reader.ReadLine()) != null)
                 {
-                    flag = true;
-                    continue;
-                }
+                    string str5 = tdExtract(str4).Trim();
+                    if ((str5 == "PDA") || (str5 == "CSC"))
+                    {
+                        flag = true;
+                        continue;
+                    }
 
-                if (flag)
-                {
-                    bld.Append(str5 + "/");
-                    flag = false;
+                    if (flag)
+                    {
+                        bld.Append(str5 + "/");
+                        flag = false;
+                    }
                 }
+                input = bld.ToString();
             }
-            string input = bld.ToString();
             return Regex.Replace(input, "^(.*)/(.*)/$", "$1/$2/$1");
         }
 
@@ -147,16 +152,18 @@ namespace SamFirm
             StringBuilder bld = new StringBuilder();
             bld.Append("https://samsung-firmware.org");
 
-            StringReader reader = new StringReader(samsungFirmwareOrgHtml);
-            string str3;
-            while ((str3 = reader.ReadLine()) != null)
+            using (StringReader reader = new StringReader(samsungFirmwareOrgHtml))
             {
-                if (str3.Contains("Download"))
+                string str3;
+                while ((str3 = reader.ReadLine()) != null)
                 {
-                    int num2 = str3.IndexOf('"');
-                    int length = str3.Substring(num2 + 1).IndexOf('"');
-                    bld.Append(str3.Substring(num2 + 1, length));
-                    break;
+                    if (str3.Contains("Download"))
+                    {
+                        int num2 = str3.IndexOf('"');
+                        int length = str3.Substring(num2 + 1).IndexOf('"');
+                        bld.Append(str3.Substring(num2 + 1, length));
+                        break;
+                    }
                 }
             }
 
@@ -193,44 +200,47 @@ namespace SamFirm
         {
             try
             {
-                WebClient client = new WebClient();
-                string s = client.DownloadString("http://samsung-updates.com/device/?id=" + model);
-                StringBuilder bld = new StringBuilder();
-                bld.Append("http://samsung-updates.com");
-                bool flag = false;
-
-                StringReader reader = new StringReader(s);
-                string str3;
-                while ((str3 = reader.ReadLine()) != null)
+                using (WebClient client = new WebClient())
                 {
-                    if (str3.Contains("/" + model + "/" + region + "/"))
+                    string s = client.DownloadString("http://samsung-updates.com/device/?id=" + model);
+                    StringBuilder bld = new StringBuilder();
+                    bld.Append("http://samsung-updates.com");
+                    bool flag = false;
+                    using (StringReader reader = new StringReader(s))
                     {
-                        int index = str3.IndexOf("a href=\"");
-                        int length = str3.Substring(index + 8).IndexOf('"');
-                        bld.Append(str3.Substring(index + 8, length));
-                        flag = true;
-                        break;
+                        string str3;
+                        while ((str3 = reader.ReadLine()) != null)
+                        {
+                            if (str3.Contains("/" + model + "/" + region + "/"))
+                            {
+                                int index = str3.IndexOf("a href=\"");
+                                int length = str3.Substring(index + 8).IndexOf('"');
+                                bld.Append(str3.Substring(index + 8, length));
+                                flag = true;
+                                break;
+                            }
+                        }
                     }
-                }
 
-                if (!flag)
-                {
-                    return string.Empty;
+                    if (!flag)
+                    {
+                        return string.Empty;
+                    }
+                    string address = bld.ToString();
+                    s = client.DownloadString(address);
+                    Match match = Regex.Match(s, @"PDA:</b> ([^\s]+) <b>");
+                    if (!match.Success)
+                    {
+                        return string.Empty;
+                    }
+                    string format = match.Groups[1].Value + "/{0}/" + match.Groups[1].Value;
+                    match = Regex.Match(s, @"CSC:</b> ([^\s]+) <b>");
+                    if (!match.Success)
+                    {
+                        return string.Empty;
+                    }
+                    return string.Format(format, match.Groups[1].Value);
                 }
-                string address = bld.ToString();
-                s = client.DownloadString(address);
-                Match match = Regex.Match(s, @"PDA:</b> ([^\s]+) <b>");
-                if (!match.Success)
-                {
-                    return string.Empty;
-                }
-                string format = match.Groups[1].Value + "/{0}/" + match.Groups[1].Value;
-                match = Regex.Match(s, @"CSC:</b> ([^\s]+) <b>");
-                if (!match.Success)
-                {
-                    return string.Empty;
-                }
-                return string.Format(format, match.Groups[1].Value);
             }
             catch (WebException)
             {
