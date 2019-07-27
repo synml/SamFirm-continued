@@ -12,17 +12,17 @@ namespace SamFirm
 {
     internal partial class MainForm : Form
     {
-        //기본 생성자
-        public MainForm()
-        {
-            InitializeComponent();
-        }
-
         //필드
         private string destinationFile;     //다운로드하는 파일의 경로와 이름을 저장한다.
         private Command.Firmware FW;        //다운로드할 펌웨어의 정보를 저장하는 구조체 객체.
         public bool PauseDownload { get; set; }     //다운로드가 일시정지 되었는지 여부를 저장한다.
 
+
+        //기본 생성자
+        public MainForm()
+        {
+            InitializeComponent();
+        }
 
         //폼을 로드하면 호출하는 메소드
         private void MainForm_Load(object sender, EventArgs e)
@@ -41,6 +41,7 @@ namespace SamFirm
             //버전정보를 출력한다.
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             Logger.WriteLine("SamFirm v" + versionInfo.FileVersion);
+            
 
             //서버 인증서의 유효성을 검사하는 콜백을 설정한다.
             ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => true;
