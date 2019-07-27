@@ -81,17 +81,6 @@ I hope this project will be useful to many users. 😎
   3. Open the solution file (.sln) with Visual Studio 2019.
   4. Start coding!
 
-## Change Log
-
-- 1.0.0
-  - First official release.
-- 0.3.0
-  - Fix all issues.
-- 0.2.0
-  - HiDPI support (Windows 10 only)
-- 0.1.0
-  - First Beta Release.
-
 ## Developer information and credits
 
 - Developer
