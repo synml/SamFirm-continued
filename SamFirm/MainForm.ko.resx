@@ -123,9 +123,6 @@
   <data name="decrypt_button.Text" xml:space="preserve">
     <value>복호화</value>
   </data>
-  <data name="download_button.Text" xml:space="preserve">
-    <value>다운로드</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>펌웨어 정보</value>
   </data>
