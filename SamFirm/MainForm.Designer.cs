@@ -42,7 +42,7 @@ namespace SamFirm
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.decrypt_button = new System.Windows.Forms.Button();
             this.download_button = new System.Windows.Forms.Button();
@@ -55,7 +55,7 @@ namespace SamFirm
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -167,24 +167,24 @@ namespace SamFirm
             this.label1.TabIndex = 0;
             this.label1.Text = "Model";
             // 
-            // groupBox3
+            // groupBox2
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.progressBar1);
-            this.groupBox3.Controls.Add(this.decrypt_button);
-            this.groupBox3.Controls.Add(this.download_button);
-            this.groupBox3.Controls.Add(this.autoDecrypt_checkbox);
-            this.groupBox3.Controls.Add(this.version_textbox);
-            this.groupBox3.Controls.Add(this.file_textbox);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(294, 12);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(610, 161);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Download";
+            this.groupBox2.Controls.Add(this.progressBar1);
+            this.groupBox2.Controls.Add(this.decrypt_button);
+            this.groupBox2.Controls.Add(this.download_button);
+            this.groupBox2.Controls.Add(this.autoDecrypt_checkbox);
+            this.groupBox2.Controls.Add(this.version_textbox);
+            this.groupBox2.Controls.Add(this.file_textbox);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Location = new System.Drawing.Point(294, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(610, 161);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Download Info";
             // 
             // progressBar1
             // 
@@ -280,7 +280,6 @@ namespace SamFirm
             this.log_textbox.Size = new System.Drawing.Size(893, 262);
             this.log_textbox.TabIndex = 2;
             this.log_textbox.TabStop = false;
-            this.log_textbox.Text = "";
             // 
             // saveFileDialog1
             // 
@@ -301,7 +300,7 @@ namespace SamFirm
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(917, 453);
             this.Controls.Add(this.log_textbox);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -314,8 +313,8 @@ namespace SamFirm
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -329,7 +328,7 @@ namespace SamFirm
         private System.Windows.Forms.CheckBox binary_checkbox;
         private System.Windows.Forms.CheckBox autoDecrypt_checkbox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
