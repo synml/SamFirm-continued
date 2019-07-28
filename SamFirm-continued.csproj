@@ -109,6 +109,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SamFirm\AppendDialogBox.ko.resx">
+      <DependentUpon>AppendDialogBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SamFirm\AppendDialogBox.resx">
       <DependentUpon>AppendDialogBox.cs</DependentUpon>
     </EmbeddedResource>

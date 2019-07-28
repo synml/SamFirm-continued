@@ -118,25 +118,192 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 65</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 32</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Append</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>257, 65</value>
+  </data>
+  <data name="button2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 32</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Overwrite</value>
+  </data>
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>399, 65</value>
+  </data>
+  <data name="button3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 32</value>
+  </data>
+  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;button3.Name" xml:space="preserve">
+    <value>button3</value>
+  </data>
+  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 9</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>347, 40</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>The destination file already exists.
+Would you like to append it? (resume download)</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAANdSURBVHhe7ZRBjhsxDATnqfmmgXwhxyBHI//YrMP2mkg2
-        6fVqRiSlmWkCdTBASIJd5WXPc7ssX8Djo6Z6Xi/LFTw+airnbv/X5XZHFdTP3f5vy+2OKqgdt//l+oYq
-        KB63/+XnG6qgcN7Z//gBVEHh/Gu/owoKhtrvqIL8+ch+RxUkzlP7HVWQN5/Z76iChGmy31EF8dNqv6MK
-        AmeV/Y4qiJu19juqIGA22e+ogv7Zar+jCjqmy35HFWyfXvsdVbBhQux3VMH6ibLfUQUrJtR+RxW0T7T9
-        jipomBT7HVXw+WTZ76iCJ5Nqv6MKPp5s+x1VQKbEfkcV/D9V9juq4K8ptd9RBX+m2n5HFdgMsd9RBePs
-        d05dwVD7nTNXMNp+55QV9NqPIxhs91POWEGv/XYEhe22cKoKIv77cQyD7TZxpgoi/vvtGArbbeUUFUTY
-        D3AUg+02c4YKIuwHdhSF7a7h0BVE2Q9wHIPtruLIFUTZD+w4CttdyyEriLQf4EgG213NESuItB/YkRS2
-        u4VDVRBtP8CxDLa7iSNVEG0/sGMpbHcrh6ggw36AoxlsdzNHqCDDfmBHU9huD7uuIMt+gOMZbLeLPVeQ
-        ZT+w4ylst5ddVpBpP8AVDLbbzR4ryLQf2BUUthvBrirIth/gGgbbDWFPFWTbD+waCtuNYhcVVNgPcBWD
-        7Yaxhwoq7Ad2FYXtRjJ1BVX2A1zHYLuhzFxBlf3ArqOw3WimrKDSfoArGWw3nBkrqLQf2JUUtpvBVBVU
-        2w9wLYPtpjBTBdX2A7uWwnazmKKCEfYDXM1gu2nMUMEI+4FdTWG7mQytYJT9ANcz2G4qIysYZT+w6yls
-        N5shFYy0H+AJDLabzogKRtoP7AkUtltBaQWj7Qd4BoPtllBZwWj7gT2DwnarKKlgBvunpaKCGeyfmdQK
-        ZH8DmRXI/jZSKpD9K8ioQPavI7SCGe3HsxhsdwiRFcxovz2LwnZHEVLBrP/9eBqD7Q4jooJZ//vtaRS2
-        O5KuCma1H+B5DLY7lJ4KZrUf2PMobHc0myqY2f7dsaWCme3fI6sqkP0JrKlA9ufQVIHsT6SlAtmfy9MK
-        ZH8BzyqQ/TXQCmR/IawC2V/Luwru9l+W26/vxg9Rgn3X+M7vFeCXeHwQxbxelutvqzkvn0zo+IoAAAAA
-        SUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
+        dAAAEnQB3mYfeAAAA11JREFUeF7tlEGOGzEMBOep+aaBfCHHIEcj/9isw/aaSDbp9WpGJKWZaQJ1MEBI
+        gl3lZc9zuyxfwOOjpnpeL8sVPD5qKudu/9fldkcV1M/d/m/L7Y4qqB23/+X6hiooHrf/5ecbqqBw3tn/
+        +AFUQeH8a7+jCgqG2u+ogvz5yH5HFSTOU/sdVZA3n9nvqIKEabLfUQXx02q/owoCZ5X9jiqIm7X2O6og
+        YDbZ76iC/tlqv6MKOqbLfkcVbJ9e+x1VsGFC7HdUwfqJst9RBSsm1H5HFbRPtP2OKmiYFPsdVfD5ZNnv
+        qIInk2q/owo+nmz7HVVApsR+RxX8P1X2O6rgrym131EFf6bafkcV2Ayx31EF4+x3Tl3BUPudM1cw2n7n
+        lBX02o8jGGz3U85YQa/9dgSF7bZwqgoi/vtxDIPtNnGmCiL+++0YCttt5RQVRNgPcBSD7TZzhgoi7Ad2
+        FIXtruHQFUTZD3Acg+2u4sgVRNkP7DgK213LISuItB/gSAbbXc0RK4i0H9iRFLa7hUNVEG0/wLEMtruJ
+        I1UQbT+wYylsdyuHqCDDfoCjGWx3M0eoIMN+YEdT2G4Pu64gy36A4xlst4s9V5BlP7DjKWy3l11WkGk/
+        wBUMttvNHivItB/YFRS2G8GuKsi2H+AaBtsNYU8VZNsP7BoK241iFxVU2A9wFYPthrGHCirsB3YVhe1G
+        MnUFVfYDXMdgu6HMXEGV/cCuo7DdaKasoNJ+gCsZbDecGSuotB/YlRS2m8FUFVTbD3Atg+2mMFMF1fYD
+        u5bCdrOYooIR9gNczWC7acxQwQj7gV1NYbuZDK1glP0A1zPYbiojKxhlP7DrKWw3myEVjLQf4AkMtpvO
+        iApG2g/sCRS2W0FpBaPtB3gGg+2WUFnBaPuBPYPCdqsoqWAG+6elooIZ7J+Z1ApkfwOZFcj+NlIqkP0r
+        yKhA9q8jtIIZ7cezGGx3CJEVzGi/PYvCdkcRUsGs//14GoPtDiOigln/++1pFLY7kq4KZrUf4HkMtjuU
+        ngpmtR/Y8yhsdzSbKpjZ/t2xpYKZ7d8jqyqQ/QmsqUD259BUgexPpKUC2Z/L0wpkfwHPKpD9NdAKZH8h
+        rALZX8u7Cu72X5bbr+/GD1GCfdf4zu8V4Jd4fBDFvF6W62+rOS+fTOj4igAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 9</value>
+  </data>
+  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 80</value>
+  </data>
+  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>120, 120</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>522, 110</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>맑은 고딕, 9pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>SamFirm Continued</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AppendDialogBox</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
