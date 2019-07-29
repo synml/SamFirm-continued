@@ -185,15 +185,6 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Info firmware</value>
   </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>353, 12</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>596, 161</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Info download</value>
-  </data>
   <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
     <value>486, 27</value>
   </data>
@@ -217,6 +208,15 @@
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Versione</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 12</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>596, 161</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Info download</value>
   </data>
   <data name="log_textbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>938, 282</value>
