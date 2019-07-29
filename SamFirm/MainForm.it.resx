@@ -120,6 +120,9 @@
   <data name="autoDecrypt_checkbox.Text" xml:space="preserve">
     <value>Decripta automaticamente</value>
   </data>
+  <data name="binary_checkbox.Text" xml:space="preserve">
+    <value>Tipo binario</value>
+  </data>
   <data name="decrypt_button.Text" xml:space="preserve">
     <value>Decripta</value>
   </data>
