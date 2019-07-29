@@ -117,14 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="update_button.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 29</value>
-  </data>
   <data name="&gt;&gt;file_textbox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
@@ -137,6 +129,7 @@
   <data name="&gt;&gt;label8.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="download_button.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 30</value>
   </data>
@@ -155,11 +148,18 @@
   <data name="speed_label.Location" type="System.Drawing.Point, System.Drawing">
     <value>189, 138</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="binary_checkbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 24</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>File</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;progressBar1.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -198,6 +198,9 @@
   <data name="log_textbox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 10pt</value>
   </data>
+  <data name="&gt;&gt;model_textbox.Name" xml:space="preserve">
+    <value>model_textbox</value>
+  </data>
   <data name="&gt;&gt;size_label.Name" xml:space="preserve">
     <value>size_label</value>
   </data>
@@ -215,12 +218,6 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>SamFirm Continued</value>
-  </data>
-  <data name="&gt;&gt;progressBar1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;log_textbox.Name" xml:space="preserve">
-    <value>log_textbox</value>
   </data>
   <data name="&gt;&gt;saveFileDialog1.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -248,6 +245,9 @@
   </data>
   <data name="openFileDialog1.Filter" xml:space="preserve">
     <value>All files|*.*</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;speed_label.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -370,8 +370,8 @@
   <data name="&gt;&gt;saveFileDialog1.Name" xml:space="preserve">
     <value>saveFileDialog1</value>
   </data>
-  <data name="&gt;&gt;log_textbox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="download_button.Text" xml:space="preserve">
+    <value>Download</value>
   </data>
   <data name="speed_label.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -397,8 +397,8 @@
   <data name="saveFileDialog1.Filter" xml:space="preserve">
     <value>All files|*.*</value>
   </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 20</value>
   </data>
   <data name="region_textbox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -406,11 +406,11 @@
   <data name="decrypt_button.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 30</value>
   </data>
+  <data name="log_textbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>893, 262</value>
+  </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Size</value>
@@ -424,23 +424,20 @@
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
   </data>
-  <data name="speed_label.Text" xml:space="preserve">
-    <value>0 KB/s</value>
+  <data name="decrypt_button.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;decrypt_button.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 33</value>
+  <data name="&gt;&gt;log_textbox.Name" xml:space="preserve">
+    <value>log_textbox</value>
   </data>
   <data name="&gt;&gt;log_textbox.Type" xml:space="preserve">
     <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;model_textbox.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 20</value>
   </data>
   <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
     <value>500, 27</value>
@@ -463,8 +460,11 @@
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="binary_checkbox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;progressBar1.Name" xml:space="preserve">
+    <value>progressBar1</value>
+  </data>
+  <data name="autoDecrypt_checkbox.Text" xml:space="preserve">
+    <value>Decrypt Automatically</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -475,11 +475,11 @@
   <data name="model_textbox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>294, 12</value>
-  </data>
   <data name="log_textbox.Text" xml:space="preserve">
     <value />
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;binary_checkbox.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -535,6 +535,9 @@
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
+  <data name="version_textbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>500, 27</value>
+  </data>
   <data name="&gt;&gt;binary_checkbox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
@@ -543,9 +546,6 @@
   </data>
   <data name="&gt;&gt;file_textbox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="version_textbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
   </data>
   <data name="log_textbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 179</value>
@@ -571,11 +571,11 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Speed</value>
   </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;openFileDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;model_textbox.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -592,9 +592,6 @@
   <data name="model_textbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>106, 26</value>
   </data>
-  <data name="file_textbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 26</value>
-  </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -607,14 +604,14 @@
   <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="progressBar1.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
   <data name="download_button.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="speed_label.Text" xml:space="preserve">
+    <value>0 KB/s</value>
+  </data>
+  <data name="file_textbox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;region_textbox.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -646,11 +643,11 @@
   <data name="progressBar1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="version_textbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>500, 27</value>
-  </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+  <data name="binary_checkbox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="version_textbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="size_label.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -667,11 +664,14 @@
   <data name="&gt;&gt;autoDecrypt_checkbox.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
   </data>
-  <data name="decrypt_button.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 12</value>
   </data>
   <data name="&gt;&gt;decrypt_button.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -697,8 +697,8 @@
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;model_textbox.Name" xml:space="preserve">
-    <value>model_textbox</value>
+  <data name="&gt;&gt;progressBar1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;decrypt_button.Name" xml:space="preserve">
     <value>decrypt_button</value>
@@ -712,11 +712,11 @@
   <data name="&gt;&gt;file_textbox.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="log_textbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>893, 262</value>
+  <data name="&gt;&gt;openFileDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
+  <data name="&gt;&gt;log_textbox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;autoDecrypt_checkbox.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -733,20 +733,17 @@
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 66</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Download Info</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>917, 453</value>
   </data>
-  <data name="&gt;&gt;progressBar1.Name" xml:space="preserve">
-    <value>progressBar1</value>
+  <data name="update_button.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="autoDecrypt_checkbox.Text" xml:space="preserve">
-    <value>Decrypt Automatically</value>
+  <data name="progressBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
   </data>
   <data name="decrypt_button.Text" xml:space="preserve">
     <value>Decrypt</value>
@@ -763,8 +760,8 @@
   <data name="version_textbox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="file_textbox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Download Info</value>
   </data>
   <data name="&gt;&gt;size_label.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -781,17 +778,20 @@
   <data name="&gt;&gt;file_textbox.Name" xml:space="preserve">
     <value>file_textbox</value>
   </data>
+  <data name="size_label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 138</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Firmware Info</value>
   </data>
-  <data name="download_button.Text" xml:space="preserve">
-    <value>Download</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 33</value>
   </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="file_textbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 26</value>
   </data>
-  <data name="size_label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 138</value>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 29</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
