@@ -60,6 +60,7 @@ namespace SamFirm
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.size_label);
             this.groupBox1.Controls.Add(this.update_button);
             this.groupBox1.Controls.Add(this.binary_checkbox);
@@ -70,7 +71,6 @@ namespace SamFirm
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -104,14 +104,14 @@ namespace SamFirm
             // 
             // region_textbox
             // 
-            this.region_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             resources.ApplyResources(this.region_textbox, "region_textbox");
+            this.region_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.region_textbox.Name = "region_textbox";
             // 
             // model_textbox
             // 
-            this.model_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             resources.ApplyResources(this.model_textbox, "model_textbox");
+            this.model_textbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.model_textbox.Name = "model_textbox";
             // 
             // label9
