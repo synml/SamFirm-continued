@@ -118,36 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="autoDecrypt_checkbox.Text" xml:space="preserve">
-    <value>Decrypt Automatically</value>
+    <value>Decripta automaticamente</value>
   </data>
   <data name="decrypt_button.Text" xml:space="preserve">
-    <value>Decrypt</value>
+    <value>Decripta</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Firmware Info</value>
+    <value>Info firmware</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Download Info</value>
+    <value>Info download</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Model</value>
+    <value>Modello</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Region</value>
+    <value>Regione</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>File</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Version</value>
+    <value>Versione</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Size</value>
+    <value>Dimensione</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Speed</value>
+    <value>Velocità</value>
   </data>
   <data name="update_button.Text" xml:space="preserve">
-    <value>Update Check</value>
+    <value>Controllo aggiornamenti</value>
   </data>
 </root>

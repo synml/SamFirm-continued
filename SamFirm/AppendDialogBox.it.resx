@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="button1.Text" xml:space="preserve">
-    <value>Append</value>
+    <value>Aggiungi</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
-    <value>Overwrite</value>
+    <value>Sovrascrivi</value>
   </data>
   <data name="button3.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annulla</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>The destination file already exists.
-Would you like to append it? (resume download)</value>
+    <value>Il file destinazione esiste già.
+Vuoi aggiungerlo (riprendere il download)?</value>
   </data>
 </root>
