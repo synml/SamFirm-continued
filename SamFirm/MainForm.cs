@@ -79,43 +79,45 @@ namespace SamFirm
             }
 
             //백그라운드 작업 등록
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate
+            using (BackgroundWorker worker = new BackgroundWorker())
             {
-                try
+                worker.DoWork += delegate
                 {
-                    SetProgressBar(0);
-                    ControlsEnabled(false);
-                    Utility.ReconnectDownload = false;
-
-                    //업데이트를 검사한다.
-                    FW = Command.UpdateCheckAuto(model_textbox.Text, region_textbox.Text, binary_checkbox.Checked);
-
-                    //FW 구조체의 Filename멤버가 비어있으면 빈 글자를 출력하고,
-                    //비어있지 않으면 FW의 멤버를 출력한다.
-                    if (string.IsNullOrEmpty(FW.Filename))
+                    try
                     {
-                        file_textbox.Invoke(new Action(() => file_textbox.Text = string.Empty));
-                        version_textbox.Invoke(new Action(() => version_textbox.Text = string.Empty));
-                        size_label.Invoke(new Action(() => size_label.Text = string.Empty));
-                    }
-                    else
-                    {
-                        file_textbox.Invoke(new Action(() => file_textbox.Text = FW.Filename));
-                        version_textbox.Invoke(new Action(() => version_textbox.Text = FW.Version));
-                        double size = Math.Round(long.Parse(FW.Size) / 1024.0 / 1024.0 / 1024.0, 3);
-                        size_label.Invoke(new Action(() => size_label.Text = size.ToString(CultureInfo.InvariantCulture) + " GB"));
-                    }
+                        SetProgressBar(0);
+                        ControlsEnabled(false);
+                        Utility.ReconnectDownload = false;
 
-                    //출력을 완료하면 컨트롤을 활성화한다.
-                    ControlsEnabled(true);
-                }
-                catch (Exception exception)
-                {
-                    Logger.WriteLine("Error Update_button_Click() -> " + exception);
-                }
-            };
-            worker.RunWorkerAsync();
+                        //업데이트를 검사한다.
+                        FW = Command.UpdateCheckAuto(model_textbox.Text, region_textbox.Text, binary_checkbox.Checked);
+
+                        //FW 구조체의 Filename멤버가 비어있으면 빈 글자를 출력하고,
+                        //비어있지 않으면 FW의 멤버를 출력한다.
+                        if (string.IsNullOrEmpty(FW.Filename))
+                        {
+                            file_textbox.Invoke(new Action(() => file_textbox.Text = string.Empty));
+                            version_textbox.Invoke(new Action(() => version_textbox.Text = string.Empty));
+                            size_label.Invoke(new Action(() => size_label.Text = string.Empty));
+                        }
+                        else
+                        {
+                            file_textbox.Invoke(new Action(() => file_textbox.Text = FW.Filename));
+                            version_textbox.Invoke(new Action(() => version_textbox.Text = FW.Version));
+                            double size = Math.Round(long.Parse(FW.Size) / 1024.0 / 1024.0 / 1024.0, 3);
+                            size_label.Invoke(new Action(() => size_label.Text = size.ToString(CultureInfo.InvariantCulture) + " GB"));
+                        }
+
+                        //출력을 완료하면 컨트롤을 활성화한다.
+                        ControlsEnabled(true);
+                    }
+                    catch (Exception exception)
+                    {
+                        Logger.WriteLine("Error Update_button_Click() -> " + exception);
+                    }
+                };
+                worker.RunWorkerAsync();
+            }
         }
 
         //Download 버튼 클릭시 실행하는 메소드
@@ -182,103 +184,110 @@ namespace SamFirm
                 //목적지에 파일이 존재하면 대화상자를 보여준다.
                 if (File.Exists(destinationFile))
                 {
-                    switch (new AppendDialogBox().ShowDialog())
+                    using (AppendDialogBox appendDialog = new AppendDialogBox())
                     {
-                        case DialogResult.Yes:  //append
-                            break;
+                        switch (appendDialog.ShowDialog())
+                        {
+                            case DialogResult.Yes:  //append
+                                break;
 
-                        case DialogResult.No:   //overwrite
-                            File.Delete(destinationFile);
-                            break;
+                            case DialogResult.No:   //overwrite
+                                File.Delete(destinationFile);
+                                break;
 
-                        case DialogResult.Cancel:
-                            Logger.WriteLine("Download canceled.");
-                            return;
+                            case DialogResult.Cancel:
+                                Logger.WriteLine("Download canceled.");
+                                return;
 
-                        default:
-                            Logger.WriteLine("Error: Wrong DialogResult");
-                            return;
+                            default:
+                                Logger.WriteLine("Error: Wrong DialogResult.");
+                                return;
+                        }
                     }
                 }
             }
 
             //백그라운드 작업 등록
             Utility.TaskBarProgressPaused(false);
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate (object o, DoWorkEventArgs _e)
+            using (BackgroundWorker worker = new BackgroundWorker())
             {
-                try
+                worker.DoWork += delegate (object o, DoWorkEventArgs _e)
                 {
-                    ControlsEnabled(false);
-                    Utility.ReconnectDownload = false;
-
-                    //다운로드 버튼을 일시정지 버튼으로 바꾼다.
-                    MethodInvoker invoker1 = delegate
+                    try
                     {
-                        download_button.Enabled = true;
-                        download_button.Text = "Pause";
-                    };
-                    download_button.Invoke(invoker1);
+                        ControlsEnabled(false);
+                        Utility.ReconnectDownload = false;
 
-                    //다운로드 경로와 파일명을 출력한다.
-                    Logger.WriteLine("Download: " + destinationFile);
+                        //다운로드 버튼을 일시정지 버튼으로 바꾼다.
+                        MethodInvoker invoker1 = delegate
+                            {
+                                download_button.Enabled = true;
+                                download_button.Text = "Pause";
+                            };
+                        download_button.Invoke(invoker1);
 
-                    //펌웨어 다운로드를 시작한다.
-                    Command.Download(FW.Path, FW.Filename, FW.Version, FW.Region, FW.Model_Type, destinationFile, FW.Size);
-                    if (PauseDownload == true)
-                    {
-                        Logger.WriteLine("Download paused.");
-                        PauseDownload = false;
-                        if (Utility.ReconnectDownload)
+                        //다운로드 경로와 파일명을 출력한다.
+                        Logger.WriteLine("Download: " + destinationFile);
+
+                        //펌웨어 다운로드를 시작한다.
+                        Command.Download(FW.Path, FW.Filename, FW.Version, FW.Region, FW.Model_Type, destinationFile, FW.Size);
+                        if (PauseDownload == true)
                         {
-                            Logger.WriteLine("Reconnecting...");
-                            Utility.Reconnect(new Action<object, EventArgs>(Download_button_Click));
-                        }
-                    }
-                    else
-                    {
-                        Logger.WriteLine("Download finished.");
-                        if (FW.CRC == null)
-                        {
-                            Logger.WriteLine("Error: Unable to check CRC. Value not set by Samsung");
+                            Logger.WriteLine("Download paused.");
+                            PauseDownload = false;
+                            if (Utility.ReconnectDownload)
+                            {
+                                Logger.WriteLine("Reconnecting...");
+                                Utility.Reconnect(new Action<object, EventArgs>(Download_button_Click));
+                            }
                         }
                         else
                         {
-                            Logger.WriteLine("\nChecking CRC32...");
-                            if (!Utility.CRCCheck(destinationFile, FW.CRC))
+                            Logger.WriteLine("Download finished.");
+                            if (FW.CRC == null)
                             {
-                                Logger.WriteLine("Error: CRC does not match. Please redownload the file.");
-                                File.Delete(destinationFile);
-                                goto Label_01C9;
+                                Logger.WriteLine("Error: Unable to check CRC. Value not set by Samsung.");
                             }
-                            Logger.WriteLine("CRC matched.");
-                        }
+                            else
+                            {
+                                Logger.WriteLine("\nChecking CRC32...");
+                                if (!Utility.CRCCheck(destinationFile, FW.CRC))
+                                {
+                                    Logger.WriteLine("Error: CRC does not match. Please redownload the file.");
+                                    File.Delete(destinationFile);
+                                    goto Label_01C9;
+                                }
+                                Logger.WriteLine("CRC matched.");
+                            }
 
-                        //자동 복호화가 체크되어 있으면 복호화 버튼 클릭 이벤트를 호출한다.
-                        if (autoDecrypt_checkbox.Checked)
-                        {
-                            decrypt_button.Invoke(new Action(() => decrypt_button.Enabled = true));
-                            Decrypt_button_Click(o, null);
+                            //자동 복호화가 체크되어 있으면 복호화 버튼 클릭 이벤트를 호출한다.
+                            if (autoDecrypt_checkbox.Checked)
+                            {
+                                decrypt_button.Invoke(new Action(() => decrypt_button.Enabled = true));
+                                Decrypt_button_Click(o, null);
+                            }
                         }
+                    Label_01C9:
+                        if (!Utility.ReconnectDownload)
+                        {
+                            ControlsEnabled(true);
+                        }
+                        download_button.Invoke(new Action(() => download_button.Text = "Download"));
                     }
-                Label_01C9:
-                    if (!Utility.ReconnectDownload)
+                    catch (Exception exception)
                     {
-                        ControlsEnabled(true);
+                        Logger.WriteLine("Error Download_button_Click() -> " + exception);
                     }
-                    download_button.Invoke(new Action(() => download_button.Text = "Download"));
-                }
-                catch (Exception exception)
-                {
-                    Logger.WriteLine("Error Download_button_Click() -> " + exception);
-                }
-            };
-            worker.RunWorkerAsync();
+                };
+                worker.RunWorkerAsync();
+            }
         }
 
         //Decrypt 버튼 클릭시 실행하는 메소드
         private void Decrypt_button_Click(object sender, EventArgs e)
         {
+            int retval;
+
             //목적경로에 파일이 없으면 파일열기 대화상자를 보여준다.
             if (!File.Exists(destinationFile))
             {
@@ -291,35 +300,41 @@ namespace SamFirm
             }
 
             //백그라운드 작업 등록
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate
+            using (BackgroundWorker worker = new BackgroundWorker())
             {
-                ControlsEnabled(false);
-                Logger.WriteLine("\nDecrypting firmware...");
-
-                //복호화 키를 설정한다.
-                if (destinationFile.EndsWith(".enc2"))
+                worker.DoWork += delegate
                 {
-                    Decrypt.SetDecryptKey(FW.Region, FW.Model, FW.Version);
-                }
-                else if (destinationFile.EndsWith(".enc4"))
-                {
-                    if (FW.BinaryNature == 1)
-                    {
-                        Decrypt.SetDecryptKey(FW.Version, FW.LogicValueFactory);
-                    }
-                    else
-                    {
-                        Decrypt.SetDecryptKey(FW.Version, FW.LogicValueHome);
-                    }
-                }
+                    ControlsEnabled(false);
+                    Logger.WriteLine("\nDecrypting firmware...");
 
-                //복호화를 실행한다.
-                Decrypt.DecryptFile(destinationFile, Path.Combine(Path.GetDirectoryName(destinationFile), Path.GetFileNameWithoutExtension(destinationFile)));
-                Logger.WriteLine("Decryption finished");
-                ControlsEnabled(true);
-            };
-            worker.RunWorkerAsync();
+                    //복호화 키를 설정한다.
+                    if (destinationFile.EndsWith(".enc2"))
+                    {
+                        Decrypt.SetDecryptKey(FW.Region, FW.Model, FW.Version);
+                    }
+                    else if (destinationFile.EndsWith(".enc4"))
+                    {
+                        if (FW.BinaryNature == 1)
+                        {
+                            Decrypt.SetDecryptKey(FW.Version, FW.LogicValueFactory);
+                        }
+                        else
+                        {
+                            Decrypt.SetDecryptKey(FW.Version, FW.LogicValueHome);
+                        }
+                    }
+
+                    //복호화를 실행한다.
+                    retval = Decrypt.DecryptFile(destinationFile, Path.Combine(Path.GetDirectoryName(destinationFile), Path.GetFileNameWithoutExtension(destinationFile)));
+                    if (retval == 0)
+                    {
+                        Logger.WriteLine("Decryption finished.");
+                        SetProgressBar(0);
+                    }
+                    ControlsEnabled(true);
+                };
+                worker.RunWorkerAsync();
+            }
         }
 
         //컨트롤 활성화/비활성화 설정 메소드

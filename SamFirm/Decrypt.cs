@@ -48,17 +48,12 @@ namespace SamFirm
                             catch (CryptographicException)
                             {
                                 Logger.WriteLine("Error DecryptFile(): Wrong key.");
-                                return 3;
+                                return 2;
                             }
-                            catch (TargetInvocationException)
+                            catch (Exception e)
                             {
-                                Logger.WriteLine("Error DecryptFile(): Please turn off FIPS compliance checking.");
-                                return 800;
-                            }
-                            catch (Exception exception)
-                            {
-                                Logger.WriteLine("Error DecryptFile() -> " + exception);
-                                return 3;
+                                Logger.WriteLine("Error DecryptFile() -> " + e);
+                                return 1;
                             }
                             finally
                             {

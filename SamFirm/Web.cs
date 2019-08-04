@@ -39,7 +39,7 @@ namespace SamFirm
             {
                 if (response == null)
                 {
-                    Logger.WriteLine("Error DownloadBinary(): response is null");
+                    Logger.WriteLine("Error DownloadBinary(): response is null.");
                     return 0x385;
                 }
                 if ((response.StatusCode != HttpStatusCode.OK) && (response.StatusCode != HttpStatusCode.PartialContent))
@@ -94,7 +94,7 @@ namespace SamFirm
                         }
                         catch (WebException)
                         {
-                            Logger.WriteLine("Error DownloadBinary(): Connection interrupted");
+                            Logger.WriteLine("Error DownloadBinary(): Connection interrupted.");
                             SetReconnect();
                         }
                         finally

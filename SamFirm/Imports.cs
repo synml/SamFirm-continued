@@ -66,7 +66,7 @@ namespace SamFirm
                 if (mod == IntPtr.Zero)
                 {
                     Logger.WriteLine("Error LoadLibrary(): " + Marshal.GetLastWin32Error().ToString());
-                    Logger.WriteLine("Please make sure \"Microsoft Visual C++ 2008 Redistributable Package (x86)\" and \"Microsoft Visual C++ 2010 Redistributable Package (x86)\" are installed");
+                    Logger.WriteLine("Please make sure \"Microsoft Visual C++ 2008 Redistributable Package (x86)\" and \"Microsoft Visual C++ 2010 Redistributable Package (x86)\" are installed.");
                     return 1;
                 }
             }
