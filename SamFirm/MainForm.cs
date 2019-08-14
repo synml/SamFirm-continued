@@ -98,7 +98,7 @@ namespace SamFirm
                         {
                             file_textbox.Invoke(new Action(() => file_textbox.Text = string.Empty));
                             version_textbox.Invoke(new Action(() => version_textbox.Text = string.Empty));
-                            size_label.Invoke(new Action(() => size_label.Text = string.Empty));
+                            size_label.Invoke(new Action(() => size_label.Text = "0 GB"));
                         }
                         else
                         {
