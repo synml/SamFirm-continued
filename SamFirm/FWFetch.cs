@@ -27,6 +27,7 @@ namespace SamFirm
             FWFetchFuncs = list;
         }
 
+        //http://fota-cloud-dn.ospserver.net
         public static string FOTAInfoFetch(string model, string region, bool latest)
         {
             try
@@ -74,6 +75,7 @@ namespace SamFirm
             return str.Substring(0, str.IndexOf('<'));
         }
 
+        //http://www.sammobile.com
         public static string SamMobileFetch(string model, string region, int index)
         {
             string samMobileHtml = SamMobileHtml;
@@ -139,6 +141,7 @@ namespace SamFirm
         public static string SamMobileFetch2(string model, string region) => 
             SamMobileFetch(model, region, 1);
 
+        //https://samsung-firmware.org
         public static string SamsungFirmwareOrgFetch(string model, string region)
         {
             string samsungFirmwareOrgHtml = SamsungFirmwareOrgHtml;
@@ -196,6 +199,7 @@ namespace SamFirm
             return str;
         }
 
+        //http://samsung-updates.com (연결안됨)
         private static string SamsungUpdatesFetch(string model, string region)
         {
             try
