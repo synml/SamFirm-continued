@@ -35,12 +35,11 @@ namespace SamFirm
         {
             if (Form.Log_textbox.InvokeRequired)
             {
-                MethodInvoker method = delegate
+                Form.Log_textbox.Invoke(new Action(() =>
                 {
                     Form.Log_textbox.AppendText(str + "\n");
                     Form.Log_textbox.ScrollToCaret();
-                };
-                Form.Log_textbox.Invoke(method);
+                }));
             }
             else
             {
