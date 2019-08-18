@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{60F245FD-867C-4498-81E2-A09D232B4591}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SamFirm_continued</RootNamespace>
+    <RootNamespace>SamFirm</RootNamespace>
     <AssemblyName>SamFirm-continued</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -108,6 +108,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SamFirm\AppendDialogBox.it.resx">
       <DependentUpon>AppendDialogBox.cs</DependentUpon>

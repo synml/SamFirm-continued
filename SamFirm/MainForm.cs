@@ -12,13 +12,12 @@ namespace SamFirm
 {
     internal partial class MainForm : Form
     {
-        //필드
         private string destinationFile;     //다운로드하는 파일의 경로와 이름을 저장한다.
         private Command.Firmware FW;        //다운로드할 펌웨어의 정보를 저장하는 구조체 객체.
         public bool PauseDownload { get; set; }     //다운로드가 일시정지 되었는지 여부를 저장한다.
 
 
-        //기본 생성자
+        //생성자
         public MainForm()
         {
             InitializeComponent();
