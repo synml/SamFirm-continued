@@ -157,8 +157,9 @@ namespace SamFirm
                 //extension = .zip.enc4
                 string extension = Path.GetExtension(Path.GetFileNameWithoutExtension(FW.Filename)) + Path.GetExtension(FW.Filename);
 
-                //파일이름의 기본값을 FW구조체의 파일이름으로 설정한다.
-                saveFileDialog1.FileName = FW.Filename;
+                //파일이름의 기본값을 Model_Region_LastModified_Version으로 한다.
+                string filename = string.Join("_", new string[] { FW.Model, FW.Region, FW.LastModified.Substring(0, 8), FW.Version.Replace('/', '-') });
+                saveFileDialog1.FileName = filename + extension;
 
                 //확인 버튼을 누르지 않으면 다운로드를 취소한다.
                 if (saveFileDialog1.ShowDialog() != DialogResult.OK)
