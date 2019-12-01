@@ -95,6 +95,10 @@ namespace SamFirm
                     Logger.WriteLine("\nNewer firmware available:");
                 }
             }
+            string filename = string.Join("_", new string[] { firmware.Model, firmware.Region, firmware.LastModified.Substring(0, 8), firmware.Version });
+            string extension = firmware.Filename.Substring(firmware.Filename.IndexOf('.'));
+            firmware.Filename = filename + extension;
+
             Logger.WriteLine("Model: " + firmware.Model);
             Logger.WriteLine("Version: " + firmware.Version);
             Logger.WriteLine("OS: " + firmware.OS);
