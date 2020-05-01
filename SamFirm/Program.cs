@@ -15,6 +15,11 @@ namespace SamFirm
             Application.SetCompatibleTextRenderingDefault(false);
             Imports.FreeConsole();
 
+            //Set localization for testing.
+#if DEBUG
+            CultureInfo.CurrentUICulture = new CultureInfo("de");
+#endif
+
             //제목 표시줄에 버전정보를 출력한다.
             MainForm mainForm = new MainForm();
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
