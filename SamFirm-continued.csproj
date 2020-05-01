@@ -119,6 +119,9 @@
     <EmbeddedResource Include="SamFirm\AppendDialogBox.resx">
       <DependentUpon>AppendDialogBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SamFirm\MainForm.de.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SamFirm\MainForm.it.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
