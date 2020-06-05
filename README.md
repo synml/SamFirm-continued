@@ -30,7 +30,7 @@ I hope this project will be useful to many users. 😎
 
 ## Build Status
 
-[![Release](https://img.shields.io/github/release/Lulin-Pollux/SamFirm-continued.svg?style=popout-square)](https://github.com/Lulin-Pollux/SamFirm-continued/releases/latest) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d6ac010cd31640c2af4ae22b1a394edc)](https://www.codacy.com/manual/Lulin-Pollux/SamFirm-continued?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LulinPollux/SamFirm-continued&amp;utm_campaign=Badge_Grade) ![Last commit](https://img.shields.io/github/last-commit/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) ![Download](https://img.shields.io/github/downloads/Lulin-Pollux/SamFirm-continued/total.svg?style=popout-square) ![License](https://img.shields.io/github/license/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) 
+[![Release](https://img.shields.io/github/release/Lulin-Pollux/SamFirm-continued.svg?style=popout-square)](https://github.com/Lulin-Pollux/SamFirm-continued/releases/latest) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d6ac010cd31640c2af4ae22b1a394edc)](https://www.codacy.com/manual/Lulin/SamFirm-continued?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LulinPollux/SamFirm-continued&amp;utm_campaign=Badge_Grade) ![Last commit](https://img.shields.io/github/last-commit/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) ![Download](https://img.shields.io/github/downloads/Lulin-Pollux/SamFirm-continued/total.svg?style=popout-square) ![License](https://img.shields.io/github/license/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) 
 
 ## How to Install
 
