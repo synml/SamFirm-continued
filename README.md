@@ -15,7 +15,7 @@ SamFirm is a program that lets you download stock firmware for your Samsung smar
 
 However, the update has been down since 2016, .NET Framework 4 or later is not supported and non-up-to-date firmwares can't download anymore. So I used [updato.com](https://updato.com/) instead. This is an archive of firmware for each model, which allows users to download firmware that has been released so far without a subscription or speed limit, but the latest firmware is not apply quickly.
 
-Therefore, using the source code posted on [GitHub](https://github.com/eladkarako/SamFirm-Source), I decided to change the "NET Framework" to the latest version, delete the inoperable or unnecessary features, and make the existing difficult usage as easy as possible.
+Therefore, using the source code posted on [GitHub](https://github.com/eladkarako/SamFirm-Source), I decided to change the ".NET Framework" to the latest version, delete the inoperable or unnecessary features, and make the existing difficult usage as easy as possible.
 
 I hope this project will be useful to many users. 😎
 
@@ -42,23 +42,23 @@ I hope this project will be useful to many users. 😎
 
 1. Enter the model name and region code, and click the Update Check button. Additional PIT files can be downloaded when checking the 'Binary Nature'.
 
-   ![Update Check](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Update%20Check.PNG)
+   ![Update Check](./imgs/Update Check.PNG)
 
 2. Click the Download button. Decrypt automatically when checking the 'Decrypt Automatically'.
 
-   ![Download](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Download.PNG)
+   ![Download](./imgs/Download.PNG)
 
 3. Perform the CRC32 inspection automatically.
 
-   ![CRC32](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/CRC32.PNG)
+   ![CRC32](./imgs/CRC32.PNG)
 
 4. The downloaded file is encrypted. If you checked for automatic decryption, perform the decryption process automatically, but click the Decrypt button to manually do so.
 
-   ![Decrypt](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Decrypt.PNG)
+   ![Decrypt](./imgs/Decrypt.PNG)
 
 5. The download is complete, there is a archive file and an encryption file. Unzip the firmware file and use it, and encryption file can be deleted or stored.
 
-   ![Complete](https://github.com/Lulin-Pollux/SamFirm-continued/blob/master/imgs/Complete.PNG)
+   ![Complete](./imgs/Complete.PNG)
 
 ## Functions
 
@@ -93,7 +93,7 @@ I hope this project will be useful to many users. 😎
 ## Developer information and credits
 
 - Developer
-  - Lulin Pollux - [GitHub 프로필](https://github.com/LulinPollux), [kistssy+dev@gmail.com](mailto:kistssy+dev@gmail.com)
+  - Lulin Pollux - [GitHub Profile](https://github.com/LulinPollux), [kistssy+dev@gmail.com](mailto:kistssy+dev@gmail.com)
 - Credits
   - Original project: [eladkarako/SamFirm-Source](https://github.com/eladkarako/SamFirm-Source)
   - XDA Forum: [forum.xda-developers.com/...](https://forum.xda-developers.com/galaxy-tab-s/general/tool-samfirm-samsung-firmware-t2988647) (zxz0O0)
