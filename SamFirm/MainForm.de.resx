@@ -123,12 +123,6 @@
   <data name="binary_checkbox.Text" xml:space="preserve">
     <value>Binary Nature</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Größe</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Geschwindigkeit</value>
-  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Region</value>
   </data>
