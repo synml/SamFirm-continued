@@ -31,7 +31,6 @@ I hope this project will be useful to many users. 😎
 ## Build Status
 
 [![Release](https://img.shields.io/github/release/Lulin-Pollux/SamFirm-continued.svg?style=popout-square)](https://github.com/Lulin-Pollux/SamFirm-continued/releases/latest)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3a9ec704be984514a211cd7346ac5211)](https://www.codacy.com/manual/Lulin/SamFirm-continued?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LulinPollux/SamFirm-continued&amp;utm_campaign=Badge_Grade)
 ![Last commit](https://img.shields.io/github/last-commit/Lulin-Pollux/SamFirm-continued.svg?style=popout-square)
 ![Download](https://img.shields.io/github/downloads/Lulin-Pollux/SamFirm-continued/total.svg?style=popout-square)
 ![License](https://img.shields.io/github/license/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) 
@@ -97,14 +96,14 @@ I hope this project will be useful to many users. 😎
 ## Developer information and credits
 
 - Developer
-  - Lulin Pollux - [GitHub Profile](https://github.com/LulinPollux), [kistssy+dev@gmail.com](mailto:kistssy+dev@gmail.com)
+  - Clova - [GitHub Profile](https://github.com/clovadev)
 - Credits
   - Original project: [eladkarako/SamFirm-Source](https://github.com/eladkarako/SamFirm-Source)
   - XDA Forum: [forum.xda-developers.com/...](https://forum.xda-developers.com/galaxy-tab-s/general/tool-samfirm-samsung-firmware-t2988647) (zxz0O0)
 
 ## contribution method
 
-1. Fork [this project](https://github.com/LulinPollux/SamFirm-continued).
+1. Fork this repository.
 2. Create a new branch or use the master branch in the GitHub Desktop.
 3. Commit the modification.
 4. Push on the selected branch.
@@ -112,6 +111,6 @@ I hope this project will be useful to many users. 😎
 
 ## License
 
-MIT License © Lulin Pollux
+MIT License
 
 You can find more information in `LICENSE`.
