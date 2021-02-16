@@ -30,14 +30,14 @@ I hope this project will be useful to many users. 😎
 
 ## Build Status
 
-[![Release](https://img.shields.io/github/release/Lulin-Pollux/SamFirm-continued.svg?style=popout-square)](https://github.com/Lulin-Pollux/SamFirm-continued/releases/latest)
-![Last commit](https://img.shields.io/github/last-commit/Lulin-Pollux/SamFirm-continued.svg?style=popout-square)
-![Download](https://img.shields.io/github/downloads/Lulin-Pollux/SamFirm-continued/total.svg?style=popout-square)
-![License](https://img.shields.io/github/license/Lulin-Pollux/SamFirm-continued.svg?style=popout-square) 
+[![Release](https://img.shields.io/github/release/clovadev/SamFirm-continued.svg?style=popout-square)](https://github.com/clovadev/SamFirm-continued/releases/latest)
+![Last commit](https://img.shields.io/github/last-commit/clovadev/SamFirm-continued.svg?style=popout-square)
+![Download](https://img.shields.io/github/downloads/clovadev/SamFirm-continued/total.svg?style=popout-square)
+![License](https://img.shields.io/github/license/clovadev/SamFirm-continued.svg?style=popout-square) 
 
 ## How to Install
 
-1. Click the Release badge above or the [Release link](https://github.com/Lulin-Pollux/SamFirm-continued/releases/latest).
+1. Click the Release badge above or the [Release link](https://github.com/clovadev/SamFirm-continued/releases/latest).
 2. Download the latest version. (Latest Release)
 3. Check that .NET Framework 4.7, [Visual C++ 2010 x86](http://www.microsoft.com/ko-kr/download/details.aspx?id=5555), [Visual C++ 2008 x86](https://www.microsoft.com/ko-kr/download/details.aspx?id=5582) are installed. Please download and install the missing parts by clicking each link or search on google.
 
